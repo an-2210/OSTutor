@@ -1,0 +1,24 @@
+{
+  "experiment_id": "EXP-001-BASELINE",
+  "experiment_title": "Phase 4 Base LLM Zero-Shot Baseline Evaluation",
+  "model_name_or_path": "Qwen/Qwen2.5-1.5B-Instruct",
+  "fallback_model_name_or_path": "Qwen/Qwen2.5-0.5B-Instruct",
+  "task": "baseline_zero_shot_eval",
+  "inference_parameters": {
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "max_new_tokens": 512,
+    "do_sample": false,
+    "random_seed": 42
+  },
+  "dataset": {
+    "test_set_path": "data/instruction/test.jsonl",
+    "description": "Protected test split (123 examples, 7 OS units)"
+  },
+  "output": {
+    "results_jsonl": "data/evaluation/base_model_test_results.jsonl",
+    "report_json": "data/evaluation/base_model_report.json",
+    "report_txt": "data/evaluation/base_model_report.txt"
+  },
+  "purpose": "Establish unmodified base LLM baseline performance on OS benchmark test set prior to instruction fine-tuning."
+}
