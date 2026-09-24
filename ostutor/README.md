@@ -92,7 +92,50 @@ The system directly maps to a 7-unit OS curriculum:
 
 ---
 
-## 8. Current Development Status
-- **Phase 1 Complete:** Repository structure established, 7-unit taxonomy created, dataset schemas defined, sample records added, and documentation created.
-- **Phase 2 Complete:** Complete RAG ingestion, cleaning, token chunking, SentenceTransformers embedding generation, FAISS vector indexing, retrieval CLI, and batch evaluator implemented and verified.
-- **Next Step:** Phase 3 (Instruction Dataset Curation for LoRA Fine-Tuning).
+## 8. Phase 4 — Base Model Selection & Fine-Tuning Preparation
+
+Phase 4 establishes the experimental baseline and fine-tuning infrastructure for **OSTutorLLM**:
+
+### Quick Start Commands
+
+1. **Hardware Telemetry Check:**
+   ```bash
+   python3 finetuning/hardware_info.py
+   ```
+
+2. **Dataset Versioning & SHA-256 Hashes:**
+   ```bash
+   python3 evaluation/dataset_hash.py
+   ```
+
+3. **Base LLM Baseline Evaluation (Protected Test Set):**
+   ```bash
+   python3 evaluation/baseline.py --limit 5 --mock
+   python3 evaluation/generate_baseline_report.py
+   ```
+
+4. **Human Evaluation Template Generation:**
+   ```bash
+   python3 evaluation/human_review_template.py
+   ```
+
+5. **LoRA Fine-Tuning Pilot Experiment:**
+   ```bash
+   python3 finetuning/train.py --limit 100 --mock
+   ```
+
+6. **Fine-Tuned Model Validation & Comparative Analysis:**
+   ```bash
+   python3 finetuning/evaluate.py --limit 5 --mock
+   python3 evaluation/compare_base_and_tuned.py
+   ```
+
+---
+
+## 9. Current Development Status
+- **Phase 1 Complete:** Repository structure, 7-unit OS taxonomy, dataset schemas, and initial validation.
+- **Phase 2 Complete:** Complete RAG ingestion, cleaning, token chunking, SentenceTransformers embedding generation, FAISS vector indexing, retrieval CLI, and batch evaluator.
+- **Phase 3 Complete:** High-quality OS instruction-tuning dataset (1,230 examples: 984 train, 123 validation, 123 test) with strict validation & formatting scripts.
+- **Phase 4 Complete:** Base model selection (`Qwen/Qwen2.5-1.5B-Instruct`), hardware inspection, baseline evaluation, automatic & numerical metrics, dataset SHA-256 hashing, human review template generation, LoRA fine-tuning framework, pilot experiment, and comparative model analysis.
+- **Next Step:** Phase 5 (Full Fine-Tuning Run, RAG + LLM Integration, and Final 4-Way Evaluation).
+

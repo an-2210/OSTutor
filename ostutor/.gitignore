@@ -31,13 +31,15 @@ venv/
 env/
 ENV/
 
-# Data files (raw, processed, and index data should not be committed)
+# Data files (raw, processed, index, and evaluation data should not be committed)
 data/rag/raw/*
 !data/rag/raw/.gitkeep
 data/rag/processed/*
 !data/rag/processed/.gitkeep
 data/rag/index/*
 !data/rag/index/.gitkeep
+data/evaluation/*
+!data/evaluation/.gitkeep
 
 # Model weights and checkpoints
 models/

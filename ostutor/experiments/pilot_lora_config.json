@@ -1,0 +1,45 @@
+{
+  "experiment_id": "EXP-002-PILOT-LORA",
+  "experiment_title": "Phase 4 Pilot LoRA Instruction Fine-Tuning Experiment",
+  "base_model_name_or_path": "Qwen/Qwen2.5-1.5B-Instruct",
+  "task": "instruction_sft_lora",
+  "peft_configuration": {
+    "peft_type": "LORA",
+    "r": 16,
+    "lora_alpha": 32,
+    "lora_dropout": 0.05,
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj",
+      "gate_proj",
+      "up_proj",
+      "down_proj"
+    ],
+    "bias": "none",
+    "task_type": "CAUSAL_LM"
+  },
+  "training_hyperparameters": {
+    "max_seq_length": 1024,
+    "learning_rate": 0.0002,
+    "per_device_train_batch_size": 2,
+    "gradient_accumulation_steps": 4,
+    "num_train_epochs": 1,
+    "warmup_ratio": 0.03,
+    "weight_decay": 0.01,
+    "optimizer": "adamw_torch",
+    "lr_scheduler_type": "linear",
+    "random_seed": 42
+  },
+  "datasets": {
+    "train_path": "data/instruction/formatted_train.jsonl",
+    "validation_path": "data/instruction/formatted_validation.jsonl",
+    "protected_test_excluded": true
+  },
+  "output": {
+    "checkpoint_dir": "checkpoints/ostutor_lora",
+    "training_log": "data/evaluation/pilot_training_log.json"
+  },
+  "purpose": "Verify LoRA fine-tuning training pipeline, verify adapter saving/loading on Apple Silicon MPS / CUDA, and run small pilot experiment."
+}
