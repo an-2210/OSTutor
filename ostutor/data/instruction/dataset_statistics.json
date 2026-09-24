@@ -1,0 +1,58 @@
+{
+  "total_records": 1230,
+  "split_counts": {
+    "train": 984,
+    "validation": 123,
+    "test": 123
+  },
+  "by_unit": {
+    "unit_1": 148,
+    "unit_2": 168,
+    "unit_3": 235,
+    "unit_4": 150,
+    "unit_5": 165,
+    "unit_6": 144,
+    "unit_7": 220
+  },
+  "by_bloom_level": {
+    "Understand": 304,
+    "Analyze": 267,
+    "Evaluate": 154,
+    "Apply": 505
+  },
+  "by_difficulty": {
+    "easy": 538,
+    "hard": 299,
+    "medium": 393
+  },
+  "by_task_type": {
+    "beginner_explanation": 269,
+    "mcq_generation": 269,
+    "analysis": 83,
+    "evaluation": 186,
+    "viva_generation": 269,
+    "numerical_problem": 91,
+    "step_by_step_solution": 33,
+    "debugging": 30
+  },
+  "by_source_type": {
+    "course_material": 269,
+    "synthetic_validated": 538,
+    "faculty_material": 423
+  },
+  "bloom_percentages": {
+    "Understand": 24.72,
+    "Analyze": 21.71,
+    "Evaluate": 12.52,
+    "Apply": 41.06
+  },
+  "unit_percentages": {
+    "unit_1": 12.03,
+    "unit_2": 13.66,
+    "unit_3": 19.11,
+    "unit_4": 12.2,
+    "unit_5": 13.41,
+    "unit_6": 11.71,
+    "unit_7": 17.89
+  }
+}
