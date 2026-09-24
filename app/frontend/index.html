@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OSTutor - Operating Systems, but make it understandable</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <a href="#" class="brand-section">
+      <div class="brand-logo">OS</div>
+      <div class="brand-title">OSTutor<span>.ai</span></div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#topics" class="nav-link">Topics</a></li>
+      <li><a href="#workspace" class="nav-link">Interactive Workspace</a></li>
+      <li><a href="#simulator" class="nav-link">CPU Simulator</a></li>
+      <li><a href="#rag" class="nav-link">Textbook Inspector</a></li>
+    </ul>
+
+    <a href="#workspace" class="header-cta-btn">Start Learning →</a>
+  </nav>
+
+  <!-- Page Main Container -->
+  <div class="page-container">
+
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <div class="hero-tag">
+          <span>🎓 Student-Centric OS Education</span>
+        </div>
+        <h1 class="hero-headline">
+          Operating Systems, <br>
+          <span>but make it understandable.</span>
+        </h1>
+        <p class="hero-description">
+          Your OS study space, minus the textbook headache. Learn it. Visualize it. Actually remember it with step-by-step kernel traces and interactive scheduling visualizers.
+        </p>
+        <div class="hero-actions">
+          <a href="#workspace" class="btn-primary">Start Learning 🚀</a>
+          <a href="#topics" class="btn-secondary">Explore Topics</a>
+        </div>
+      </div>
+
+      <!-- Playful Hero Visual Card -->
+      <div class="hero-visual-container">
+        <!-- Floating Stickers -->
+        <div class="sticker-badge s1">⚡ fork() PID: 4012</div>
+        <div class="sticker-badge s2">🧠 TLB Hit: 98.4%</div>
+        <div class="sticker-badge s3">🚀 Quantum: 2ms</div>
+
+        <div class="hero-preview-card">
+          <div style="font-family: var(--font-mono); font-size: 13px; font-weight: 700; color: var(--brand-purple);">
+            // LIVE KERNEL EXECUTION TRACE
+          </div>
+          <div style="background: #0f172a; color: #e2e8f0; padding: 16px; border-radius: 12px; font-family: var(--font-mono); font-size: 12px; line-height: 1.8;">
+            <span style="color:#10b981;">&gt; SYS_CALL [0x02]:</span> sys_fork() invoked<br>
+            <span style="color:#3b82f6;">&gt; ALLOCATE:</span> task_struct at 0xFFFF880<br>
+            <span style="color:#f43f5e;">&gt; COW_SET:</span> Pages marked READ-ONLY<br>
+            <span style="color:#f59e0b;">&gt; RETURN:</span> Child PID 4013 initialized
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOPIC CARDS SECTION -->
+    <section id="topics">
+      <div class="section-header">
+        <span class="section-pill">Core Curriculum</span>
+        <h2 class="section-title">Everything you need to master OS</h2>
+        <p class="section-subtitle">Simplified breakdowns of complex concepts with interactive visualizations.</p>
+      </div>
+
+      <div class="topics-grid">
+        <!-- Card 1 -->
+        <div class="topic-card t-purple" onclick="selectTopic('proc', 'Processes & Threads')">
+          <div>
+            <div class="topic-icon-wrap">⚡</div>
+            <h3 class="topic-title">Processes & Threads</h3>
+            <p class="topic-desc">Process Control Blocks (PCB), context switches, fork/exec system calls, and multithreading primitives.</p>
+          </div>
+          <span class="topic-link">Learn →</span>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="topic-card t-blue" onclick="selectTopic('cpu', 'CPU Scheduling')">
+          <div>
+            <div class="topic-icon-wrap">🚀</div>
+            <h3 class="topic-title">CPU Scheduling</h3>
+            <p class="topic-desc">FCFS, Shortest Job First (SJF), Round Robin quantum slicing, and Linux Completely Fair Scheduler (CFS).</p>
+          </div>
+          <span class="topic-link">Learn →</span>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="topic-card t-pink" onclick="selectTopic('sync', 'Synchronization')">
+          <div>
+            <div class="topic-icon-wrap">🔒</div>
+            <h3 class="topic-title">Synchronization & Locks</h3>
+            <p class="topic-desc">Race conditions, Peterson's algorithm, Mutex locks, Counting Semaphores, and Banker's Deadlock avoidance.</p>
+          </div>
+          <span class="topic-link">Learn →</span>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="topic-card t-yellow" onclick="selectTopic('mem', 'Virtual Memory')">
+          <div>
+            <div class="topic-icon-wrap">🧠</div>
+            <h3 class="topic-title">Virtual Memory & Paging</h3>
+            <p class="topic-desc">Page tables, TLB cache lookups, Page Fault handling (#PF), and LRU page replacement policies.</p>
+          </div>
+          <span class="topic-link">Learn →</span>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="topic-card t-emerald" onclick="selectTopic('fs', 'File Systems')">
+          <div>
+            <div class="topic-icon-wrap">📁</div>
+            <h3 class="topic-title">File Systems & Storage</h3>
+            <p class="topic-desc">Inode structures, Virtual File System (VFS), direct/indirect block pointers, Ext4 journaling, and RAID layout.</p>
+          </div>
+          <span class="topic-link">Learn →</span>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="topic-card t-purple" onclick="selectTopic('io', 'I/O & Interrupts')">
+          <div>
+            <div class="topic-icon-wrap">🔌</div>
+            <h3 class="topic-title">I/O & Interrupts</h3>
+            <p class="topic-desc">Interrupt Service Routines (ISR), Direct Memory Access (DMA), and disk scheduling (SCAN / C-SCAN).</p>
+          </div>
+          <span class="topic-link">Learn →</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE WORKSPACE SECTION -->
+    <section id="workspace">
+      <div class="section-header">
+        <span class="section-pill">Interactive Study Space</span>
+        <h2 class="section-title">Your AI-Powered OS Workbench</h2>
+        <p class="section-subtitle">Ask questions, inspect kernel traces, run CPU schedulers, and verify textbook citations.</p>
+      </div>
+
+      <div class="workspace-wrapper">
+
+        <!-- Left Sidebar Topic Selection -->
+        <aside class="workspace-sidebar">
+          <div class="workspace-sidebar-title">Select Module</div>
+          <button class="side-topic-btn active" data-id="proc" onclick="selectTopic('proc', 'Process Management')">
+            <span>⚡ Processes & Threads</span>
+          </button>
+          <button class="side-topic-btn" data-id="mem" onclick="selectTopic('mem', 'Virtual Memory')">
+            <span>🧠 Virtual Memory</span>
+          </button>
+          <button class="side-topic-btn" data-id="sync" onclick="selectTopic('sync', 'Synchronization')">
+            <span>🔒 Concurrency & Mutex</span>
+          </button>
+          <button class="side-topic-btn" data-id="cpu" onclick="selectTopic('cpu', 'CPU Scheduling')">
+            <span>🚀 CPU Scheduling</span>
+          </button>
+          <button class="side-topic-btn" data-id="fs" onclick="selectTopic('fs', 'File Systems')">
+            <span>📁 File Systems</span>
+          </button>
+          <button class="side-topic-btn" data-id="io" onclick="selectTopic('io', 'I/O Interrupts')">
+            <span>🔌 I/O & Interrupts</span>
+          </button>
+        </aside>
+
+        <!-- Center Interactive Area -->
+        <main class="workspace-center">
+          <nav class="workspace-nav-tabs">
+            <button class="tab-btn active" data-tab="terminal">💬 AI Tutor Terminal</button>
+            <button class="tab-btn" data-tab="simulator">⚡ CPU Gantt Simulator</button>
+            <button class="tab-btn" data-tab="shap">📊 SHAP Feature Telemetry</button>
+          </nav>
+
+          <!-- Tab 1: AI Tutor Chat Window -->
+          <div class="workspace-view active" id="view-terminal">
+            <div class="chat-window">
+              <div class="chat-messages" id="chatHistory">
+                <div class="message-item tutor">
+                  <div class="message-bubble">
+                    👋 <strong>Hey there! Welcome to OSTutor.</strong><br>
+                    I am your AI study companion for Operating Systems. Ask me anything about <em>fork(), TLB misses, semaphores, page replacement, or CPU scheduling!</em>
+                  </div>
+                </div>
+              </div>
+
+              <div class="chat-input-bar">
+                <input type="text" id="chatInput" class="chat-input" placeholder="Ask a question (e.g. 'How does copy-on-write work in fork()?')..." autocomplete="off">
+                <button id="sendBtn" class="btn-primary">Ask AI →</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab 2: CPU Scheduler Simulator -->
+          <div class="workspace-view" id="view-simulator">
+            <div class="sim-container">
+              <div class="sim-controls">
+                <label style="font-weight: 700; font-size: 14px;">Algorithm:</label>
+                <select id="algoSelect" class="sim-select">
+                  <option value="FCFS">First-Come First-Served (FCFS)</option>
+                  <option value="SJF">Shortest Job First (SJF)</option>
+                  <option value="RR" selected>Round Robin (RR - Quantum: 2ms)</option>
+                </select>
+                <button id="runSimBtn" class="btn-primary">Simulate Gantt Timeline →</button>
+              </div>
+
+              <div class="gantt-box">
+                <div style="font-weight: 700; font-size: 15px; color: var(--text-dark);">
+                  CPU Execution Gantt Chart:
+                </div>
+                <div class="gantt-bar-row" id="ganttBarRow"></div>
+                <div style="margin-top: 16px; font-size: 14px; color: var(--text-medium);" id="simMetricsBox"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab 3: SHAP Feature Telemetry -->
+          <div class="workspace-view" id="view-shap">
+            <div style="padding: 10px;">
+              <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 8px;">SHAP Model Attribution Metrics</h3>
+              <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 20px;">
+                Feature importance breakdown from Phase 3 XGBoost & Hybrid Decision Fusion anomaly detection model.
+              </p>
+              <div id="shapBarsContainer" class="shap-container"></div>
+            </div>
+          </div>
+        </main>
+
+        <!-- Right Panel: Textbook Notes & RAG Inspector -->
+        <aside class="workspace-right" id="rag">
+          <div class="right-panel-title">📚 Textbook Citations & RAG Notes</div>
+          <div id="ragResultsList"></div>
+        </aside>
+
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>© 2026 <strong>OSTutor.ai</strong> — Instruction-Tuned & Retrieval-Augmented Operating Systems Study Platform.</p>
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
