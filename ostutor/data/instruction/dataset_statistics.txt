@@ -1,0 +1,47 @@
+==================================================
+ OSTutorLLM Instruction Dataset Statistics Report 
+==================================================
+
+Total Instruction Examples : 1230
+
+1. Split Breakdown:
+   - train       :   984 records ( 80.0%)
+   - validation  :   123 records ( 10.0%)
+   - test        :   123 records ( 10.0%)
+
+2. Unit Breakdown (Syllabus Units 1-7):
+   - unit_1    :   148 records ( 12.0%)
+   - unit_2    :   168 records ( 13.7%)
+   - unit_3    :   235 records ( 19.1%)
+   - unit_4    :   150 records ( 12.2%)
+   - unit_5    :   165 records ( 13.4%)
+   - unit_6    :   144 records ( 11.7%)
+   - unit_7    :   220 records ( 17.9%)
+
+3. Bloom's Taxonomy Breakdown:
+   - Understand  :   304 records ( 24.7%)
+   - Analyze     :   267 records ( 21.7%)
+   - Evaluate    :   154 records ( 12.5%)
+   - Apply       :   505 records ( 41.1%)
+
+4. Difficulty Level Breakdown:
+   - easy      :   538 records ( 43.7%)
+   - hard      :   299 records ( 24.3%)
+   - medium    :   393 records ( 32.0%)
+
+5. Task Type Breakdown:
+   - beginner_explanation     :   269 records ( 21.9%)
+   - mcq_generation           :   269 records ( 21.9%)
+   - viva_generation          :   269 records ( 21.9%)
+   - evaluation               :   186 records ( 15.1%)
+   - numerical_problem        :    91 records (  7.4%)
+   - analysis                 :    83 records (  6.7%)
+   - step_by_step_solution    :    33 records (  2.7%)
+   - debugging                :    30 records (  2.4%)
+
+6. Provenance (Source Type) Breakdown:
+   - synthetic_validated      :   538 records ( 43.7%)
+   - faculty_material         :   423 records ( 34.4%)
+   - course_material          :   269 records ( 21.9%)
+
+==================================================

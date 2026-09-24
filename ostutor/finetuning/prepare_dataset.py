@@ -1,13 +1,22 @@
 """
-Dataset Preparation and Schema Validation Module for OSTutorLLM Fine-Tuning.
+Dataset Preparation and Validation Module for OSTutorLLM Fine-Tuning (Phase 3).
 
-Validates instruction JSONL records against predefined OS taxonomy, Bloom's taxonomy levels,
-and allowed task types. Performs deduplication, summary statistics generation, and split creation.
+Provides schema validation, taxonomy mapping verification, exact & near-duplicate detection,
+train/validation/test split leakage verification, and dataset loader functions.
 """
 
 import json
+import logging
 import os
+import re
+from pathlib import Path
 from typing import Any, Dict, List, Set, Tuple
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+TAXONOMY_PATH = BASE_DIR / "data" / "taxonomy.json"
+INSTRUCTION_DIR = BASE_DIR / "data" / "instruction"
+
+logger = logging.getLogger(__name__)
 
 ALLOWED_BLOOM_LEVELS: Set[str] = {
     "Remember",
@@ -17,20 +26,27 @@ ALLOWED_BLOOM_LEVELS: Set[str] = {
     "Evaluate",
 }
 
+ALLOWED_DIFFICULTIES: Set[str] = {"easy", "medium", "hard"}
+
 ALLOWED_TASK_TYPES: Set[str] = {
     "concept_explanation",
     "beginner_explanation",
+    "advanced_explanation",
     "comparison",
     "mcq_generation",
     "viva_generation",
     "numerical_problem",
     "problem_solving",
+    "algorithm_explanation",
+    "step_by_step_solution",
     "programming",
     "debugging",
     "analysis",
     "evaluation",
-    "step_by_step_solution",
+    "scenario_analysis",
+    "misconception_correction",
     "summarization",
+    "exam_question_answer",
 }
 
 REQUIRED_KEYS: Set[str] = {
@@ -47,16 +63,51 @@ REQUIRED_KEYS: Set[str] = {
 }
 
 
-def validate_record(record: Dict[str, Any], record_idx: int) -> List[str]:
+def load_taxonomy_data(taxonomy_path: Path = TAXONOMY_PATH) -> Tuple[Set[int], Dict[int, Set[str]], Dict[str, Set[str]]]:
     """
-    Validate a single instruction-tuning record dictionary.
-
-    Args:
-        record: Instruction item dictionary.
-        record_idx: Line index of the record for error messaging.
+    Load valid units, topics, and subtopics from data/taxonomy.json.
 
     Returns:
-        List of validation error message strings (empty if valid).
+        Tuple of (valid_units, unit_topics_map, topic_subtopics_map).
+    """
+    valid_units: Set[int] = set()
+    unit_topics_map: Dict[int, Set[str]] = {}
+    topic_subtopics_map: Dict[str, Set[str]] = {}
+
+    if not taxonomy_path.exists():
+        return valid_units, unit_topics_map, topic_subtopics_map
+
+    with open(taxonomy_path, "r", encoding="utf-8") as f:
+        units_data = json.load(f)
+
+    for u in units_data:
+        uid = int(u["unit_id"].split("_")[1])
+        valid_units.add(uid)
+        unit_topics_map[uid] = set()
+
+        for t in u.get("topics", []):
+            t_name = t["name"]
+            unit_topics_map[uid].add(t_name.lower())
+            if t_name.lower() not in topic_subtopics_map:
+                topic_subtopics_map[t_name.lower()] = set()
+
+            for st in t.get("subtopics", []):
+                topic_subtopics_map[t_name.lower()].add(st.lower())
+
+    return valid_units, unit_topics_map, topic_subtopics_map
+
+
+def validate_record(record: Dict[str, Any], record_idx: int, taxonomy_info: Optional[Tuple] = None) -> List[str]:
+    """
+    Validate a single instruction-tuning record dictionary against schema and taxonomy.
+
+    Args:
+        record: Instruction record dictionary.
+        record_idx: 1-indexed line index of record.
+        taxonomy_info: Preloaded taxonomy tuple.
+
+    Returns:
+        List of validation error strings.
     """
     errors: List[str] = []
 
@@ -77,6 +128,13 @@ def validate_record(record: Dict[str, Any], record_idx: int) -> List[str]:
             f"Record #{record_idx}: Invalid Bloom level '{bloom}'. Allowed: {sorted(list(ALLOWED_BLOOM_LEVELS))}"
         )
 
+    # Validate difficulty level
+    diff = record.get("difficulty")
+    if diff not in ALLOWED_DIFFICULTIES:
+        errors.append(
+            f"Record #{record_idx}: Invalid difficulty '{diff}'. Allowed: {sorted(list(ALLOWED_DIFFICULTIES))}"
+        )
+
     # Validate task type
     task_type = record.get("task_type")
     if task_type not in ALLOWED_TASK_TYPES:
@@ -90,22 +148,36 @@ def validate_record(record: Dict[str, Any], record_idx: int) -> List[str]:
     if not str(record.get("output", "")).strip():
         errors.append(f"Record #{record_idx}: 'output' field cannot be empty.")
 
+    # Taxonomy checks if provided
+    if taxonomy_info:
+        valid_units, unit_topics_map, topic_subtopics_map = taxonomy_info
+        if unit in valid_units:
+            topic = str(record.get("topic", "")).strip().lower()
+            if topic and topic not in unit_topics_map.get(unit, set()):
+                errors.append(f"Record #{record_idx}: Topic '{record.get('topic')}' not mapped to Unit {unit} in taxonomy.")
+            elif topic in topic_subtopics_map:
+                subtopic = str(record.get("subtopic", "")).strip().lower()
+                if subtopic and subtopic not in topic_subtopics_map[topic]:
+                    # Warning logging for subtopic drift
+                    pass
+
     return errors
 
 
-def load_and_validate_jsonl(file_path: str) -> Tuple[List[Dict[str, Any]], List[str]]:
+def load_and_validate_jsonl(file_path: Path) -> Tuple[List[Dict[str, Any]], List[str]]:
     """
-    Load a JSONL file and validate all contained records.
+    Load a JSONL dataset file and validate all records.
 
     Args:
-        file_path: Path to the JSONL file.
+        file_path: Path to JSONL file.
 
     Returns:
-        Tuple of (list of valid records, list of error messages).
+        Tuple of (valid records list, error strings list).
     """
-    if not os.path.exists(file_path):
+    if not file_path.exists():
         return [], [f"File not found: {file_path}"]
 
+    taxonomy_info = load_taxonomy_data()
     records: List[Dict[str, Any]] = []
     all_errors: List[str] = []
 
@@ -116,7 +188,7 @@ def load_and_validate_jsonl(file_path: str) -> Tuple[List[Dict[str, Any]], List[
                 continue
             try:
                 data = json.loads(line_str)
-                record_errors = validate_record(data, idx)
+                record_errors = validate_record(data, idx, taxonomy_info)
                 if record_errors:
                     all_errors.extend(record_errors)
                 else:
@@ -127,64 +199,106 @@ def load_and_validate_jsonl(file_path: str) -> Tuple[List[Dict[str, Any]], List[
     return records, all_errors
 
 
-def remove_duplicates(records: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+def detect_exact_duplicates(records: List[Dict[str, Any]]) -> List[Tuple[int, int, str]]:
     """
-    Deduplicate instruction records based on instruction + input combination.
+    Identify exact duplicate records based on instruction + input.
+
+    Returns:
+        List of (idx_orig, idx_dup, instruction_key) tuples.
+    """
+    seen: Dict[str, int] = {}
+    duplicates: List[Tuple[int, int, str]] = []
+
+    for idx, rec in enumerate(records):
+        key = f"{rec.get('instruction', '').strip()}|||{rec.get('input', '').strip()}".lower()
+        if key in seen:
+            duplicates.append((seen[key], idx, key[:60]))
+        else:
+            seen[key] = idx
+
+    return duplicates
+
+
+def get_ngrams(text: str, n: int = 3) -> Set[str]:
+    """Extract word n-grams from text."""
+    words = re.findall(r"\b\w+\b", text.lower())
+    if len(words) < n:
+        return {" ".join(words)} if words else set()
+    return {" ".join(words[i : i + n]) for i in range(len(words) - n + 1)}
+
+
+def jaccard_similarity(set_a: Set[str], set_b: Set[str]) -> float:
+    """Compute Jaccard similarity coefficient between two sets."""
+    if not set_a or not set_b:
+        return 0.0
+    intersection = len(set_a & set_b)
+    union = len(set_a | set_b)
+    return intersection / union if union > 0 else 0.0
+
+
+def detect_near_duplicates(
+    records: List[Dict[str, Any]], threshold: float = 0.85
+) -> List[Tuple[int, int, float, str]]:
+    """
+    Detect near-duplicate records using 3-gram Jaccard similarity.
 
     Args:
         records: List of instruction records.
+        threshold: Jaccard similarity threshold (0.0 to 1.0).
 
     Returns:
-        Deduplicated list of instruction records.
+        List of (idx_a, idx_b, similarity_score, instruction_a_snippet) tuples.
     """
-    seen: Set[str] = set()
-    unique_records: List[Dict[str, Any]] = []
+    ngrams_list = [
+        get_ngrams(f"{r.get('instruction', '')} {r.get('input', '')}") for r in records
+    ]
+    near_dups: List[Tuple[int, int, float, str]] = []
 
-    for rec in records:
-        key = f"{rec.get('instruction', '')}|||{rec.get('input', '')}"
-        if key not in seen:
-            seen.add(key)
-            unique_records.append(rec)
+    num_records = len(records)
+    for i in range(num_records):
+        for j in range(i + 1, min(i + 100, num_records)):  # Windowed comparison
+            sim = jaccard_similarity(ngrams_list[i], ngrams_list[j])
+            if sim >= threshold:
+                snippet = records[i].get("instruction", "")[:50]
+                near_dups.append((i, j, round(sim, 4), snippet))
 
-    return unique_records
+    return near_dups
 
 
-def generate_dataset_statistics(records: List[Dict[str, Any]]) -> Dict[str, Any]:
+def check_split_leakage(
+    train_records: List[Dict[str, Any]], test_records: List[Dict[str, Any]]
+) -> List[Tuple[int, int, str]]:
     """
-    Compute summary statistics over the dataset.
-
-    Args:
-        records: List of instruction records.
+    Check for data leakage between training set and test set.
 
     Returns:
-        Dictionary containing counts per unit, bloom level, task type, and total records.
+        List of (train_idx, test_idx, instruction_key) overlapping pairs.
     """
-    stats: Dict[str, Any] = {
-        "total_records": len(records),
-        "by_unit": {},
-        "by_bloom_level": {},
-        "by_task_type": {},
+    train_keys = {
+        f"{r.get('instruction', '').strip()}|||{r.get('input', '').strip()}".lower(): idx
+        for idx, r in enumerate(train_records)
     }
+    leakage: List[Tuple[int, int, str]] = []
 
-    for rec in records:
-        u = f"unit_{rec.get('unit')}"
-        b = str(rec.get("bloom_level"))
-        t = str(rec.get("task_type"))
+    for t_idx, test_rec in enumerate(test_records):
+        key = f"{test_rec.get('instruction', '').strip()}|||{test_rec.get('input', '').strip()}".lower()
+        if key in train_keys:
+            leakage.append((train_keys[key], t_idx, key[:60]))
 
-        stats["by_unit"][u] = stats["by_unit"].get(u, 0) + 1
-        stats["by_bloom_level"][b] = stats["by_bloom_level"].get(b, 0) + 1
-        stats["by_task_type"][t] = stats["by_task_type"].get(t, 0) + 1
-
-    return stats
+    return leakage
 
 
 if __name__ == "__main__":
-    train_path = os.path.join("data", "instruction", "train.jsonl")
-    records, errors = load_and_validate_jsonl(train_path)
-    if errors:
-        print(f"Validation errors found in {train_path}:")
-        for err in errors:
-            print(f"  - {err}")
-    else:
-        print(f"Validation successful for {train_path}! Total records: {len(records)}")
-        print(json.dumps(generate_dataset_statistics(records), indent=2))
+    logging.basicConfig(level=logging.INFO)
+    print("OSTutorLLM Dataset Preparation & Validation")
+    print("===========================================")
+
+    for split_name in ["train.jsonl", "validation.jsonl", "test.jsonl"]:
+        path = INSTRUCTION_DIR / split_name
+        recs, errs = load_and_validate_jsonl(path)
+        if errs:
+            print(f"[ERRORS] {split_name} validation failed with {len(errs)} errors:")
+            for e in errs[:5]:
+                print(f"  - {e}")
+        else:
+            print(f"[PASS] {split_name}: {len(recs)} records validated successfully.")
