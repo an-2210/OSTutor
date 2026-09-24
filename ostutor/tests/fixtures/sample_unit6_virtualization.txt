@@ -1,0 +1,10 @@
+# Unit 6: Virtualization & File System Management
+
+## Hypervisors & Containers
+Virtualization abstracts hardware resources:
+- Type 1 Hypervisor (Bare-Metal): Runs directly on host hardware (e.g., Xen, VMware ESXi).
+- Type 2 Hypervisor (Hosted): Runs on top of a host operating system (e.g., VirtualBox).
+- Container Virtualization: Uses OS-level primitives (Linux namespaces for isolation and cgroups for resource limits) to run isolated application environments without hypervisor overhead.
+
+## File Systems & Journaling
+File systems organize storage blocks into files and directories. Journaling file systems use Write-Ahead Logging (WAL) to record metadata changes before writing to main disk blocks, allowing fast crash recovery without running full fsck checks.

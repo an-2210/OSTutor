@@ -1,0 +1,15 @@
+# Unit 3: CPU Scheduling & Deadlocks
+
+## Process Scheduling Algorithms
+CPU scheduling algorithms decide which process in the ready queue receives CPU execution time:
+- First-Come, First-Served (FCFS): Non-preemptive algorithm subject to the Convoy Effect.
+- Shortest Job First (SJF): Non-preemptive, provably optimal for minimizing average waiting time.
+- Shortest Remaining Time First (SRTF): Preemptive variant of SJF.
+- Round Robin (RR): Preemptive algorithm designed for time-sharing systems using a fixed time quantum (slice).
+
+## Deadlock Characterization
+A deadlock is a situation where a set of processes are blocked because each process holds a resource and waits for another resource held by another process. Four necessary conditions:
+1. Mutual Exclusion
+2. Hold and Wait
+3. No Preemption
+4. Circular Wait

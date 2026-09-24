@@ -1,0 +1,11 @@
+# Unit 7: Storage Management, Protection and Security
+
+## Disk Scheduling Algorithms
+Disk scheduling manages hard disk seek times and head movements across cylinder tracks:
+- SSTF (Shortest Seek Time First): Selects request closest to current head position.
+- SCAN (Elevator Algorithm): Moves disk arm back and forth across tracks.
+- C-SCAN (Circular SCAN): Moves arm in one direction, servicing requests, then immediately returns to track 0.
+
+## Protection & Access Matrix
+Protection restricts resource access by user processes. An Access Matrix represents domains as rows and objects as columns, defining access rights (Read, Write, Execute).
+System threats include buffer overflow vulnerabilities, malware (viruses, worms, trojans, rootkits), and denial of service attacks.

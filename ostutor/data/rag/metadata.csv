@@ -1,0 +1,8 @@
+document_id,filename,unit,topic,subtopic,source_type,source,license_or_access,description
+sample_u1_intro,sample_unit1_intro.txt,1,Functionality of Operating Systems,Resource Management,faculty_material,Course Lecture Notes,Open Educational License,Introduction to OS functionality and design.
+sample_u2_principles,sample_unit2_principles.txt,2,System Calls,System Call Mechanism and Traps,faculty_material,Course Lecture Notes,Open Educational License,OS principles covering system calls and process control blocks.
+sample_u3_scheduling,sample_unit3_scheduling.txt,3,CPU Scheduling,Round Robin,faculty_material,Course Lecture Notes,Open Educational License,CPU process scheduling algorithms and deadlock characterization.
+sample_u4_concurrency,sample_unit4_concurrency.txt,4,Semaphores,Counting and Binary Semaphores,faculty_material,Course Lecture Notes,Open Educational License,Concurrency synchronization primitives and classical problems.
+sample_u5_memory,sample_unit5_memory.txt,5,Paging,Address Translation Math,faculty_material,Course Lecture Notes,Open Educational License,Memory management virtual memory paging and replacement algorithms.
+sample_u6_virtualization,sample_unit6_virtualization.txt,6,Hypervisors,Type 1 Hypervisors,faculty_material,Course Lecture Notes,Open Educational License,Virtualization hypervisors containers and journaling file systems.
+sample_u7_storage_security,sample_unit7_storage_security.txt,7,Disk Scheduling Algorithms,SSTF,SCAN,faculty_material,Course Lecture Notes,Open Educational License,Storage disk scheduling protection access matrix and security threats.
