@@ -1,0 +1,11 @@
+# Unit 4: Concurrency & Synchronization
+
+## Synchronization Primitives & Semaphores
+Synchronization primitives enforce mutual exclusion over critical sections to prevent race conditions.
+A Semaphore is an integer variable accessed only through atomic operations:
+- wait() or P(): Decrements the semaphore value. If value < 0, the process blocks.
+- signal() or V(): Increments the semaphore value and unblocks a waiting process.
+
+## Classical Synchronization Problems
+1. Bounded Buffer (Producer-Consumer): Uses empty, full counting semaphores and mutex lock.
+2. Dining Philosophers: Illustrates deadlock and starvation risks when 5 philosophers contend for 5 chopsticks.

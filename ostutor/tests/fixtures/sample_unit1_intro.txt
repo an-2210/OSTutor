@@ -1,0 +1,12 @@
+# Unit 1: Introduction to Operating Systems
+
+## Functionality of Operating Systems
+An Operating System (OS) is software that manages computer hardware and software resources. It provides common services for computer programs. Core functions include:
+1. Resource Allocation: Managing CPU, memory, storage, and I/O devices among competing user processes.
+2. Hardware Abstraction: Providing a uniform, virtualized interface over diverse hardware components.
+3. User Interface: Presenting a shell (CLI) or graphical user interface (GUI) for interactive system control.
+
+## OS Design Issues & Kernel Architectures
+- Monolithic Systems: Entire OS runs in a single address space in kernel mode. Provides fast inter-component execution but a crash in any module crashes the entire system.
+- Microkernel Models: Minimizes kernel space to IPC, basic memory management, and process scheduling. Other services run in user space servers.
+- Layered Systems: Organizes OS components into hierarchical layers (e.g., THE Multiprogramming System).

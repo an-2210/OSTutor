@@ -1,0 +1,13 @@
+# Unit 5: Memory Management & Virtual Memory
+
+## Virtual Memory Paging
+Virtual memory decouples user logical address space from physical memory. Paging breaks logical memory into fixed-size pages and physical memory into identical frames.
+The Memory Management Unit (MMU) uses a Page Table to translate logical addresses (page number + offset) into physical addresses (frame number + offset).
+
+## Page Replacement & Thrashing
+When a page fault occurs and physical frames are full, a page replacement algorithm chooses an evicted page:
+- FIFO: First-In, First-Out (subject to Belady's Anomaly).
+- Optimal (OPT): Replaces page that will not be used for longest future time.
+- LRU: Replaces Least Recently Used page.
+
+Thrashing occurs when a process spends more time paging than executing due to insufficient allocation of working set frames.

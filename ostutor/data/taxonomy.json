@@ -1,0 +1,880 @@
+[
+  {
+    "unit_id": "unit_1",
+    "unit_name": "Introduction to Operating Systems",
+    "bloom_levels": [
+      "Understand"
+    ],
+    "topics": [
+      {
+        "topic_id": "unit_1_topic_1",
+        "name": "Functionality of Operating Systems",
+        "subtopics": [
+          "Resource Management",
+          "Hardware Abstraction",
+          "User Interface Services",
+          "System Execution Environment"
+        ]
+      },
+      {
+        "topic_id": "unit_1_topic_2",
+        "name": "OS Design Issues",
+        "subtopics": [
+          "Performance vs Generalizability",
+          "Robustness and Security",
+          "Extensibility and Modularity"
+        ]
+      },
+      {
+        "topic_id": "unit_1_topic_3",
+        "name": "Monolithic Systems",
+        "subtopics": [
+          "Single Address Space Architecture",
+          "Kernel Privilege Execution",
+          "Monolithic Kernel Tradeoffs"
+        ]
+      },
+      {
+        "topic_id": "unit_1_topic_4",
+        "name": "Layered Systems",
+        "subtopics": [
+          "Layered Architecture Principles",
+          "THE Multiprogramming System",
+          "Inter-layer Communication Overhead"
+        ]
+      },
+      {
+        "topic_id": "unit_1_topic_5",
+        "name": "Modular Systems",
+        "subtopics": [
+          "Dynamically Loaded Modules",
+          "Object-Oriented Kernel Components",
+          "Interface Abstractions"
+        ]
+      },
+      {
+        "topic_id": "unit_1_topic_6",
+        "name": "Microkernel Models",
+        "subtopics": [
+          "Minimalist Kernel Core",
+          "User-Space Services and Servers",
+          "IPC Performance Considerations"
+        ]
+      },
+      {
+        "topic_id": "unit_1_topic_7",
+        "name": "Abstractions",
+        "subtopics": [
+          "Hardware Abstraction Layer (HAL)",
+          "Virtual Machine Concept",
+          "Resource Virtualization"
+        ]
+      },
+      {
+        "topic_id": "unit_1_topic_8",
+        "name": "Processes",
+        "subtopics": [
+          "Process Concept Definition",
+          "Address Space Abstraction",
+          "Process Execution Context"
+        ]
+      },
+      {
+        "topic_id": "unit_1_topic_9",
+        "name": "Resources",
+        "subtopics": [
+          "Hardware Resources (CPU, Memory, I/O)",
+          "Software Resources (Files, Locks, Buffers)",
+          "Resource Sharing Policies"
+        ]
+      },
+      {
+        "topic_id": "unit_1_topic_10",
+        "name": "Influence of Security",
+        "subtopics": [
+          "Security Impact on System Architecture",
+          "Isolation Boundaries",
+          "Least Privilege Principle"
+        ]
+      },
+      {
+        "topic_id": "unit_1_topic_11",
+        "name": "Networking",
+        "subtopics": [
+          "Network OS vs Distributed OS",
+          "Socket Subsystem Integration",
+          "Protocol Stack Handling"
+        ]
+      },
+      {
+        "topic_id": "unit_1_topic_12",
+        "name": "Multimedia",
+        "subtopics": [
+          "Real-Time OS Requirements",
+          "Multimedia Data Buffering",
+          "Quality of Service (QoS) Scheduling"
+        ]
+      }
+    ]
+  },
+  {
+    "unit_id": "unit_2",
+    "unit_name": "OS Principles",
+    "bloom_levels": [
+      "Understand"
+    ],
+    "topics": [
+      {
+        "topic_id": "unit_2_topic_1",
+        "name": "System Calls",
+        "subtopics": [
+          "System Call Mechanism and Traps",
+          "Parameter Passing Strategies",
+          "POSIX System Call Interface"
+        ]
+      },
+      {
+        "topic_id": "unit_2_topic_2",
+        "name": "System Application Call Interface",
+        "subtopics": [
+          "Application Binary Interface (ABI)",
+          "System Call Table Vectoring",
+          "Library Wrapper Functions"
+        ]
+      },
+      {
+        "topic_id": "unit_2_topic_3",
+        "name": "Protection",
+        "subtopics": [
+          "Dual-Mode Operation",
+          "Privileged Instructions",
+          "Hardware Ring Protections"
+        ]
+      },
+      {
+        "topic_id": "unit_2_topic_4",
+        "name": "User Mode and Kernel Mode",
+        "subtopics": [
+          "Mode Switching Overhead",
+          "Stack Switching During Mode Transition",
+          "Privilege Escalation Risks"
+        ]
+      },
+      {
+        "topic_id": "unit_2_topic_5",
+        "name": "Interrupts",
+        "subtopics": [
+          "Hardware Interrupts vs Software Interrupts",
+          "Interrupt Vector Table (IVT)",
+          "Interrupt Service Routines (ISR)"
+        ]
+      },
+      {
+        "topic_id": "unit_2_topic_6",
+        "name": "Process Structures",
+        "subtopics": [
+          "Process Memory Layout (Code, Data, Heap, Stack)",
+          "Process State Transitions",
+          "Process Environment Variables"
+        ]
+      },
+      {
+        "topic_id": "unit_2_topic_7",
+        "name": "Process Control Block",
+        "subtopics": [
+          "PCB Attributes and Structure",
+          "Context Switching Procedure",
+          "Save and Restore CPU Registers"
+        ]
+      },
+      {
+        "topic_id": "unit_2_topic_8",
+        "name": "Ready List",
+        "subtopics": [
+          "Ready Queue Data Structures",
+          "Process Priority Organization",
+          "Scheduler Entry Handling"
+        ]
+      },
+      {
+        "topic_id": "unit_2_topic_9",
+        "name": "Process Creation",
+        "subtopics": [
+          "fork() and exec() System Calls",
+          "Copy-on-Write (COW) Mechanics",
+          "Process Hierarchy and Parent-Child Lifecycle"
+        ]
+      },
+      {
+        "topic_id": "unit_2_topic_10",
+        "name": "Process Management in Unix",
+        "subtopics": [
+          "PID and Process Groups",
+          "Zombie and Orphan Processes",
+          "Signal Handling (kill, waitpid)"
+        ]
+      },
+      {
+        "topic_id": "unit_2_topic_11",
+        "name": "Threads",
+        "subtopics": [
+          "Thread Concept and Lightweight Processes",
+          "Shared vs Private Thread State",
+          "Multi-threading Advantages"
+        ]
+      },
+      {
+        "topic_id": "unit_2_topic_12",
+        "name": "User-Level Threads",
+        "subtopics": [
+          "User-Space Thread Libraries (Green Threads)",
+          "User Thread Management Overhead",
+          "Blocking System Call Limitations"
+        ]
+      },
+      {
+        "topic_id": "unit_2_topic_13",
+        "name": "Kernel-Level Threads",
+        "subtopics": [
+          "Kernel Thread Management",
+          "OS Scheduler Awareness",
+          "Multi-Core Parallel Execution"
+        ]
+      },
+      {
+        "topic_id": "unit_2_topic_14",
+        "name": "Thread Models",
+        "subtopics": [
+          "Many-to-One Model",
+          "One-to-One Model",
+          "Many-to-Many / Two-Level Model"
+        ]
+      }
+    ]
+  },
+  {
+    "unit_id": "unit_3",
+    "unit_name": "Scheduling",
+    "bloom_levels": [
+      "Apply",
+      "Analyze"
+    ],
+    "topics": [
+      {
+        "topic_id": "unit_3_topic_1",
+        "name": "Process Scheduling",
+        "subtopics": [
+          "Scheduling Objectives & Criteria",
+          "CPU-I/O Burst Cycles",
+          "Dispatcher Role & Latency"
+        ]
+      },
+      {
+        "topic_id": "unit_3_topic_2",
+        "name": "CPU Scheduling",
+        "subtopics": [
+          "Long-term, Medium-term, Short-term Schedulers",
+          "Throughput and Response Time Metrics",
+          "Gantt Chart Analysis"
+        ]
+      },
+      {
+        "topic_id": "unit_3_topic_3",
+        "name": "Preemptive Scheduling",
+        "subtopics": [
+          "Preemption Triggers and Timers",
+          "Race Conditions in Preemptive Kernels",
+          "Preemptive Overhead"
+        ]
+      },
+      {
+        "topic_id": "unit_3_topic_4",
+        "name": "Non-preemptive Scheduling",
+        "subtopics": [
+          "Cooperative Multitasking Principles",
+          "Non-preemptive Execution Guarantees"
+        ]
+      },
+      {
+        "topic_id": "unit_3_topic_5",
+        "name": "FCFS",
+        "subtopics": [
+          "First-Come, First-Served Algorithm",
+          "Convoy Effect Analysis",
+          "Average Waiting Time Computation"
+        ]
+      },
+      {
+        "topic_id": "unit_3_topic_6",
+        "name": "SJF",
+        "subtopics": [
+          "Shortest Job First Non-Preemptive",
+          "Exponential Averaging for CPU Burst Prediction",
+          "Optimality Proof and Limitations"
+        ]
+      },
+      {
+        "topic_id": "unit_3_topic_7",
+        "name": "Shortest Remaining Time First",
+        "subtopics": [
+          "SRTF Preemptive Variant",
+          "Dynamic Remaining Burst Tracking",
+          "Starvation Risks"
+        ]
+      },
+      {
+        "topic_id": "unit_3_topic_8",
+        "name": "Priority Scheduling",
+        "subtopics": [
+          "Static vs Dynamic Priorities",
+          "Indefinite Blocking / Starvation",
+          "Aging Technique for Prevention"
+        ]
+      },
+      {
+        "topic_id": "unit_3_topic_9",
+        "name": "Round Robin",
+        "subtopics": [
+          "Time Quantum (Time Slice) Selection",
+          "Circular Ready Queue Operations",
+          "Turnaround Time Dependency on Time Slice"
+        ]
+      },
+      {
+        "topic_id": "unit_3_topic_10",
+        "name": "Multilevel Queue Scheduling",
+        "subtopics": [
+          "Separate Queues for Foreground/Background Tasks",
+          "Fixed Priority Queue Scheduling",
+          "Time Slice Allocation Across Queues"
+        ]
+      },
+      {
+        "topic_id": "unit_3_topic_11",
+        "name": "Multilevel Feedback Queue",
+        "subtopics": [
+          "Dynamic Queue Movement Criteria",
+          "Aging and Demotion Policies",
+          "Configurable MLFQ Parameters"
+        ]
+      },
+      {
+        "topic_id": "unit_3_topic_12",
+        "name": "Multiprocessor Scheduling",
+        "subtopics": [
+          "Asymmetric vs Symmetric Multiprocessing (SMP)",
+          "Processor Affinity (Soft and Hard)",
+          "Load Balancing (Push and Pull Migration)"
+        ]
+      },
+      {
+        "topic_id": "unit_3_topic_13",
+        "name": "Deadlocks",
+        "subtopics": [
+          "Four Necessary Conditions for Deadlock",
+          "Deadlock Characterization",
+          "System State Representation"
+        ]
+      },
+      {
+        "topic_id": "unit_3_topic_14",
+        "name": "Resource Allocation Graph",
+        "subtopics": [
+          "RAG Vertices (Processes, Resources) and Edges",
+          "Cycle Detection in Single-Instance Resources",
+          "RAG Reduction Techniques"
+        ]
+      },
+      {
+        "topic_id": "unit_3_topic_15",
+        "name": "Methods for Handling Deadlocks",
+        "subtopics": [
+          "Deadlock Ignorance (Ostrich Algorithm)",
+          "Deadlock Detection and Recovery",
+          "Banker's Algorithm for Deadlock Avoidance"
+        ]
+      },
+      {
+        "topic_id": "unit_3_topic_16",
+        "name": "Deadlock Prevention",
+        "subtopics": [
+          "Eliminating Mutual Exclusion / Hold and Wait",
+          "No Preemption Protocol",
+          "Circular Wait Elimination via Resource Ordering"
+        ]
+      }
+    ]
+  },
+  {
+    "unit_id": "unit_4",
+    "unit_name": "Concurrency",
+    "bloom_levels": [
+      "Analyze",
+      "Apply"
+    ],
+    "topics": [
+      {
+        "topic_id": "unit_4_topic_1",
+        "name": "Synchronization",
+        "subtopics": [
+          "Critical Section Problem",
+          "Race Conditions and Atomicity",
+          "Requirements for Critical Section Solution (Mutual Exclusion, Progress, Bounded Waiting)"
+        ]
+      },
+      {
+        "topic_id": "unit_4_topic_2",
+        "name": "Synchronization Primitives",
+        "subtopics": [
+          "Peterson's Solution",
+          "Hardware Atomic Instructions (TestAndSet, CompareAndSwap)",
+          "Mutex Locks"
+        ]
+      },
+      {
+        "topic_id": "unit_4_topic_3",
+        "name": "Semaphores",
+        "subtopics": [
+          "Counting and Binary Semaphores",
+          "wait() and signal() Operations",
+          "Implementation with Busy Waiting vs Block Queue"
+        ]
+      },
+      {
+        "topic_id": "unit_4_topic_4",
+        "name": "Classical Synchronization Problems",
+        "subtopics": [
+          "Bounded Buffer (Producer-Consumer) Problem",
+          "Readers-Writers Problem",
+          "Sleeping Barber Problem"
+        ]
+      },
+      {
+        "topic_id": "unit_4_topic_5",
+        "name": "Monitors",
+        "subtopics": [
+          "Monitor Language Structure",
+          "Condition Variables (wait, signal)",
+          "Hoare vs Mesa Monitor Semantics"
+        ]
+      },
+      {
+        "topic_id": "unit_4_topic_6",
+        "name": "Dining Philosophers",
+        "subtopics": [
+          "Problem Formulation & Resource Contention",
+          "Deadlock and Starvation Pitfalls",
+          "Semaphore / Monitor Based Solutions"
+        ]
+      },
+      {
+        "topic_id": "unit_4_topic_7",
+        "name": "IPC in Unix",
+        "subtopics": [
+          "Pipes and Named Pipes (FIFOs)",
+          "Shared Memory Segments (shmget, shmat)",
+          "Unix Message Queues and Signals"
+        ]
+      },
+      {
+        "topic_id": "unit_4_topic_8",
+        "name": "Multiprocessors and Locking",
+        "subtopics": [
+          "Cache Coherence and Memory Barriers",
+          "Spinlocks on Multiprocessors",
+          "Read-Copy-Update (RCU) Mechanisms"
+        ]
+      },
+      {
+        "topic_id": "unit_4_topic_9",
+        "name": "Scalable Locks",
+        "subtopics": [
+          "Ticket Spinlocks",
+          "MCS Locks",
+          "Queue-based Lock Formulations"
+        ]
+      },
+      {
+        "topic_id": "unit_4_topic_10",
+        "name": "Lock-free Coordination",
+        "subtopics": [
+          "Lock-Free Data Structures",
+          "CAS-based Optimistic Concurrency",
+          "ABA Problem and Hazard Pointers"
+        ]
+      }
+    ]
+  },
+  {
+    "unit_id": "unit_5",
+    "unit_name": "Memory Management",
+    "bloom_levels": [
+      "Analyze",
+      "Evaluate"
+    ],
+    "topics": [
+      {
+        "topic_id": "unit_5_topic_1",
+        "name": "Main Memory Management",
+        "subtopics": [
+          "Address Binding (Compile, Load, Execution Time)",
+          "Logical vs Physical Address Space",
+          "Memory Management Unit (MMU) Architecture"
+        ]
+      },
+      {
+        "topic_id": "unit_5_topic_2",
+        "name": "Memory Allocation Strategies",
+        "subtopics": [
+          "Contiguous Allocation & Base/Limit Registers",
+          "First Fit, Best Fit, Worst Fit Algorithms",
+          "Internal and External Fragmentation"
+        ]
+      },
+      {
+        "topic_id": "unit_5_topic_3",
+        "name": "Virtual Memory",
+        "subtopics": [
+          "Virtual Memory Abstraction",
+          "Sparse Address Spaces",
+          "Benefits of Virtual Memory"
+        ]
+      },
+      {
+        "topic_id": "unit_5_topic_4",
+        "name": "Hardware Support for Virtual Memory",
+        "subtopics": [
+          "Page Tables and Page Table Entries (PTE)",
+          "Translation Lookaside Buffer (TLB)",
+          "Multi-level and Inverted Page Tables"
+        ]
+      },
+      {
+        "topic_id": "unit_5_topic_5",
+        "name": "Paging",
+        "subtopics": [
+          "Page and Frame Concepts",
+          "Address Translation Math (Page # + Offset)",
+          "Shared Pages and Protection Bits"
+        ]
+      },
+      {
+        "topic_id": "unit_5_topic_6",
+        "name": "Segmentation",
+        "subtopics": [
+          "User View of Memory",
+          "Segment Table Architecture",
+          "Segmented Paging Systems"
+        ]
+      },
+      {
+        "topic_id": "unit_5_topic_7",
+        "name": "Demand Paging",
+        "subtopics": [
+          "Lazy Swapper Principles",
+          "Valid-Invalid Bit Representation",
+          "Effective Access Time Calculation"
+        ]
+      },
+      {
+        "topic_id": "unit_5_topic_8",
+        "name": "Page Faults",
+        "subtopics": [
+          "Page Fault Handling Sequence",
+          "Trap to OS Kernel",
+          "Disk Read I/O Latency"
+        ]
+      },
+      {
+        "topic_id": "unit_5_topic_9",
+        "name": "Page Replacement",
+        "subtopics": [
+          "FIFO Page Replacement & Belady's Anomaly",
+          "Optimal Page Replacement (OPT)",
+          "Least Recently Used (LRU) & Second Chance/Clock Algorithm"
+        ]
+      },
+      {
+        "topic_id": "unit_5_topic_10",
+        "name": "Thrashing",
+        "subtopics": [
+          "Thrashing Definition & Causes",
+          "CPU Utilization Collapse",
+          "Page Fault Rate Monitoring"
+        ]
+      },
+      {
+        "topic_id": "unit_5_topic_11",
+        "name": "Working Set",
+        "subtopics": [
+          "Working Set Model Definition",
+          "Locality of Reference Concept",
+          "Page Fault Frequency (PFF) Strategy"
+        ]
+      }
+    ]
+  },
+  {
+    "unit_id": "unit_6",
+    "unit_name": "Virtualization and File System Management",
+    "bloom_levels": [
+      "Understand",
+      "Apply",
+      "Analyze"
+    ],
+    "topics": [
+      {
+        "topic_id": "unit_6_topic_1",
+        "name": "Virtual Machines",
+        "subtopics": [
+          "Virtual Machine Abstraction",
+          "Full Virtualization vs Para-Virtualization",
+          "Hardware-Assisted Virtualization (Intel VT-x, AMD-V)"
+        ]
+      },
+      {
+        "topic_id": "unit_6_topic_2",
+        "name": "Virtualization",
+        "subtopics": [
+          "CPU Virtualization Mechanics",
+          "Memory Virtualization (Nested Page Tables / EPT)",
+          "I/O Virtualization (SR-IOV)"
+        ]
+      },
+      {
+        "topic_id": "unit_6_topic_3",
+        "name": "Hypervisors",
+        "subtopics": [
+          "Type 1 Hypervisors (Bare-Metal)",
+          "Type 2 Hypervisors (Hosted)",
+          "VMM Trap-and-Emulate Principles"
+        ]
+      },
+      {
+        "topic_id": "unit_6_topic_4",
+        "name": "Container Virtualization",
+        "subtopics": [
+          "OS-Level Virtualization Principles",
+          "Linux Namespaces (PID, Mount, Net)",
+          "Control Groups (cgroups) Resource Limits"
+        ]
+      },
+      {
+        "topic_id": "unit_6_topic_5",
+        "name": "Cost of Virtualization",
+        "subtopics": [
+          "Performance Overhead Analysis",
+          "TLB Flushes and VM Exit Latency",
+          "Resource Oversubscription Tradeoffs"
+        ]
+      },
+      {
+        "topic_id": "unit_6_topic_6",
+        "name": "File-system Interface",
+        "subtopics": [
+          "File Concept, Attributes, and Operations",
+          "Directory Structures (Single-level, Tree, Acyclic Graph)",
+          "File Mounting and Access Control Lists"
+        ]
+      },
+      {
+        "topic_id": "unit_6_topic_7",
+        "name": "File-system Implementation",
+        "subtopics": [
+          "File System On-Disk Structures (Boot Block, Superblock, Inodes)",
+          "Allocation Methods (Contiguous, Linked, Indexed)",
+          "Free-Space Management (Bitmaps, Linked Lists)"
+        ]
+      },
+      {
+        "topic_id": "unit_6_topic_8",
+        "name": "File-system Recovery",
+        "subtopics": [
+          "Consistency Checking (fsck)",
+          "Backup and Restoration Strategies",
+          "Metadata Integrity Verification"
+        ]
+      },
+      {
+        "topic_id": "unit_6_topic_9",
+        "name": "Journaling",
+        "subtopics": [
+          "Write-Ahead Logging (WAL)",
+          "Metadata Journaling vs Full Journaling",
+          "Crash Recovery Protocol"
+        ]
+      },
+      {
+        "topic_id": "unit_6_topic_10",
+        "name": "Soft Updates",
+        "subtopics": [
+          "Metadata Dependency Tracking",
+          "Circular Dependency Resolution",
+          "Asynchronous Disk Writes without Inconsistency"
+        ]
+      },
+      {
+        "topic_id": "unit_6_topic_11",
+        "name": "Log-structured File Systems",
+        "subtopics": [
+          "LFS Segmented Log Architecture",
+          "Cleaner / Garbage Collection Thread",
+          "Inode Map Indexing"
+        ]
+      },
+      {
+        "topic_id": "unit_6_topic_12",
+        "name": "Distributed File Systems",
+        "subtopics": [
+          "NFS Architecture and Remote Procedure Calls (RPC)",
+          "AFS Caching and Consistency Models",
+          "Stateless vs Stateful DFS Servers"
+        ]
+      }
+    ]
+  },
+  {
+    "unit_id": "unit_7",
+    "unit_name": "Storage Management, Protection and Security",
+    "bloom_levels": [
+      "Analyze",
+      "Evaluate"
+    ],
+    "topics": [
+      {
+        "topic_id": "unit_7_topic_1",
+        "name": "Disk Structure",
+        "subtopics": [
+          "Physical HDD Geometry (Platters, Tracks, Sectors, Cylinders)",
+          "Logical Block Addressing (LBA)",
+          "Solid State Drive (SSD) Flash Architecture and Wear Leveling"
+        ]
+      },
+      {
+        "topic_id": "unit_7_topic_2",
+        "name": "Disk Attachment",
+        "subtopics": [
+          "Host-Attached Storage (SATA, NVMe)",
+          "Network-Attached Storage (NAS)",
+          "Storage Area Networks (SAN)"
+        ]
+      },
+      {
+        "topic_id": "unit_7_topic_3",
+        "name": "Disk Scheduling Algorithms",
+        "subtopics": [
+          "Seek Time, Rotational Latency, Transfer Time",
+          "FCFS, SSTF Scheduling",
+          "SCAN, C-SCAN, LOOK, C-LOOK Algorithms"
+        ]
+      },
+      {
+        "topic_id": "unit_7_topic_4",
+        "name": "System Threats and Security",
+        "subtopics": [
+          "Threat Vector Classification",
+          "Buffer Overflow Vulnerabilities",
+          "Denial of Service (DoS) and Side-Channel Attacks"
+        ]
+      },
+      {
+        "topic_id": "unit_7_topic_5",
+        "name": "Viruses",
+        "subtopics": [
+          "Virus Infection Mechanisms",
+          "Boot Sector, File Inserter, Macro Viruses",
+          "Polymorphic and Metamorphic Viruses"
+        ]
+      },
+      {
+        "topic_id": "unit_7_topic_6",
+        "name": "Worms",
+        "subtopics": [
+          "Self-Replicating Network Propagation",
+          "Scanning and Payload Delivery",
+          "Famous Worm Case Studies"
+        ]
+      },
+      {
+        "topic_id": "unit_7_topic_7",
+        "name": "Malware",
+        "subtopics": [
+          "Trojans, Ransomware, Rootkits, Spyware",
+          "Kernel-level Rootkit Evasion",
+          "Detection Techniques (Signature vs Behavioral)"
+        ]
+      },
+      {
+        "topic_id": "unit_7_topic_8",
+        "name": "Policy vs Mechanism",
+        "subtopics": [
+          "Separation Principle in Security",
+          "Enforcement Mechanisms vs Access Control Policies"
+        ]
+      },
+      {
+        "topic_id": "unit_7_topic_9",
+        "name": "Access vs Authentication",
+        "subtopics": [
+          "Authentication Protocols (Passwords, Biometrics, Tokens)",
+          "Access Control Authorization Frameworks",
+          "Multi-Factor Authentication Mechanics"
+        ]
+      },
+      {
+        "topic_id": "unit_7_topic_10",
+        "name": "System Protection",
+        "subtopics": [
+          "Protection Domains",
+          "Access Rights Matrix Representation",
+          "Revocation of Access Rights"
+        ]
+      },
+      {
+        "topic_id": "unit_7_topic_11",
+        "name": "Access Matrix",
+        "subtopics": [
+          "Matrix Columns (Objects) and Rows (Domains)",
+          "Access Control Lists (ACLs)",
+          "Capability Lists Implementation"
+        ]
+      },
+      {
+        "topic_id": "unit_7_topic_12",
+        "name": "Capability-based Systems",
+        "subtopics": [
+          "Capabilities as Unforgeable Tokens",
+          "Capability Propagation and Revocation",
+          "Object-Oriented Capability Protection Models"
+        ]
+      },
+      {
+        "topic_id": "unit_7_topic_13",
+        "name": "OS Performance",
+        "subtopics": [
+          "Benchmarking OS Subsystems",
+          "Profiling Tools and Kernel Tracing",
+          "Bottleneck Identification"
+        ]
+      },
+      {
+        "topic_id": "unit_7_topic_14",
+        "name": "Scaling",
+        "subtopics": [
+          "Vertical Scaling (Scale-Up) vs Horizontal Scaling (Scale-Out)",
+          "NUMA-Aware Kernel Design",
+          "Multi-Core Scaling Bottlenecks"
+        ]
+      },
+      {
+        "topic_id": "unit_7_topic_15",
+        "name": "Future Directions in Mobile OS",
+        "subtopics": [
+          "Aggressive Power Management & Heterogeneous Cores",
+          "Mobile Sandboxing & Permission Models",
+          "Real-Time and AI Hardware Acceleration in Mobile OS"
+        ]
+      }
+    ]
+  }
+]

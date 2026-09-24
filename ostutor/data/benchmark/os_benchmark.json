@@ -1,0 +1,45 @@
+[
+  {
+    "id": "os_bench_001",
+    "unit": 3,
+    "topic": "CPU Scheduling",
+    "subtopic": "Round Robin",
+    "bloom_level": "Apply",
+    "difficulty": "medium",
+    "task_type": "problem_solving",
+    "question": "Consider three processes P1, P2, and P3 arriving at t=0ms with burst times of 8ms, 4ms, and 2ms respectively. Calculate the average waiting time using Round Robin CPU scheduling with a time quantum of 3ms.",
+    "reference_answer": "Gantt Chart sequence: P1 (0-3ms), P2 (3-6ms), P3 (6-8ms), P1 (8-11ms), P2 (11-12ms), P1 (12-14ms).\nCompletion times: P3 = 8ms, P2 = 12ms, P1 = 14ms.\nWaiting times (Completion - Burst): P1 = 14 - 8 = 6ms, P2 = 12 - 4 = 8ms, P3 = 8 - 2 = 6ms.\nAverage Waiting Time = (6 + 8 + 6) / 3 = 6.67 ms."
+  },
+  {
+    "id": "os_bench_002",
+    "unit": 5,
+    "topic": "Page Replacement",
+    "subtopic": "FIFO Page Replacement",
+    "bloom_level": "Analyze",
+    "difficulty": "medium",
+    "task_type": "analysis",
+    "question": "Given the reference string `1, 2, 3, 4, 1, 2, 5, 1, 2, 3, 4, 5` and a system with 3 page frames initially empty, calculate the total number of page faults using the FIFO page replacement algorithm.",
+    "reference_answer": "FIFO Page Fault Trace with 3 Frames:\n1. Req 1: Fault -> [1]\n2. Req 2: Fault -> [1, 2]\n3. Req 3: Fault -> [1, 2, 3]\n4. Req 4: Fault -> Replace 1 -> [4, 2, 3]\n5. Req 1: Fault -> Replace 2 -> [4, 1, 3]\n6. Req 2: Fault -> Replace 3 -> [4, 1, 2]\n7. Req 5: Fault -> Replace 4 -> [5, 1, 2]\n8. Req 1: Hit -> [5, 1, 2]\n9. Req 2: Hit -> [5, 1, 2]\n10. Req 3: Fault -> Replace 1 -> [5, 3, 2]\n11. Req 4: Fault -> Replace 2 -> [5, 3, 4]\n12. Req 5: Hit -> [5, 3, 4]\nTotal Page Faults = 9."
+  },
+  {
+    "id": "os_bench_003",
+    "unit": 4,
+    "topic": "Dining Philosophers",
+    "subtopic": "Deadlock and Starvation Pitfalls",
+    "bloom_level": "Analyze",
+    "difficulty": "hard",
+    "task_type": "analysis",
+    "question": "Why does the standard naive semaphore implementation of the Dining Philosophers problem lead to a deadlock? Describe two distinct strategies to prevent this deadlock.",
+    "reference_answer": "In the naive implementation, every philosopher attempts to pick up their left chopstick first. If all 5 philosophers pick up their left chopsticks simultaneously, all 5 chopsticks become unavailable, and every philosopher blocks waiting indefinitely for their right chopstick (Circular Wait).\n\nDeadlock Prevention Strategies:\n1. **Asymmetric Chopstick Pick-up:** Number philosophers 0 to 4. Odd-numbered philosophers pick up their left chopstick first, while even-numbered philosophers pick up their right chopstick first.\n2. **Resource Limitation (Room Capacity Limit):** Allow at most 4 philosophers inside the dining room at any given time (using a counting semaphore initialized to N-1 = 4)."
+  },
+  {
+    "id": "os_bench_004",
+    "unit": 2,
+    "topic": "Process Creation",
+    "subtopic": "fork() and exec() System Calls",
+    "bloom_level": "Understand",
+    "difficulty": "easy", "task_type": "concept_explanation",
+    "question": "Describe the distinct roles of the `fork()` and `exec()` system calls in Unix process management and explain how copy-on-write (COW) optimizes `fork()`.",
+    "reference_answer": "`fork()` creates an exact duplicate clone of the calling parent process (copying user address space metadata and file descriptors), returning 0 to the child process and the child PID to the parent.\n`exec()` replaces the current process address space with a new executable program image.\nCopy-On-Write (COW) optimizes `fork()` by initially sharing physical memory pages read-only between parent and child rather than duplicating pages immediately. Memory pages are only copied when either process attempts to write to a shared page, drastically reducing process creation latency."
+  }
+]

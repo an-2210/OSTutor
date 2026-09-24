@@ -1,0 +1,17 @@
+# Unit 2: OS Principles
+
+## System Calls & Traps
+System calls provide an interface between a running program and the Operating System kernel. When a user program issues a system call:
+1. It executes a software trap interrupt instruction.
+2. The CPU switches mode from User Mode (unprivileged) to Kernel Mode (privileged).
+3. The kernel saves execution registers and indexes into the System Call Table to execute the service routine.
+
+## Process Control Block (PCB) & Process Management
+The Process Control Block (PCB) stores:
+- Process State (New, Ready, Running, Waiting, Terminated)
+- Program Counter (PC)
+- CPU Registers & Stack Pointer
+- Memory Allocation Limits
+- Open File Descriptors
+
+In Unix, processes are created via fork() which clones the parent process address space (optimized using Copy-On-Write), followed by exec() to load a new executable binary image.
