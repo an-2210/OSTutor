@@ -73,13 +73,14 @@ def test_benchmark_json_validity():
 def test_instruction_jsonl_validity():
     """Verify train, validation, and test JSONL files in data/instruction/."""
     splits = ["train.jsonl", "validation.jsonl", "test.jsonl"]
+    from pathlib import Path
     from finetuning.prepare_dataset import load_and_validate_jsonl
 
     for split in splits:
         file_path = os.path.join(BASE_DIR, "data", "instruction", split)
         assert os.path.exists(file_path), f"Instruction split missing: {split}"
 
-        records, errors = load_and_validate_jsonl(file_path)
+        records, errors = load_and_validate_jsonl(Path(file_path))
         assert not errors, f"Validation errors in {split}: {errors}"
         assert len(records) > 0, f"Split {split} should contain records"
 

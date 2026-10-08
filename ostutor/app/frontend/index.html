@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OSTutor - Operating Systems, but make it understandable</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <a href="#" class="brand-section">
+      <div class="brand-logo">OS</div>
+      <div class="brand-title">OSTutor<span>.ai</span></div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#topics" class="nav-link">Topics</a></li>
+      <li><a href="#workspace" class="nav-link">Interactive Workspace</a></li>
+      <li><a href="#simulator" class="nav-link">CPU Simulator</a></li>
+      <li><a href="#ebooks" class="nav-link" id="navEbooksLink">📚 E-Books Library</a></li>
+      <li><a href="#rag" class="nav-link">Textbook Inspector</a></li>
+    </ul>
+
+    <a href="#workspace" class="header-cta-btn">Start Learning →</a>
+  </nav>
+
+  <!-- Page Main Container -->
+  <div class="page-container">
+
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <div class="hero-tag">
+          <span>🎓 Student-Centric OS Education</span>
+        </div>
+        <h1 class="hero-headline">
+          Operating Systems, <br>
+          <span>but make it understandable.</span>
+        </h1>
+        <p class="hero-description">
+          Your OS study space, minus the textbook headache. Learn it. Visualize it. Actually remember it with step-by-step kernel traces and interactive scheduling visualizers.
+        </p>
+        <div class="hero-actions">
+          <a href="#workspace" class="btn-primary">Start Learning 🚀</a>
+          <a href="#topics" class="btn-secondary">Explore Topics</a>
+        </div>
+      </div>
+
+      <!-- Playful Hero Visual Card -->
+      <div class="hero-visual-container">
+        <!-- Floating Stickers -->
+        <div class="sticker-badge s1">⚡ fork() PID: 4012</div>
+        <div class="sticker-badge s2">🧠 TLB Hit: 98.4%</div>
+        <div class="sticker-badge s3">🚀 Quantum: 2ms</div>
+
+        <div class="hero-preview-card">
+          <div style="font-family: var(--font-mono); font-size: 13px; font-weight: 700; color: var(--brand-purple);">
+            // LIVE KERNEL EXECUTION TRACE
+          </div>
+          <div style="background: #0f172a; color: #e2e8f0; padding: 16px; border-radius: 12px; font-family: var(--font-mono); font-size: 12px; line-height: 1.8;">
+            <span style="color:#10b981;">&gt; SYS_CALL [0x02]:</span> sys_fork() invoked<br>
+            <span style="color:#3b82f6;">&gt; ALLOCATE:</span> task_struct at 0xFFFF880<br>
+            <span style="color:#f43f5e;">&gt; COW_SET:</span> Pages marked READ-ONLY<br>
+            <span style="color:#f59e0b;">&gt; RETURN:</span> Child PID 4013 initialized
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOPIC CARDS SECTION -->
+    <section id="topics">
+      <div class="section-header">
+        <span class="section-pill">Core Curriculum</span>
+        <h2 class="section-title">Everything you need to master OS</h2>
+        <p class="section-subtitle">Simplified breakdowns of complex concepts with interactive visualizations.</p>
+      </div>
+
+      <div class="topics-grid">
+        <!-- Card 1 -->
+        <div class="topic-card t-purple" onclick="selectTopic('proc', 'Processes & Threads')">
+          <div>
+            <div class="topic-icon-wrap">⚡</div>
+            <h3 class="topic-title">Processes & Threads</h3>
+            <p class="topic-desc">Process Control Blocks (PCB), context switches, fork/exec system calls, and multithreading primitives.</p>
+          </div>
+          <span class="topic-link">Learn →</span>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="topic-card t-blue" onclick="selectTopic('cpu', 'CPU Scheduling')">
+          <div>
+            <div class="topic-icon-wrap">🚀</div>
+            <h3 class="topic-title">CPU Scheduling</h3>
+            <p class="topic-desc">FCFS, Shortest Job First (SJF), Round Robin quantum slicing, and Linux Completely Fair Scheduler (CFS).</p>
+          </div>
+          <span class="topic-link">Learn →</span>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="topic-card t-pink" onclick="selectTopic('sync', 'Synchronization')">
+          <div>
+            <div class="topic-icon-wrap">🔒</div>
+            <h3 class="topic-title">Synchronization & Locks</h3>
+            <p class="topic-desc">Race conditions, Peterson's algorithm, Mutex locks, Counting Semaphores, and Banker's Deadlock avoidance.</p>
+          </div>
+          <span class="topic-link">Learn →</span>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="topic-card t-yellow" onclick="selectTopic('mem', 'Virtual Memory')">
+          <div>
+            <div class="topic-icon-wrap">🧠</div>
+            <h3 class="topic-title">Virtual Memory & Paging</h3>
+            <p class="topic-desc">Page tables, TLB cache lookups, Page Fault handling (#PF), and LRU page replacement policies.</p>
+          </div>
+          <span class="topic-link">Learn →</span>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="topic-card t-emerald" onclick="selectTopic('fs', 'File Systems')">
+          <div>
+            <div class="topic-icon-wrap">📁</div>
+            <h3 class="topic-title">File Systems & Storage</h3>
+            <p class="topic-desc">Inode structures, Virtual File System (VFS), direct/indirect block pointers, Ext4 journaling, and RAID layout.</p>
+          </div>
+          <span class="topic-link">Learn →</span>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="topic-card t-purple" onclick="selectTopic('io', 'I/O & Interrupts')">
+          <div>
+            <div class="topic-icon-wrap">🔌</div>
+            <h3 class="topic-title">I/O & Interrupts</h3>
+            <p class="topic-desc">Interrupt Service Routines (ISR), Direct Memory Access (DMA), and disk scheduling (SCAN / C-SCAN).</p>
+          </div>
+          <span class="topic-link">Learn →</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE WORKSPACE SECTION -->
+    <section id="workspace">
+      <div class="section-header">
+        <span class="section-pill">Interactive Study Space</span>
+        <h2 class="section-title">Your AI-Powered OS Workbench</h2>
+        <p class="section-subtitle">Ask questions, inspect kernel traces, run CPU schedulers, take quizzes, and flip flashcards.</p>
+      </div>
+
+      <div class="workspace-wrapper">
+
+        <!-- Center Interactive Area -->
+        <main class="workspace-center">
+          <nav class="workspace-nav-tabs">
+            <button class="tab-btn active" data-tab="terminal">💬 AI Tutor Terminal</button>
+            <button class="tab-btn" data-tab="simulator">⚡ CPU Gantt Simulator</button>
+            <button class="tab-btn" data-tab="quiz">🎯 Quiz Generator</button>
+            <button class="tab-btn" data-tab="flashcards">🃏 OS Flashcards</button>
+            <button class="tab-btn" data-tab="ebooks">📚 OS E-Book Library</button>
+          </nav>
+
+          <!-- Tab 1: AI Tutor Chat Window -->
+          <div class="workspace-view active" id="view-terminal">
+            <div class="chat-window">
+              <div class="chat-messages" id="chatHistory">
+                <div class="message-item tutor">
+                  <div class="message-bubble">
+                    👋 <strong>Hey there! Welcome to OSTutor.</strong><br>
+                    I am your AI study companion for Operating Systems. Ask me anything about <em>fork(), TLB misses, semaphores, page replacement, or CPU scheduling!</em>
+                  </div>
+                </div>
+              </div>
+
+              <div class="chat-input-bar">
+                <input type="text" id="chatInput" class="chat-input" placeholder="Ask a question in plain English (e.g. 'How does copy-on-write work in fork()?')..." autocomplete="off">
+                <button id="sendBtn" class="btn-primary">Ask AI →</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab 2: CPU Scheduler Simulator -->
+          <div class="workspace-view" id="view-simulator">
+            <div class="sim-container">
+              <div class="sim-controls-wrapper">
+                <div class="sim-controls">
+                  <div class="sim-field">
+                    <label>Algorithm:</label>
+                    <select id="algoSelect" class="sim-select">
+                      <option value="FCFS">First-Come First-Served (FCFS)</option>
+                      <option value="SJF">Shortest Job First (SJF - Non-Preemptive)</option>
+                      <option value="SRTF">Shortest Remaining Time First (SRTF - Preemptive)</option>
+                      <option value="RR" selected>Round Robin (RR)</option>
+                      <option value="PRIORITY">Priority Scheduling (Non-Preemptive)</option>
+                      <option value="PRIORITY_P">Priority Scheduling (Preemptive)</option>
+                    </select>
+                  </div>
+
+                  <div class="sim-field" id="quantumFieldGroup">
+                    <label>Quantum (ms):</label>
+                    <input type="number" id="quantumInput" class="sim-input-num" value="2" min="1" max="20">
+                  </div>
+
+                  <button id="runSimBtn" class="btn-primary">Simulate Gantt Timeline →</button>
+                </div>
+
+                <!-- Scenario Presets -->
+                <div class="sim-presets-bar">
+                  <span class="preset-label">Quick Scenarios:</span>
+                  <button class="preset-btn" id="presetConvoy">Convoy Effect</button>
+                  <button class="preset-btn" id="presetSjf">Short Jobs First</button>
+                  <button class="preset-btn" id="presetRr">Round Robin Slices</button>
+                  <button class="preset-btn" id="presetPriority">Priority Preemption</button>
+                </div>
+              </div>
+
+              <!-- Interactive Process Queue Table Editor -->
+              <div class="process-editor-card">
+                <div class="process-editor-header">
+                  <span style="font-weight: 700; font-size: 14px;">⚙️ Process Queue Configuration</span>
+                  <button class="btn-secondary-sm" id="resetProcsBtn">Reset Default Queue</button>
+                </div>
+
+                <div class="table-responsive">
+                  <table class="proc-table">
+                    <thead>
+                      <tr>
+                        <th>PID</th>
+                        <th>Arrival Time (ms)</th>
+                        <th>Burst Time (ms)</th>
+                        <th>Priority (1=High)</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody id="procTableBody">
+                      <!-- Dynamically rendered -->
+                    </tbody>
+                  </table>
+                </div>
+
+                <!-- Add New Process Form -->
+                <div class="add-proc-row">
+                  <input type="text" id="newPid" class="sim-input-text" placeholder="PID (e.g. P5)">
+                  <input type="number" id="newArrival" class="sim-input-num" placeholder="Arrival" min="0" value="0">
+                  <input type="number" id="newBurst" class="sim-input-num" placeholder="Burst" min="1" value="4">
+                  <input type="number" id="newPriority" class="sim-input-num" placeholder="Priority" min="1" value="2">
+                  <button id="addProcBtn" class="btn-primary-sm">+ Add Process</button>
+                </div>
+              </div>
+
+              <!-- Visual Gantt Box with Scale Ticks & Legend -->
+              <div class="gantt-box">
+                <div class="gantt-header">
+                  <div style="font-weight: 700; font-size: 15px; color: var(--text-dark);">
+                    📊 CPU Execution Gantt Chart Timeline
+                  </div>
+                  <div class="gantt-legend" id="ganttLegend"></div>
+                </div>
+
+                <div class="gantt-bar-row" id="ganttBarRow"></div>
+                <!-- Scale Ticks Ruler -->
+                <div class="gantt-time-axis" id="ganttTimeAxis"></div>
+
+                <div style="margin-top: 20px;" id="simMetricsBox"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab 3: Interactive Quiz Generator -->
+          <div class="workspace-view" id="view-quiz">
+            <div style="padding: 10px; display: flex; flex-direction: column; gap: 20px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; background:var(--surface-purple); padding:18px 24px; border-radius:16px; border:1px solid var(--border-purple);">
+                <div>
+                  <h3 style="font-size: 18px; font-weight: 800; color: var(--brand-purple);">🎯 OS Practice Quiz Generator</h3>
+                  <p style="font-size: 13px; color: var(--text-medium);">Test your understanding with instant feedback and student-friendly explanations.</p>
+                </div>
+                <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+                  <select id="quizTopicSelect" class="sim-select">
+                    <option value="All">All Topics</option>
+                    <option value="Processes & Threads">Processes & Threads</option>
+                    <option value="Virtual Memory">Virtual Memory</option>
+                    <option value="CPU Scheduling">CPU Scheduling</option>
+                    <option value="Synchronization">Synchronization</option>
+                    <option value="File Systems">File Systems</option>
+                    <option value="I/O & Interrupts">I/O & Interrupts</option>
+                  </select>
+                  <button id="generateQuizBtn" class="btn-primary">Generate Quiz 🎯</button>
+                </div>
+              </div>
+
+              <div id="quizContainer" class="quiz-card-container">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab 4: OS Flashcards -->
+          <div class="workspace-view" id="view-flashcards">
+            <div style="padding: 10px; display: flex; flex-direction: column; gap: 20px; align-items: center;">
+              <div style="width:100%; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; background:var(--surface-purple); padding:18px 24px; border-radius:16px; border:1px solid var(--border-purple);">
+                <div>
+                  <h3 style="font-size: 18px; font-weight: 800; color: var(--brand-purple);">🃏 OS Concept Flashcards</h3>
+                  <p style="font-size: 13px; color: var(--text-medium);">Click any card to flip and learn key OS terms with student-friendly analogies.</p>
+                </div>
+                <select id="fcTopicSelect" class="sim-select">
+                  <option value="All">All Topics</option>
+                  <option value="Processes">Processes & Threads</option>
+                  <option value="Scheduling">CPU Scheduling</option>
+                  <option value="Virtual Memory">Virtual Memory</option>
+                  <option value="Synchronization">Synchronization</option>
+                  <option value="File Systems">File Systems</option>
+                  <option value="I/O">I/O & Interrupts</option>
+                </select>
+              </div>
+
+              <!-- Interactive 3D Flashcard Deck -->
+              <div class="flashcard-scene" id="flashcardScene">
+                <div class="flashcard-card" id="flashcardCard">
+                  <div class="flashcard-face flashcard-front" id="fcFront">
+                    <span class="fc-badge" id="fcBadge">Processes & Threads</span>
+                    <h4 class="fc-term" id="fcTerm">Process Control Block (PCB)</h4>
+                    <p class="fc-question" id="fcQuestion">What is a Process Control Block (PCB)?</p>
+                    <span class="fc-hint">🔄 Click to Flip Card</span>
+                  </div>
+                  <div class="flashcard-face flashcard-back" id="fcBack">
+                    <div class="fc-answer" id="fcAnswer">The OS kernel's ID card for a process. It holds PID, registers, and execution state.</div>
+                    <div class="fc-analogy" id="fcAnalogy">💡 Analogy: Think of a PCB as a student ID file in a university system.</div>
+                    <span class="fc-hint">🔄 Click to Flip Back</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flashcard-controls">
+                <button id="prevFcBtn" class="btn-secondary-sm">⬅️ Previous</button>
+                <span id="fcCounter" style="font-weight:700; font-size:14px; color:var(--text-medium);">Card 1 of 8</span>
+                <button id="nextFcBtn" class="btn-primary-sm">Next Card ➡️</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab 5: OS E-Book Library -->
+          <div class="workspace-view" id="view-ebooks">
+            <div style="padding: 10px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px;">
+                <div>
+                  <h3 style="font-size: 20px; font-weight: 800; color: var(--text-dark);">📚 OS E-Book & Reference Library</h3>
+                  <p style="font-size: 14px; color: var(--text-muted);">Direct open-access textbooks, PDF downloads, and core reading materials for OS curriculum.</p>
+                </div>
+              </div>
+              <div class="ebooks-grid" id="ebooksGrid"></div>
+            </div>
+          </div>
+        </main>
+
+        <!-- Right Panel: Textbook Notes & RAG Inspector -->
+        <aside class="workspace-right" id="rag">
+          <div class="right-panel-title">📚 Textbook Citations & RAG Notes</div>
+          <div id="ragResultsList"></div>
+        </aside>
+
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>© 2026 <strong>OSTutor.ai</strong> — Instruction-Tuned & Retrieval-Augmented Operating Systems Study Platform.</p>
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
