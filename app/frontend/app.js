@@ -220,15 +220,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
       card.innerHTML = `
         <div style="display:flex; justify-content:space-between; align-items:center;">
-          <span class="rag-topic">📖 ${doc.topic || 'OS Reference'}</span>
-          <span style="font-size:11px; font-weight:700; background:var(--brand-purple-light); color:var(--brand-purple); padding:2px 6px; border-radius:6px;">${scorePct}% Match</span>
+          <span class="rag-topic">📖 ${escapeHtml(doc.topic || 'OS Reference')}</span>
+          <span style="font-size:11px; font-weight:700; background:var(--brand-purple-light); color:var(--brand-purple); padding:2px 8px; border-radius:6px;">${scorePct}% Match</span>
         </div>
-        <div style="font-size:13px; margin-top:4px;">
-          <a href="${docUrl}" target="_blank" rel="noopener noreferrer" style="color:var(--brand-purple); font-weight:700; text-decoration:underline;" onclick="event.stopPropagation();">
-            📘 ${escapeHtml(doc.source)} ↗
+        <div style="font-size:13px; font-weight:700; color:var(--text-dark); margin-top:2px;">
+          📘 ${escapeHtml(doc.source)}
+        </div>
+        <div class="rag-text">${escapeHtml(doc.content)}</div>
+        <div style="display:flex; justify-content:flex-end; margin-top:4px;">
+          <a href="${docUrl}" target="_blank" rel="noopener noreferrer" class="btn-open-ref" onclick="event.stopPropagation();">
+            Open Book ↗
           </a>
         </div>
-        <div class="rag-text" style="margin-top:6px;">${escapeHtml(doc.content)}</div>
       `;
 
       card.addEventListener('click', () => {

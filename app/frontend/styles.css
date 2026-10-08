@@ -747,7 +747,7 @@ body {
   box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
   cursor: pointer;
   transition: all 0.25s ease;
 }
@@ -756,6 +756,28 @@ body {
   transform: translateY(-3px);
   box-shadow: var(--shadow-hover);
   border-color: var(--border-purple);
+}
+
+.btn-open-ref {
+  background: var(--brand-purple);
+  color: #ffffff !important;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 8px;
+  text-decoration: none !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.25);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-open-ref:hover {
+  background: var(--brand-purple-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(124, 58, 237, 0.35);
 }
 
 .rag-topic {
