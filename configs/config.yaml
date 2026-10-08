@@ -109,3 +109,24 @@ rag_cti:
 experiments:
   output_format: "json"
   track_computational_cost: true
+
+llm_finetuning:
+  base_model_name: "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
+  lora:
+    r: 16
+    alpha: 32
+    dropout: 0.05
+    target_modules: ["q_proj", "v_proj", "k_proj", "o_proj"]
+  training:
+    learning_rate: 0.0002
+    batch_size: 4
+    gradient_accumulation_steps: 4
+    epochs: 3
+    warmup_ratio: 0.05
+    weight_decay: 0.01
+    max_seq_length: 512
+  paths:
+    dataset_path: "data/processed/ostutor_instruction_dataset.json"
+    output_dir: "models/checkpoints/ostutor_llm_lora"
+    metrics_path: "results/metrics/llm_finetuning_metrics.json"
+

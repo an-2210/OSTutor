@@ -171,6 +171,9 @@ async def get_telemetry():
     cpu_load = round(25.0 + 15.0 * math.sin(time.time() / 5.0) + random.uniform(-2, 2), 1)
     memory_used = round(4.2 + 0.3 * math.cos(time.time() / 10.0), 2)
     
+    checkpoint_dir = PROJECT_ROOT / "models" / "checkpoints" / "ostutor_llm_lora"
+    has_checkpoint = (checkpoint_dir / "adapter_config.json").exists()
+
     return {
         "uptime_seconds": uptime,
         "uptime_formatted": f"{uptime // 3600:02d}:{(uptime % 3600) // 60:02d}:{uptime % 60:02d}",
@@ -180,9 +183,26 @@ async def get_telemetry():
         "active_kernel_threads": 48 + int(uptime % 12),
         "faiss_indexed_chunks": 1420,
         "model_latency_ms": random.randint(18, 45),
-        "tutor_status": "ONLINE / READY",
+        "tutor_status": "ONLINE / FINE-TUNED" if has_checkpoint else "ONLINE / READY",
+        "lora_checkpoint_active": has_checkpoint,
         "seed": config.get("system", {}).get("seed", 42)
     }
+
+@app.post("/api/llm/finetune")
+async def trigger_llm_finetuning():
+    """Trigger instruction fine-tuning process for OSTutor LLM."""
+    from src.models.fine_tune_llm import OSTutorLLMFineTuner
+    try:
+        tuner = OSTutorLLMFineTuner()
+        results = tuner.run_finetuning(dry_run=False)
+        return {
+            "status": "SUCCESS",
+            "message": "OSTutor LLM Fine-Tuning Completed Successfully",
+            "results": results
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Fine-tuning error: {str(e)}")
+
 
 @app.get("/api/concepts")
 async def get_concepts():
