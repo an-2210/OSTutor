@@ -38,33 +38,36 @@ document.addEventListener('DOMContentLoaded', () => {
       tr.style.borderBottom = '1px solid var(--border-light)';
       tr.innerHTML = `
         <td style="padding: 8px;">
-          <input type="text" value="${proc.id}" data-index="${index}" data-field="id" class="proc-field" style="width:50px; padding:4px 6px; font-weight:700; border:1px solid var(--border-light); border-radius:6px;">
+          <input type="text" value="${proc.id}" data-index="${index}" data-field="id" class="proc-field" style="width:60px;">
         </td>
         <td style="padding: 8px;">
-          <input type="number" value="${proc.arrival}" min="0" data-index="${index}" data-field="arrival" class="proc-field" style="width:60px; padding:4px 6px; border:1px solid var(--border-light); border-radius:6px;">
+          <input type="number" value="${proc.arrival}" min="0" data-index="${index}" data-field="arrival" class="proc-field" style="width:70px;">
         </td>
         <td style="padding: 8px;">
-          <input type="number" value="${proc.burst}" min="1" data-index="${index}" data-field="burst" class="proc-field" style="width:60px; padding:4px 6px; border:1px solid var(--border-light); border-radius:6px;">
+          <input type="number" value="${proc.burst}" min="1" data-index="${index}" data-field="burst" class="proc-field" style="width:70px;">
         </td>
         <td style="padding: 8px;">
-          <input type="number" value="${proc.priority}" min="1" data-index="${index}" data-field="priority" class="proc-field" style="width:60px; padding:4px 6px; border:1px solid var(--border-light); border-radius:6px;">
+          <input type="number" value="${proc.priority}" min="1" data-index="${index}" data-field="priority" class="proc-field" style="width:70px;">
         </td>
         <td style="padding: 8px; text-align: center;">
-          <button class="delete-proc-btn" data-index="${index}" style="background:var(--accent-pink-light); color:var(--accent-pink); border:none; padding:4px 10px; border-radius:6px; font-weight:700; cursor:pointer; font-size:12px;">Delete</button>
+          <button class="delete-proc-btn" data-index="${index}" style="background:var(--accent-pink-light); color:var(--accent-pink); border:none; padding:6px 12px; border-radius:8px; font-weight:700; cursor:pointer; font-size:12px;">Delete</button>
         </td>
       `;
       procTableBody.appendChild(tr);
     });
 
-    // Attach Input Event Listeners
+    // Attach Input Event Listeners for live recalculation
     document.querySelectorAll('.proc-field').forEach(input => {
-      input.addEventListener('change', (e) => {
+      const handleInput = (e) => {
         const idx = parseInt(e.target.getAttribute('data-index'));
         const field = e.target.getAttribute('data-field');
         const val = e.target.value;
         if (field === 'id') processList[idx].id = val;
         else processList[idx][field] = parseInt(val) || 0;
-      });
+        runScheduler();
+      };
+      input.addEventListener('input', handleInput);
+      input.addEventListener('change', handleInput);
     });
 
     // Attach Delete Event Listeners
@@ -73,6 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const idx = parseInt(e.target.getAttribute('data-index'));
         processList.splice(idx, 1);
         renderProcessTable();
+        runScheduler();
       });
     });
   }
@@ -89,6 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
       priority: 2
     });
     renderProcessTable();
+    runScheduler();
   });
 
   // 1. Topic Selector Global Callback
@@ -218,13 +223,18 @@ document.addEventListener('DOMContentLoaded', () => {
           <span class="rag-topic">📖 ${doc.topic || 'OS Reference'}</span>
           <span style="font-size:11px; font-weight:700; background:var(--brand-purple-light); color:var(--brand-purple); padding:2px 6px; border-radius:6px;">${scorePct}% Match</span>
         </div>
-        <div style="font-size:13px; margin-top:2px;">
-          <a href="${docUrl}" target="_blank" rel="noopener noreferrer" style="color:var(--brand-purple); font-weight:700; text-decoration:underline; transition:color 0.2s ease;">
+        <div style="font-size:13px; margin-top:4px;">
+          <a href="${docUrl}" target="_blank" rel="noopener noreferrer" style="color:var(--brand-purple); font-weight:700; text-decoration:underline;" onclick="event.stopPropagation();">
             📘 ${escapeHtml(doc.source)} ↗
           </a>
         </div>
         <div class="rag-text" style="margin-top:6px;">${escapeHtml(doc.content)}</div>
       `;
+
+      card.addEventListener('click', () => {
+        window.open(docUrl, '_blank');
+      });
+
       ragResultsList.appendChild(card);
     });
   }
