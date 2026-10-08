@@ -121,6 +121,7 @@ RAG_KNOWLEDGE_BASE = [
         "id": "doc_01",
         "source": "Operating System Concepts (Silberschatz) - Ch. 3",
         "topic": "Process Management",
+        "url": "https://www.os-book.com/OS10/",
         "content": "A Process Control Block (PCB) contains details including Process State, Program Counter, CPU registers, CPU scheduling information, memory-management information, accounting information, and I/O status information.",
         "score": 0.94
     },
@@ -128,6 +129,7 @@ RAG_KNOWLEDGE_BASE = [
         "id": "doc_02",
         "source": "Modern Operating Systems (Tanenbaum) - Ch. 4",
         "topic": "Virtual Memory",
+        "url": "https://www.pearson.com/en-us/subject-catalog/p/modern-operating-systems/P200000003295",
         "content": "The Translation Lookaside Buffer (TLB) is a hardware cache inside the MMU mapping virtual page numbers to physical frame numbers. TLB misses require walking page table levels, adding latency.",
         "score": 0.89
     },
@@ -135,6 +137,7 @@ RAG_KNOWLEDGE_BASE = [
         "id": "doc_03",
         "source": "Operating Systems: Three Easy Pieces (OSTEP) - Ch. 28",
         "topic": "Synchronization",
+        "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/",
         "content": "A Semaphore maintains an integer value accessed only via wait() [P] and signal() [V] atomic operations. Counting semaphores control access to a finite set of resources.",
         "score": 0.86
     },
@@ -142,6 +145,7 @@ RAG_KNOWLEDGE_BASE = [
         "id": "doc_04",
         "source": "Linux Kernel Architecture (Bovet & Cesati) - Ch. 7",
         "topic": "System Calls & Scheduling",
+        "url": "https://www.kernel.org/doc/html/latest/",
         "content": "In Linux, CFS (Completely Fair Scheduler) uses a red-black tree indexed by virtual runtime (vruntime) to select the task with smallest vruntime for execution next.",
         "score": 0.82
     },
@@ -149,6 +153,7 @@ RAG_KNOWLEDGE_BASE = [
         "id": "doc_05",
         "source": "Operating System Concepts (Silberschatz) - Ch. 11",
         "topic": "File Systems",
+        "url": "https://www.os-book.com/OS10/",
         "content": "An inode (index node) stores block pointers to data blocks. Direct pointers handle small files, while single, double, and triple indirect pointers enable large files.",
         "score": 0.78
     }
@@ -212,12 +217,32 @@ async def get_concepts():
 @app.post("/api/tutor/chat")
 async def tutor_chat(req: ChatRequest):
     """Instruction-tuned OS Tutor Response Generator with step-by-step kernel trace."""
-    msg_lower = req.message.lower()
+    msg_lower = req.message.lower().strip()
     
     citations = []
     kernel_trace = []
     
-    if "fork" in msg_lower or "process" in msg_lower or "pcb" in msg_lower:
+    greetings = ["hi", "hello", "hey", "greetings", "good morning", "good afternoon", "good evening", "yo", "sup", "who are you", "what can you do", "help", "thanks", "thank you"]
+    if any(w in msg_lower for w in greetings) or msg_lower in ["hi", "hello", "hey", "help", "yo"]:
+        response_text = (
+            "### 👋 Hello there! Welcome to OSTutor.\n\n"
+            "I'm your AI study companion for Operating Systems. I can help you understand complex concepts, trace kernel execution steps, analyze CPU scheduling algorithms, and review textbook reference materials!\n\n"
+            "#### 💡 Try asking me about:\n"
+            "- **Process Management**: *\"How does `fork()` and Copy-on-Write work?\"*\n"
+            "- **Virtual Memory**: *\"Explain page fault handling and TLB misses\"*\n"
+            "- **Concurrency & Locks**: *\"What is the difference between a Mutex and a Semaphore?\"*\n"
+            "- **CPU Scheduling**: *\"Explain Round Robin quantum scheduling\"*\n"
+            "- **File Systems**: *\"How do Ext4 inodes and block pointers work?\"*\n\n"
+            "Or use the interactive tabs above to simulate CPU Gantt charts and inspect SHAP model metrics!"
+        )
+        kernel_trace = [
+            "USER_GREETING: Received greeting / assistance query",
+            "SYSTEM_STATUS: OSTutor AI Tutor active & ready",
+            "SUGGESTIONS: Generated popular OS study topic prompts"
+        ]
+        citations = [RAG_KNOWLEDGE_BASE[0], RAG_KNOWLEDGE_BASE[1]]
+        
+    elif "fork" in msg_lower or "process" in msg_lower or "pcb" in msg_lower:
         response_text = (
             "### Process Creation & `fork()` System Call\n\n"
             "In UNIX-like Operating Systems, **`fork()`** creates a child process by duplicating the calling parent process.\n\n"
