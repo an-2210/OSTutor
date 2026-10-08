@@ -1,0 +1,722 @@
+[
+  {
+    "id": "fc1",
+    "topic": "Processes & Threads",
+    "term": "Process Control Block (PCB)",
+    "front": "What is Process Control Block (PCB)?",
+    "back": "Kernel data structure tracking PID, state, registers, and memory for a process.",
+    "analogy": "Like a student ID and transcript."
+  },
+  {
+    "id": "fc2",
+    "topic": "Processes & Threads",
+    "term": "Context Switch",
+    "front": "What is Context Switch?",
+    "back": "The process of saving the state of the old process and loading the saved state for the new process.",
+    "analogy": "Like pausing a video game and loading another save file."
+  },
+  {
+    "id": "fc3",
+    "topic": "Processes & Threads",
+    "term": "Zombie Process",
+    "front": "What is Zombie Process?",
+    "back": "A process that has terminated but still has an entry in the process table because its parent hasn't read its exit status.",
+    "analogy": "Like a worker who quit but is still on the payroll until the boss signs off."
+  },
+  {
+    "id": "fc4",
+    "topic": "Processes & Threads",
+    "term": "Orphan Process",
+    "front": "What is Orphan Process?",
+    "back": "A process whose parent has terminated, usually adopted by the init process (PID 1).",
+    "analogy": "Like a child whose parents left, so the state takes custody."
+  },
+  {
+    "id": "fc5",
+    "topic": "Processes & Threads",
+    "term": "Thread",
+    "front": "What is Thread?",
+    "back": "The smallest sequence of programmed instructions managed independently by a scheduler.",
+    "analogy": "Like a single lane in a multi-lane highway."
+  },
+  {
+    "id": "fc6",
+    "topic": "Processes & Threads",
+    "term": "User-level vs Kernel-level Threads",
+    "front": "What is User-level vs Kernel-level Threads?",
+    "back": "User threads are managed by user libraries; kernel threads are managed directly by the OS.",
+    "analogy": "Like hiring your own private security vs using the city police."
+  },
+  {
+    "id": "fc7",
+    "topic": "Processes & Threads",
+    "term": "fork()",
+    "front": "What is fork()?",
+    "back": "System call that creates a new process by duplicating the calling process.",
+    "analogy": "Like cloning a sheep."
+  },
+  {
+    "id": "fc8",
+    "topic": "Processes & Threads",
+    "term": "exec()",
+    "front": "What is exec()?",
+    "back": "System call that replaces the current process image with a new program.",
+    "analogy": "Like a brain transplant for a process."
+  },
+  {
+    "id": "fc9",
+    "topic": "Processes & Threads",
+    "term": "wait()",
+    "front": "What is wait()?",
+    "back": "System call used by a parent process to wait for a child process to finish.",
+    "analogy": "Like a parent waiting outside school for their child."
+  },
+  {
+    "id": "fc10",
+    "topic": "Processes & Threads",
+    "term": "Multiprogramming",
+    "front": "What is Multiprogramming?",
+    "back": "Keeping multiple programs in main memory at the same time to maximize CPU utilization.",
+    "analogy": "Like keeping multiple tabs open so you can switch instantly when one loads."
+  },
+  {
+    "id": "fc11",
+    "topic": "Processes & Threads",
+    "term": "Time-sharing",
+    "front": "What is Time-sharing?",
+    "back": "Logical extension of multiprogramming where CPU switches jobs so frequently that users can interact with each job.",
+    "analogy": "Like a chef cooking 5 meals at once by taking turns."
+  },
+  {
+    "id": "fc12",
+    "topic": "Processes & Threads",
+    "term": "Inter-Process Communication (IPC)",
+    "front": "What is Inter-Process Communication (IPC)?",
+    "back": "Mechanisms like pipes, sockets, or shared memory allowing processes to communicate.",
+    "analogy": "Like two different departments passing memos."
+  },
+  {
+    "id": "fc13",
+    "topic": "Processes & Threads",
+    "term": "Copy-On-Write (COW)",
+    "front": "What is Copy-On-Write (COW)?",
+    "back": "Optimization where parent and child share memory pages until one writes to it, at which point a copy is made.",
+    "analogy": "Like sharing a read-only Google Doc until someone clicks 'Make a copy' to edit."
+  },
+  {
+    "id": "fc14",
+    "topic": "Processes & Threads",
+    "term": "Process States",
+    "front": "What is Process States?",
+    "back": "New, Ready, Running, Waiting/Blocked, Terminated.",
+    "analogy": "Like the stages of a job application: Applied, Interviewing, Hired."
+  },
+  {
+    "id": "fc15",
+    "topic": "Processes & Threads",
+    "term": "Dispatcher",
+    "front": "What is Dispatcher?",
+    "back": "Module that gives control of the CPU to the process selected by the short-term scheduler.",
+    "analogy": "Like the usher who physically guides you to your seat."
+  },
+  {
+    "id": "fc16",
+    "topic": "Virtual Memory",
+    "term": "Virtual Address Space",
+    "front": "What is Virtual Address Space?",
+    "back": "Logical view of how a process is stored in memory, providing the illusion of a large, contiguous array.",
+    "analogy": "Like having a massive virtual desk, even if your real desk is tiny."
+  },
+  {
+    "id": "fc17",
+    "topic": "Virtual Memory",
+    "term": "Paging",
+    "front": "What is Paging?",
+    "back": "Memory management scheme that eliminates the need for contiguous allocation of physical memory.",
+    "analogy": "Like breaking a long book into pages that can be stored anywhere in a library."
+  },
+  {
+    "id": "fc18",
+    "topic": "Virtual Memory",
+    "term": "Page Table",
+    "front": "What is Page Table?",
+    "back": "Data structure used to map virtual pages to physical frames.",
+    "analogy": "Like the library's index catalog mapping book chapters to shelf locations."
+  },
+  {
+    "id": "fc19",
+    "topic": "Virtual Memory",
+    "term": "Translation Lookaside Buffer (TLB)",
+    "front": "What is Translation Lookaside Buffer (TLB)?",
+    "back": "Hardware cache inside the MMU that stores recent virtual-to-physical address mappings.",
+    "analogy": "Like a speed-dial list on your phone."
+  },
+  {
+    "id": "fc20",
+    "topic": "Virtual Memory",
+    "term": "Page Fault",
+    "front": "What is Page Fault?",
+    "back": "An interrupt that occurs when a program attempts to access a page that is mapped in address space, but not loaded in physical memory.",
+    "analogy": "Like trying to read a book chapter that is in the basement, requiring you to fetch it first."
+  },
+  {
+    "id": "fc21",
+    "topic": "Virtual Memory",
+    "term": "Demand Paging",
+    "front": "What is Demand Paging?",
+    "back": "Bringing a page into memory only when it is needed.",
+    "analogy": "Like ordering groceries only when you are about to cook the meal."
+  },
+  {
+    "id": "fc22",
+    "topic": "Virtual Memory",
+    "term": "Thrashing",
+    "front": "What is Thrashing?",
+    "back": "When the system spends more time paging (swapping pages) than executing instructions.",
+    "analogy": "Like spending more time finding your tools than actually building the house."
+  },
+  {
+    "id": "fc23",
+    "topic": "Virtual Memory",
+    "term": "Working Set Model",
+    "front": "What is Working Set Model?",
+    "back": "Based on the assumption of locality, it defines the set of pages a process is currently using.",
+    "analogy": "Like the tools you currently have out on your workbench."
+  },
+  {
+    "id": "fc24",
+    "topic": "Virtual Memory",
+    "term": "Page Replacement Algorithm",
+    "front": "What is Page Replacement Algorithm?",
+    "back": "Algorithm deciding which memory page to page out (e.g., LRU, FIFO, Clock).",
+    "analogy": "Like deciding which old clothes to donate when your closet is full."
+  },
+  {
+    "id": "fc25",
+    "topic": "Virtual Memory",
+    "term": "LRU (Least Recently Used)",
+    "front": "What is LRU (Least Recently Used)?",
+    "back": "Replaces the page that has not been used for the longest period of time.",
+    "analogy": "Like throwing away the spice you haven't cooked with in 3 years."
+  },
+  {
+    "id": "fc26",
+    "topic": "Virtual Memory",
+    "term": "Belady's Anomaly",
+    "front": "What is Belady's Anomaly?",
+    "back": "Phenomenon where increasing the number of page frames results in an increase in the number of page faults (happens in FIFO).",
+    "analogy": "Like buying a bigger closet but somehow losing more clothes."
+  },
+  {
+    "id": "fc27",
+    "topic": "Virtual Memory",
+    "term": "Segmentation",
+    "front": "What is Segmentation?",
+    "back": "Memory management scheme that supports the user view of memory (logical segments like code, data, stack).",
+    "analogy": "Like organizing a house by rooms (kitchen, bedroom) rather than equal-sized square blocks."
+  },
+  {
+    "id": "fc28",
+    "topic": "Virtual Memory",
+    "term": "Swapping",
+    "front": "What is Swapping?",
+    "back": "Moving entire processes between main memory and a backing store (disk).",
+    "analogy": "Like packing up your entire desk and putting it in storage to make room for someone else."
+  },
+  {
+    "id": "fc29",
+    "topic": "Virtual Memory",
+    "term": "Memory Management Unit (MMU)",
+    "front": "What is Memory Management Unit (MMU)?",
+    "back": "Hardware device that maps virtual to physical address at run time.",
+    "analogy": "Like an automatic GPS router."
+  },
+  {
+    "id": "fc30",
+    "topic": "Virtual Memory",
+    "term": "Dirty Bit",
+    "front": "What is Dirty Bit?",
+    "back": "A bit in the page table indicating if the page has been modified since it was loaded.",
+    "analogy": "Like a 'needs to be saved' asterisk next to a filename."
+  },
+  {
+    "id": "fc31",
+    "topic": "CPU Scheduling",
+    "term": "CPU Burst vs I/O Burst",
+    "front": "What is CPU Burst vs I/O Burst?",
+    "back": "Processes alternate between executing instructions (CPU burst) and waiting for I/O.",
+    "analogy": "Like alternating between writing code and waiting for the compiler."
+  },
+  {
+    "id": "fc32",
+    "topic": "CPU Scheduling",
+    "term": "Preemptive Scheduling",
+    "front": "What is Preemptive Scheduling?",
+    "back": "OS can interrupt a currently running process and move it to the Ready queue.",
+    "analogy": "Like a boss pulling you off a task to handle an urgent fire."
+  },
+  {
+    "id": "fc33",
+    "topic": "CPU Scheduling",
+    "term": "Non-Preemptive Scheduling",
+    "front": "What is Non-Preemptive Scheduling?",
+    "back": "Once a process gets the CPU, it keeps it until it terminates or switches to the waiting state.",
+    "analogy": "Like a meeting you can't leave until it's finished."
+  },
+  {
+    "id": "fc34",
+    "topic": "CPU Scheduling",
+    "term": "First-Come, First-Served (FCFS)",
+    "front": "What is First-Come, First-Served (FCFS)?",
+    "back": "The process that requests the CPU first is allocated the CPU first.",
+    "analogy": "Like standing in line at a grocery store checkout."
+  },
+  {
+    "id": "fc35",
+    "topic": "CPU Scheduling",
+    "term": "Convoy Effect",
+    "front": "What is Convoy Effect?",
+    "back": "Short processes get stuck waiting for one long CPU-bound process to finish in FCFS.",
+    "analogy": "Like a line of sports cars stuck behind a slow tractor on a one-lane road."
+  },
+  {
+    "id": "fc36",
+    "topic": "CPU Scheduling",
+    "term": "Shortest Job First (SJF)",
+    "front": "What is Shortest Job First (SJF)?",
+    "back": "Associates with each process the length of its next CPU burst, picking the shortest.",
+    "analogy": "Like the express checkout lane for 10 items or fewer."
+  },
+  {
+    "id": "fc37",
+    "topic": "CPU Scheduling",
+    "term": "Shortest Remaining Time First (SRTF)",
+    "front": "What is Shortest Remaining Time First (SRTF)?",
+    "back": "Preemptive version of SJF.",
+    "analogy": "Like letting someone with 1 item cut in front of you at the register."
+  },
+  {
+    "id": "fc38",
+    "topic": "CPU Scheduling",
+    "term": "Round Robin (RR)",
+    "front": "What is Round Robin (RR)?",
+    "back": "Each process gets a small unit of CPU time (time quantum), then is preempted and added to the end of the queue.",
+    "analogy": "Like passing a controller around so everyone gets a 5-minute turn playing a game."
+  },
+  {
+    "id": "fc39",
+    "topic": "CPU Scheduling",
+    "term": "Time Quantum",
+    "front": "What is Time Quantum?",
+    "back": "The fixed time slice allocated to a process in Round Robin.",
+    "analogy": "Like a 5-minute egg timer."
+  },
+  {
+    "id": "fc40",
+    "topic": "CPU Scheduling",
+    "term": "Priority Scheduling",
+    "front": "What is Priority Scheduling?",
+    "back": "A priority is associated with each process, and the CPU is allocated to the highest priority.",
+    "analogy": "Like VIP boarding at an airport."
+  },
+  {
+    "id": "fc41",
+    "topic": "CPU Scheduling",
+    "term": "Starvation",
+    "front": "What is Starvation?",
+    "back": "A low priority process never gets to run because higher priority processes keep arriving.",
+    "analogy": "Like never getting to ask a question because louder people keep interrupting."
+  },
+  {
+    "id": "fc42",
+    "topic": "CPU Scheduling",
+    "term": "Aging",
+    "front": "What is Aging?",
+    "back": "Technique of gradually increasing the priority of processes that wait in the system for a long time (solves starvation).",
+    "analogy": "Like gaining loyalty points the longer you wait in line."
+  },
+  {
+    "id": "fc43",
+    "topic": "CPU Scheduling",
+    "term": "Multilevel Queue Scheduling",
+    "front": "What is Multilevel Queue Scheduling?",
+    "back": "Partitions the ready queue into several separate queues (e.g., foreground and background) with their own algorithms.",
+    "analogy": "Like having separate lines for first-class, economy, and standby."
+  },
+  {
+    "id": "fc44",
+    "topic": "CPU Scheduling",
+    "term": "Multilevel Feedback Queue",
+    "front": "What is Multilevel Feedback Queue?",
+    "back": "Allows a process to move between queues; separates processes according to the characteristics of their CPU bursts.",
+    "analogy": "Like getting demoted to a slower lane if you take too long."
+  },
+  {
+    "id": "fc45",
+    "topic": "CPU Scheduling",
+    "term": "Turnaround Time",
+    "front": "What is Turnaround Time?",
+    "back": "The interval from the time of submission of a process to the time of completion.",
+    "analogy": "Like the total time from ordering pizza to eating it."
+  },
+  {
+    "id": "fc46",
+    "topic": "Synchronization",
+    "term": "Race Condition",
+    "front": "What is Race Condition?",
+    "back": "When multiple threads access shared data concurrently and the outcome depends on the order of execution.",
+    "analogy": "Like two people trying to withdraw the last $100 from a joint bank account at the exact same time."
+  },
+  {
+    "id": "fc47",
+    "topic": "Synchronization",
+    "term": "Critical Section",
+    "front": "What is Critical Section?",
+    "back": "A segment of code where shared resources are accessed and must not be concurrently executed by more than one thread.",
+    "analogy": "Like a single-occupancy public restroom."
+  },
+  {
+    "id": "fc48",
+    "topic": "Synchronization",
+    "term": "Mutual Exclusion",
+    "front": "What is Mutual Exclusion?",
+    "back": "If a process is executing in its critical section, no other processes can be executing in theirs.",
+    "analogy": "Like only one person holding the talking stick."
+  },
+  {
+    "id": "fc49",
+    "topic": "Synchronization",
+    "term": "Mutex Lock",
+    "front": "What is Mutex Lock?",
+    "back": "A binary lock used to protect critical sections. The thread that acquires it must release it.",
+    "analogy": "Like a physical key to the bathroom: you take it, use it, return it."
+  },
+  {
+    "id": "fc50",
+    "topic": "Synchronization",
+    "term": "Semaphore",
+    "front": "What is Semaphore?",
+    "back": "An integer variable used to control access to a common resource by multiple processes.",
+    "analogy": "Like a bouncer holding a clicker, allowing exactly N people into a club."
+  },
+  {
+    "id": "fc51",
+    "topic": "Synchronization",
+    "term": "Counting Semaphore",
+    "front": "What is Counting Semaphore?",
+    "back": "A semaphore that can range over an unrestricted domain (used for managing N identical resources).",
+    "analogy": "Like a parking garage counter showing available spots."
+  },
+  {
+    "id": "fc52",
+    "topic": "Synchronization",
+    "term": "Binary Semaphore",
+    "front": "What is Binary Semaphore?",
+    "back": "A semaphore whose value can only be 0 or 1, essentially acting like a Mutex.",
+    "analogy": "Like a simple vacant/occupied sign."
+  },
+  {
+    "id": "fc53",
+    "topic": "Synchronization",
+    "term": "Deadlock",
+    "front": "What is Deadlock?",
+    "back": "Two or more processes are waiting indefinitely for an event that can be caused by only one of the waiting processes.",
+    "analogy": "Like four cars at a 4-way stop each waiting for the car on their right to go first."
+  },
+  {
+    "id": "fc54",
+    "topic": "Synchronization",
+    "term": "Conditions for Deadlock",
+    "front": "What is Conditions for Deadlock?",
+    "back": "Mutual exclusion, Hold and wait, No preemption, Circular wait.",
+    "analogy": "The four ingredients required to bake a deadlock disaster."
+  },
+  {
+    "id": "fc55",
+    "topic": "Synchronization",
+    "term": "Banker's Algorithm",
+    "front": "What is Banker's Algorithm?",
+    "back": "A deadlock avoidance algorithm that simulates resource allocation to ensure the system remains in a safe state.",
+    "analogy": "Like a bank ensuring it has enough cash to satisfy its largest customer's maximum possible withdrawal."
+  },
+  {
+    "id": "fc56",
+    "topic": "Synchronization",
+    "term": "Livelock",
+    "front": "What is Livelock?",
+    "back": "Processes constantly change state in response to each other without making progress.",
+    "analogy": "Like two people in a hallway constantly stepping to the same side to let the other pass."
+  },
+  {
+    "id": "fc57",
+    "topic": "Synchronization",
+    "term": "Condition Variable",
+    "front": "What is Condition Variable?",
+    "back": "A synchronization primitive that allows threads to wait until a particular condition occurs.",
+    "analogy": "Like a pager from a restaurant that buzzes when your table is ready."
+  },
+  {
+    "id": "fc58",
+    "topic": "Synchronization",
+    "term": "Monitor",
+    "front": "What is Monitor?",
+    "back": "A high-level synchronization construct that encapsulates shared variables and the procedures that operate on them.",
+    "analogy": "Like a class in object-oriented programming where all methods are automatically synchronized."
+  },
+  {
+    "id": "fc59",
+    "topic": "Synchronization",
+    "term": "Producer-Consumer Problem",
+    "front": "What is Producer-Consumer Problem?",
+    "back": "Classic sync problem where producers add data to a buffer and consumers remove it safely.",
+    "analogy": "Like a chef putting burgers on a finite tray and a waiter taking them away."
+  },
+  {
+    "id": "fc60",
+    "topic": "Synchronization",
+    "term": "Dining Philosophers Problem",
+    "front": "What is Dining Philosophers Problem?",
+    "back": "Classic sync problem illustrating the challenges of allocating multiple resources to multiple processes.",
+    "analogy": "Like needing two chopsticks to eat, but only having one between each person."
+  },
+  {
+    "id": "fc61",
+    "topic": "File Systems",
+    "term": "File Control Block / Inode",
+    "front": "What is File Control Block / Inode?",
+    "back": "Storage structure containing information about a file, including ownership, permissions, and location of file contents.",
+    "analogy": "Like the metadata on a library catalog card."
+  },
+  {
+    "id": "fc62",
+    "topic": "File Systems",
+    "term": "Directory Structure",
+    "front": "What is Directory Structure?",
+    "back": "The organization of files in a file system (flat, two-level, tree, acyclic-graph).",
+    "analogy": "Like a system of folders and subfolders on your computer."
+  },
+  {
+    "id": "fc63",
+    "topic": "File Systems",
+    "term": "Contiguous Allocation",
+    "front": "What is Contiguous Allocation?",
+    "back": "Each file occupies a set of contiguous blocks on the disk.",
+    "analogy": "Like reserving an entire block of seats at a movie theater."
+  },
+  {
+    "id": "fc64",
+    "topic": "File Systems",
+    "term": "Linked Allocation",
+    "front": "What is Linked Allocation?",
+    "back": "Each file is a linked list of disk blocks, which can be scattered anywhere.",
+    "analogy": "Like a scavenger hunt where each clue tells you where the next clue is."
+  },
+  {
+    "id": "fc65",
+    "topic": "File Systems",
+    "term": "Indexed Allocation",
+    "front": "What is Indexed Allocation?",
+    "back": "Brings all the pointers together into one location: the index block.",
+    "analogy": "Like a table of contents that tells you exactly what page each chapter starts on."
+  },
+  {
+    "id": "fc66",
+    "topic": "File Systems",
+    "term": "Virtual File System (VFS)",
+    "front": "What is Virtual File System (VFS)?",
+    "back": "An abstraction layer that allows the OS to support multiple file system types transparently.",
+    "analogy": "Like a universal translator for different hard drive formats."
+  },
+  {
+    "id": "fc67",
+    "topic": "File Systems",
+    "term": "Journaling File System",
+    "front": "What is Journaling File System?",
+    "back": "Keeps a log (journal) of changes not yet committed to the main file system to prevent corruption on crash.",
+    "analogy": "Like taking notes on what you're going to write in ink before you actually write it."
+  },
+  {
+    "id": "fc68",
+    "topic": "File Systems",
+    "term": "Superblock",
+    "front": "What is Superblock?",
+    "back": "A block of metadata that describes the characteristics of a file system (size, status, layout).",
+    "analogy": "Like the blueprint and status report for the entire city infrastructure."
+  },
+  {
+    "id": "fc69",
+    "topic": "File Systems",
+    "term": "Hard Link",
+    "front": "What is Hard Link?",
+    "back": "A directory entry that points directly to the inode of a file.",
+    "analogy": "Like giving a person a second legal name; both names point to the exact same person."
+  },
+  {
+    "id": "fc70",
+    "topic": "File Systems",
+    "term": "Symbolic (Soft) Link",
+    "front": "What is Symbolic (Soft) Link?",
+    "back": "A file whose data contains the path to another file.",
+    "analogy": "Like a desktop shortcut or a sign pointing to another building."
+  },
+  {
+    "id": "fc71",
+    "topic": "File Systems",
+    "term": "Mounting",
+    "front": "What is Mounting?",
+    "back": "The process of making a file system available to the OS at a specific directory (mount point).",
+    "analogy": "Like plugging a new external hard drive into a specific USB port folder."
+  },
+  {
+    "id": "fc72",
+    "topic": "File Systems",
+    "term": "RAID",
+    "front": "What is RAID?",
+    "back": "Redundant Array of Independent Disks; combines multiple drives into a single logical unit for performance or redundancy.",
+    "analogy": "Like a team of horses pulling a carriage instead of just one."
+  },
+  {
+    "id": "fc73",
+    "topic": "File Systems",
+    "term": "RAID 0 (Striping)",
+    "front": "What is RAID 0 (Striping)?",
+    "back": "Splits data evenly across two or more disks with no parity (high performance, no redundancy).",
+    "analogy": "Like splitting a heavy load between two bags to run faster, but if one bag rips, you lose half your stuff."
+  },
+  {
+    "id": "fc74",
+    "topic": "File Systems",
+    "term": "RAID 1 (Mirroring)",
+    "front": "What is RAID 1 (Mirroring)?",
+    "back": "Creates an exact copy of a set of data on two or more disks.",
+    "analogy": "Like printing two copies of your essay just in case you lose one."
+  },
+  {
+    "id": "fc75",
+    "topic": "File Systems",
+    "term": "RAID 5",
+    "front": "What is RAID 5?",
+    "back": "Block-level striping with distributed parity, requiring at least 3 disks. Tolerates 1 disk failure.",
+    "analogy": "Like a magic trick where if one card is lost, you can perfectly guess it using the remaining cards."
+  },
+  {
+    "id": "fc76",
+    "topic": "I/O & Interrupts",
+    "term": "Device Driver",
+    "front": "What is Device Driver?",
+    "back": "Software that provides a high-level interface to a specific hardware device.",
+    "analogy": "Like a translator who converts OS language into specific hardware language."
+  },
+  {
+    "id": "fc77",
+    "topic": "I/O & Interrupts",
+    "term": "Interrupt",
+    "front": "What is Interrupt?",
+    "back": "A signal emitted by hardware or software indicating an event that needs immediate attention.",
+    "analogy": "Like a ringing doorbell interrupting your reading."
+  },
+  {
+    "id": "fc78",
+    "topic": "I/O & Interrupts",
+    "term": "Interrupt Service Routine (ISR)",
+    "front": "What is Interrupt Service Routine (ISR)?",
+    "back": "A software routine that hardware invokes in response to an interrupt.",
+    "analogy": "Like the script you follow when you answer the doorbell (e.g., greeting the mailman)."
+  },
+  {
+    "id": "fc79",
+    "topic": "I/O & Interrupts",
+    "term": "Interrupt Vector Table",
+    "front": "What is Interrupt Vector Table?",
+    "back": "An array of pointers to ISRs, indexed by interrupt number.",
+    "analogy": "Like a phone directory telling you which department handles which type of emergency."
+  },
+  {
+    "id": "fc80",
+    "topic": "I/O & Interrupts",
+    "term": "Direct Memory Access (DMA)",
+    "front": "What is Direct Memory Access (DMA)?",
+    "back": "Allows hardware subsystems to access main system memory independently of the CPU.",
+    "analogy": "Like hiring a mover to unload boxes directly into the living room without you having to carry each box."
+  },
+  {
+    "id": "fc81",
+    "topic": "I/O & Interrupts",
+    "term": "Memory-Mapped I/O",
+    "front": "What is Memory-Mapped I/O?",
+    "back": "Uses the same address space to address both memory and I/O devices.",
+    "analogy": "Like assigning a specific room in your house to act as a mailbox."
+  },
+  {
+    "id": "fc82",
+    "topic": "I/O & Interrupts",
+    "term": "Polling (Programmed I/O)",
+    "front": "What is Polling (Programmed I/O)?",
+    "back": "The CPU repeatedly checks the status of a device to see if it is ready.",
+    "analogy": "Like a kid in the back seat repeatedly asking 'Are we there yet?'"
+  },
+  {
+    "id": "fc83",
+    "topic": "I/O & Interrupts",
+    "term": "Block Device",
+    "front": "What is Block Device?",
+    "back": "A device that moves data in structured blocks (e.g., hard drives, SSDs).",
+    "analogy": "Like a shipping container that only moves large, fixed-size boxes."
+  },
+  {
+    "id": "fc84",
+    "topic": "I/O & Interrupts",
+    "term": "Character Device",
+    "front": "What is Character Device?",
+    "back": "A device that transmits data character by character (e.g., keyboards, mice).",
+    "analogy": "Like a garden hose streaming water continuously."
+  },
+  {
+    "id": "fc85",
+    "topic": "I/O & Interrupts",
+    "term": "Spooling",
+    "front": "What is Spooling?",
+    "back": "Putting jobs in a buffer, a special area in memory or on a disk where a device can access them when it is ready.",
+    "analogy": "Like a printer queue holding documents until the printer is free."
+  },
+  {
+    "id": "fc86",
+    "topic": "I/O & Interrupts",
+    "term": "Buffering",
+    "front": "What is Buffering?",
+    "back": "A memory area that stores data being transferred between two devices or a device and an application.",
+    "analogy": "Like a waiting room at a doctor's office absorbing the mismatch in arrival times."
+  },
+  {
+    "id": "fc87",
+    "topic": "I/O & Interrupts",
+    "term": "Caching",
+    "front": "What is Caching?",
+    "back": "Storing a copy of data in a faster memory to speed up subsequent accesses.",
+    "analogy": "Like keeping your most frequently used tools on your belt instead of in the shed."
+  },
+  {
+    "id": "fc88",
+    "topic": "I/O & Interrupts",
+    "term": "Disk Scheduling",
+    "front": "What is Disk Scheduling?",
+    "back": "Algorithms to determine the order in which disk I/O requests will be processed.",
+    "analogy": "Like planning the most efficient route for a delivery truck."
+  },
+  {
+    "id": "fc89",
+    "topic": "I/O & Interrupts",
+    "term": "SCAN Algorithm (Elevator)",
+    "front": "What is SCAN Algorithm (Elevator)?",
+    "back": "The disk arm starts at one end, moves toward the other, servicing requests, then reverses direction.",
+    "analogy": "Like an elevator picking up everyone on the way up, then everyone on the way down."
+  },
+  {
+    "id": "fc90",
+    "topic": "I/O & Interrupts",
+    "term": "C-SCAN Algorithm",
+    "front": "What is C-SCAN Algorithm?",
+    "back": "Like SCAN, but when it reaches the end, it returns to the beginning without servicing requests on the return trip.",
+    "analogy": "Like a typewriter carriage returning quickly to start a new line."
+  }
+]

@@ -21,6 +21,14 @@ from finetuning.model_config import BASE_MODEL, INFERENCE_TEMPERATURE, MAX_NEW_T
 from evaluation.dataset_hash import compute_file_hash
 
 
+def load_benchmark(benchmark_path: str = "data/benchmark/os_benchmark.json") -> List[Dict[str, Any]]:
+    """Helper function to load benchmark dataset JSON file."""
+    if not os.path.exists(benchmark_path):
+        return []
+    with open(benchmark_path, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
 def format_inference_prompt(instruction: str, input_text: str = "") -> str:
     """Format user prompt using standard ChatML instruction template."""
     prompt = (

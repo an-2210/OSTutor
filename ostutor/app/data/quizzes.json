@@ -1,0 +1,1682 @@
+[
+  {
+    "id": "q1",
+    "topic": "Processes & Threads",
+    "difficulty": "easy",
+    "question": "Which of the following best describes 'Process Control Block (PCB)'?",
+    "options": [
+      "A. It refers to the mechanism used by fork().",
+      "B. Kernel data structure tracking PID, state, registers, and memory for a process.",
+      "C. It is a Process States optimization technique.",
+      "D. An obsolete feature replaced by Zombie Process."
+    ],
+    "answer_index": 1,
+    "explanation": "The correct concept is Process Control Block (PCB), which is closely associated with this behavior."
+  },
+  {
+    "id": "q2",
+    "topic": "Processes & Threads",
+    "difficulty": "easy",
+    "question": "What is the primary purpose of Context Switch?",
+    "options": [
+      "A. To simulate the behavior of fork().",
+      "B. To prevent issues related to Copy-On-Write (COW).",
+      "C. To manage Dispatcher automatically.",
+      "D. The process of saving the state of the old process and loading the saved state for the new process."
+    ],
+    "answer_index": 3,
+    "explanation": "The correct concept is Context Switch, which is closely associated with this behavior."
+  },
+  {
+    "id": "q3",
+    "topic": "Processes & Threads",
+    "difficulty": "easy",
+    "question": "Which OS concept is defined as: 'A process that has terminated but still has an entry in the process table because its parent hasn't read its exit status.'?",
+    "options": [
+      "A. Time-sharing",
+      "B. Thread",
+      "C. Process Control Block (PCB)",
+      "D. Zombie Process"
+    ],
+    "answer_index": 3,
+    "explanation": "The correct concept is Zombie Process, which is closely associated with this behavior."
+  },
+  {
+    "id": "q4",
+    "topic": "Processes & Threads",
+    "difficulty": "easy",
+    "question": "Which of the following best describes 'Orphan Process'?",
+    "options": [
+      "A. A process whose parent has terminated, usually adopted by the init process (PID 1).",
+      "B. An obsolete feature replaced by exec().",
+      "C. It refers to the mechanism used by Inter-Process Communication (IPC).",
+      "D. It is a Thread optimization technique."
+    ],
+    "answer_index": 0,
+    "explanation": "The correct concept is Orphan Process, which is closely associated with this behavior."
+  },
+  {
+    "id": "q5",
+    "topic": "Processes & Threads",
+    "difficulty": "easy",
+    "question": "What is the primary purpose of Thread?",
+    "options": [
+      "A. To manage User-level vs Kernel-level Threads automatically.",
+      "B. To simulate the behavior of fork().",
+      "C. The smallest sequence of programmed instructions managed independently by a scheduler.",
+      "D. To prevent issues related to Context Switch."
+    ],
+    "answer_index": 2,
+    "explanation": "The correct concept is Thread, which is closely associated with this behavior."
+  },
+  {
+    "id": "q6",
+    "topic": "Processes & Threads",
+    "difficulty": "easy",
+    "question": "Which OS concept is defined as: 'User threads are managed by user libraries; kernel threads are managed directly by the OS.'?",
+    "options": [
+      "A. User-level vs Kernel-level Threads",
+      "B. Copy-On-Write (COW)",
+      "C. Context Switch",
+      "D. Thread"
+    ],
+    "answer_index": 0,
+    "explanation": "The correct concept is User-level vs Kernel-level Threads, which is closely associated with this behavior."
+  },
+  {
+    "id": "q7",
+    "topic": "Processes & Threads",
+    "difficulty": "easy",
+    "question": "Which of the following best describes 'fork()'?",
+    "options": [
+      "A. An obsolete feature replaced by Copy-On-Write (COW).",
+      "B. It refers to the mechanism used by Process States.",
+      "C. System call that creates a new process by duplicating the calling process.",
+      "D. It is a Dispatcher optimization technique."
+    ],
+    "answer_index": 2,
+    "explanation": "The correct concept is fork(), which is closely associated with this behavior."
+  },
+  {
+    "id": "q8",
+    "topic": "Processes & Threads",
+    "difficulty": "medium",
+    "question": "What is the primary purpose of exec()?",
+    "options": [
+      "A. To simulate the behavior of wait().",
+      "B. To manage Zombie Process automatically.",
+      "C. System call that replaces the current process image with a new program.",
+      "D. To prevent issues related to fork()."
+    ],
+    "answer_index": 2,
+    "explanation": "The correct concept is exec(), which is closely associated with this behavior."
+  },
+  {
+    "id": "q9",
+    "topic": "Processes & Threads",
+    "difficulty": "medium",
+    "question": "Which OS concept is defined as: 'System call used by a parent process to wait for a child process to finish.'?",
+    "options": [
+      "A. Zombie Process",
+      "B. exec()",
+      "C. Multiprogramming",
+      "D. wait()"
+    ],
+    "answer_index": 3,
+    "explanation": "The correct concept is wait(), which is closely associated with this behavior."
+  },
+  {
+    "id": "q10",
+    "topic": "Processes & Threads",
+    "difficulty": "medium",
+    "question": "Which of the following best describes 'Multiprogramming'?",
+    "options": [
+      "A. An obsolete feature replaced by fork().",
+      "B. It refers to the mechanism used by wait().",
+      "C. It is a User-level vs Kernel-level Threads optimization technique.",
+      "D. Keeping multiple programs in main memory at the same time to maximize CPU utilization."
+    ],
+    "answer_index": 3,
+    "explanation": "The correct concept is Multiprogramming, which is closely associated with this behavior."
+  },
+  {
+    "id": "q11",
+    "topic": "Processes & Threads",
+    "difficulty": "medium",
+    "question": "What is the primary purpose of Time-sharing?",
+    "options": [
+      "A. To simulate the behavior of Copy-On-Write (COW).",
+      "B. To prevent issues related to Thread.",
+      "C. Logical extension of multiprogramming where CPU switches jobs so frequently that users can interact with each job.",
+      "D. To manage User-level vs Kernel-level Threads automatically."
+    ],
+    "answer_index": 2,
+    "explanation": "The correct concept is Time-sharing, which is closely associated with this behavior."
+  },
+  {
+    "id": "q12",
+    "topic": "Processes & Threads",
+    "difficulty": "medium",
+    "question": "Which OS concept is defined as: 'Mechanisms like pipes, sockets, or shared memory allowing processes to communicate.'?",
+    "options": [
+      "A. Process States",
+      "B. wait()",
+      "C. Inter-Process Communication (IPC)",
+      "D. exec()"
+    ],
+    "answer_index": 2,
+    "explanation": "The correct concept is Inter-Process Communication (IPC), which is closely associated with this behavior."
+  },
+  {
+    "id": "q13",
+    "topic": "Processes & Threads",
+    "difficulty": "medium",
+    "question": "Which of the following best describes 'Copy-On-Write (COW)'?",
+    "options": [
+      "A. An obsolete feature replaced by Multiprogramming.",
+      "B. It is a exec() optimization technique.",
+      "C. Optimization where parent and child share memory pages until one writes to it, at which point a copy is made.",
+      "D. It refers to the mechanism used by User-level vs Kernel-level Threads."
+    ],
+    "answer_index": 2,
+    "explanation": "The correct concept is Copy-On-Write (COW), which is closely associated with this behavior."
+  },
+  {
+    "id": "q14",
+    "topic": "Processes & Threads",
+    "difficulty": "medium",
+    "question": "What is the primary purpose of Process States?",
+    "options": [
+      "A. To prevent issues related to fork().",
+      "B. New, Ready, Running, Waiting/Blocked, Terminated.",
+      "C. To simulate the behavior of exec().",
+      "D. To manage Orphan Process automatically."
+    ],
+    "answer_index": 1,
+    "explanation": "The correct concept is Process States, which is closely associated with this behavior."
+  },
+  {
+    "id": "q15",
+    "topic": "Processes & Threads",
+    "difficulty": "hard",
+    "question": "Which OS concept is defined as: 'Module that gives control of the CPU to the process selected by the short-term scheduler.'?",
+    "options": [
+      "A. Orphan Process",
+      "B. Thread",
+      "C. Dispatcher",
+      "D. Multiprogramming"
+    ],
+    "answer_index": 2,
+    "explanation": "The correct concept is Dispatcher, which is closely associated with this behavior."
+  },
+  {
+    "id": "q16",
+    "topic": "Processes & Threads",
+    "difficulty": "hard",
+    "question": "Which of the following best describes 'Process Control Block (PCB)'?",
+    "options": [
+      "A. It is a Time-sharing optimization technique.",
+      "B. An obsolete feature replaced by User-level vs Kernel-level Threads.",
+      "C. Kernel data structure tracking PID, state, registers, and memory for a process.",
+      "D. It refers to the mechanism used by Copy-On-Write (COW)."
+    ],
+    "answer_index": 2,
+    "explanation": "The correct concept is Process Control Block (PCB), which is closely associated with this behavior."
+  },
+  {
+    "id": "q17",
+    "topic": "Processes & Threads",
+    "difficulty": "hard",
+    "question": "What is the primary purpose of Context Switch?",
+    "options": [
+      "A. To simulate the behavior of Time-sharing.",
+      "B. To prevent issues related to Copy-On-Write (COW).",
+      "C. To manage Process States automatically.",
+      "D. The process of saving the state of the old process and loading the saved state for the new process."
+    ],
+    "answer_index": 3,
+    "explanation": "The correct concept is Context Switch, which is closely associated with this behavior."
+  },
+  {
+    "id": "q18",
+    "topic": "Processes & Threads",
+    "difficulty": "hard",
+    "question": "Which OS concept is defined as: 'A process that has terminated but still has an entry in the process table because its parent hasn't read its exit status.'?",
+    "options": [
+      "A. Context Switch",
+      "B. Process States",
+      "C. Zombie Process",
+      "D. User-level vs Kernel-level Threads"
+    ],
+    "answer_index": 2,
+    "explanation": "The correct concept is Zombie Process, which is closely associated with this behavior."
+  },
+  {
+    "id": "q19",
+    "topic": "Processes & Threads",
+    "difficulty": "hard",
+    "question": "Which of the following best describes 'Orphan Process'?",
+    "options": [
+      "A. It is a wait() optimization technique.",
+      "B. An obsolete feature replaced by Process States.",
+      "C. It refers to the mechanism used by fork().",
+      "D. A process whose parent has terminated, usually adopted by the init process (PID 1)."
+    ],
+    "answer_index": 3,
+    "explanation": "The correct concept is Orphan Process, which is closely associated with this behavior."
+  },
+  {
+    "id": "q20",
+    "topic": "Processes & Threads",
+    "difficulty": "hard",
+    "question": "What is the primary purpose of Thread?",
+    "options": [
+      "A. To prevent issues related to Inter-Process Communication (IPC).",
+      "B. The smallest sequence of programmed instructions managed independently by a scheduler.",
+      "C. To manage Copy-On-Write (COW) automatically.",
+      "D. To simulate the behavior of Time-sharing."
+    ],
+    "answer_index": 1,
+    "explanation": "The correct concept is Thread, which is closely associated with this behavior."
+  },
+  {
+    "id": "q21",
+    "topic": "Virtual Memory",
+    "difficulty": "easy",
+    "question": "Which of the following best describes 'Virtual Address Space'?",
+    "options": [
+      "A. Logical view of how a process is stored in memory, providing the illusion of a large, contiguous array.",
+      "B. It refers to the mechanism used by LRU (Least Recently Used).",
+      "C. It is a Page Fault optimization technique.",
+      "D. An obsolete feature replaced by Memory Management Unit (MMU)."
+    ],
+    "answer_index": 0,
+    "explanation": "The correct concept is Virtual Address Space, which is closely associated with this behavior."
+  },
+  {
+    "id": "q22",
+    "topic": "Virtual Memory",
+    "difficulty": "easy",
+    "question": "What is the primary purpose of Paging?",
+    "options": [
+      "A. Memory management scheme that eliminates the need for contiguous allocation of physical memory.",
+      "B. To prevent issues related to Swapping.",
+      "C. To manage Virtual Address Space automatically.",
+      "D. To simulate the behavior of Page Replacement Algorithm."
+    ],
+    "answer_index": 0,
+    "explanation": "The correct concept is Paging, which is closely associated with this behavior."
+  },
+  {
+    "id": "q23",
+    "topic": "Virtual Memory",
+    "difficulty": "easy",
+    "question": "Which OS concept is defined as: 'Data structure used to map virtual pages to physical frames.'?",
+    "options": [
+      "A. Page Fault",
+      "B. Page Table",
+      "C. Segmentation",
+      "D. Virtual Address Space"
+    ],
+    "answer_index": 1,
+    "explanation": "The correct concept is Page Table, which is closely associated with this behavior."
+  },
+  {
+    "id": "q24",
+    "topic": "Virtual Memory",
+    "difficulty": "easy",
+    "question": "Which of the following best describes 'Translation Lookaside Buffer (TLB)'?",
+    "options": [
+      "A. It refers to the mechanism used by Dirty Bit.",
+      "B. Hardware cache inside the MMU that stores recent virtual-to-physical address mappings.",
+      "C. It is a Memory Management Unit (MMU) optimization technique.",
+      "D. An obsolete feature replaced by Working Set Model."
+    ],
+    "answer_index": 1,
+    "explanation": "The correct concept is Translation Lookaside Buffer (TLB), which is closely associated with this behavior."
+  },
+  {
+    "id": "q25",
+    "topic": "Virtual Memory",
+    "difficulty": "easy",
+    "question": "What is the primary purpose of Page Fault?",
+    "options": [
+      "A. To manage Thrashing automatically.",
+      "B. To prevent issues related to Memory Management Unit (MMU).",
+      "C. An interrupt that occurs when a program attempts to access a page that is mapped in address space, but not loaded in physical memory.",
+      "D. To simulate the behavior of Swapping."
+    ],
+    "answer_index": 2,
+    "explanation": "The correct concept is Page Fault, which is closely associated with this behavior."
+  },
+  {
+    "id": "q26",
+    "topic": "Virtual Memory",
+    "difficulty": "easy",
+    "question": "Which OS concept is defined as: 'Bringing a page into memory only when it is needed.'?",
+    "options": [
+      "A. Page Replacement Algorithm",
+      "B. Translation Lookaside Buffer (TLB)",
+      "C. Thrashing",
+      "D. Demand Paging"
+    ],
+    "answer_index": 3,
+    "explanation": "The correct concept is Demand Paging, which is closely associated with this behavior."
+  },
+  {
+    "id": "q27",
+    "topic": "Virtual Memory",
+    "difficulty": "easy",
+    "question": "Which of the following best describes 'Thrashing'?",
+    "options": [
+      "A. An obsolete feature replaced by Translation Lookaside Buffer (TLB).",
+      "B. It refers to the mechanism used by Page Fault.",
+      "C. When the system spends more time paging (swapping pages) than executing instructions.",
+      "D. It is a Page Table optimization technique."
+    ],
+    "answer_index": 2,
+    "explanation": "The correct concept is Thrashing, which is closely associated with this behavior."
+  },
+  {
+    "id": "q28",
+    "topic": "Virtual Memory",
+    "difficulty": "medium",
+    "question": "What is the primary purpose of Working Set Model?",
+    "options": [
+      "A. To manage Page Fault automatically.",
+      "B. Based on the assumption of locality, it defines the set of pages a process is currently using.",
+      "C. To prevent issues related to Dirty Bit.",
+      "D. To simulate the behavior of Demand Paging."
+    ],
+    "answer_index": 1,
+    "explanation": "The correct concept is Working Set Model, which is closely associated with this behavior."
+  },
+  {
+    "id": "q29",
+    "topic": "Virtual Memory",
+    "difficulty": "medium",
+    "question": "Which OS concept is defined as: 'Algorithm deciding which memory page to page out (e.g., LRU, FIFO, Clock).'?",
+    "options": [
+      "A. Page Fault",
+      "B. Dirty Bit",
+      "C. Demand Paging",
+      "D. Page Replacement Algorithm"
+    ],
+    "answer_index": 3,
+    "explanation": "The correct concept is Page Replacement Algorithm, which is closely associated with this behavior."
+  },
+  {
+    "id": "q30",
+    "topic": "Virtual Memory",
+    "difficulty": "medium",
+    "question": "Which of the following best describes 'LRU (Least Recently Used)'?",
+    "options": [
+      "A. It is a Working Set Model optimization technique.",
+      "B. Replaces the page that has not been used for the longest period of time.",
+      "C. It refers to the mechanism used by Page Fault.",
+      "D. An obsolete feature replaced by Paging."
+    ],
+    "answer_index": 1,
+    "explanation": "The correct concept is LRU (Least Recently Used), which is closely associated with this behavior."
+  },
+  {
+    "id": "q31",
+    "topic": "Virtual Memory",
+    "difficulty": "medium",
+    "question": "What is the primary purpose of Belady's Anomaly?",
+    "options": [
+      "A. Phenomenon where increasing the number of page frames results in an increase in the number of page faults (happens in FIFO).",
+      "B. To prevent issues related to Thrashing.",
+      "C. To manage Paging automatically.",
+      "D. To simulate the behavior of LRU (Least Recently Used)."
+    ],
+    "answer_index": 0,
+    "explanation": "The correct concept is Belady's Anomaly, which is closely associated with this behavior."
+  },
+  {
+    "id": "q32",
+    "topic": "Virtual Memory",
+    "difficulty": "medium",
+    "question": "Which OS concept is defined as: 'Memory management scheme that supports the user view of memory (logical segments like code, data, stack).'?",
+    "options": [
+      "A. Dirty Bit",
+      "B. Belady's Anomaly",
+      "C. Swapping",
+      "D. Segmentation"
+    ],
+    "answer_index": 3,
+    "explanation": "The correct concept is Segmentation, which is closely associated with this behavior."
+  },
+  {
+    "id": "q33",
+    "topic": "Virtual Memory",
+    "difficulty": "medium",
+    "question": "Which of the following best describes 'Swapping'?",
+    "options": [
+      "A. It is a Memory Management Unit (MMU) optimization technique.",
+      "B. Moving entire processes between main memory and a backing store (disk).",
+      "C. It refers to the mechanism used by Thrashing.",
+      "D. An obsolete feature replaced by LRU (Least Recently Used)."
+    ],
+    "answer_index": 1,
+    "explanation": "The correct concept is Swapping, which is closely associated with this behavior."
+  },
+  {
+    "id": "q34",
+    "topic": "Virtual Memory",
+    "difficulty": "medium",
+    "question": "What is the primary purpose of Memory Management Unit (MMU)?",
+    "options": [
+      "A. Hardware device that maps virtual to physical address at run time.",
+      "B. To manage Demand Paging automatically.",
+      "C. To prevent issues related to Virtual Address Space.",
+      "D. To simulate the behavior of Belady's Anomaly."
+    ],
+    "answer_index": 0,
+    "explanation": "The correct concept is Memory Management Unit (MMU), which is closely associated with this behavior."
+  },
+  {
+    "id": "q35",
+    "topic": "Virtual Memory",
+    "difficulty": "hard",
+    "question": "Which OS concept is defined as: 'A bit in the page table indicating if the page has been modified since it was loaded.'?",
+    "options": [
+      "A. Page Replacement Algorithm",
+      "B. LRU (Least Recently Used)",
+      "C. Virtual Address Space",
+      "D. Dirty Bit"
+    ],
+    "answer_index": 3,
+    "explanation": "The correct concept is Dirty Bit, which is closely associated with this behavior."
+  },
+  {
+    "id": "q36",
+    "topic": "Virtual Memory",
+    "difficulty": "hard",
+    "question": "Which of the following best describes 'Virtual Address Space'?",
+    "options": [
+      "A. It is a Memory Management Unit (MMU) optimization technique.",
+      "B. An obsolete feature replaced by Swapping.",
+      "C. Logical view of how a process is stored in memory, providing the illusion of a large, contiguous array.",
+      "D. It refers to the mechanism used by Paging."
+    ],
+    "answer_index": 2,
+    "explanation": "The correct concept is Virtual Address Space, which is closely associated with this behavior."
+  },
+  {
+    "id": "q37",
+    "topic": "Virtual Memory",
+    "difficulty": "hard",
+    "question": "What is the primary purpose of Paging?",
+    "options": [
+      "A. Memory management scheme that eliminates the need for contiguous allocation of physical memory.",
+      "B. To manage Page Fault automatically.",
+      "C. To simulate the behavior of Virtual Address Space.",
+      "D. To prevent issues related to LRU (Least Recently Used)."
+    ],
+    "answer_index": 0,
+    "explanation": "The correct concept is Paging, which is closely associated with this behavior."
+  },
+  {
+    "id": "q38",
+    "topic": "Virtual Memory",
+    "difficulty": "hard",
+    "question": "Which OS concept is defined as: 'Data structure used to map virtual pages to physical frames.'?",
+    "options": [
+      "A. Swapping",
+      "B. Page Fault",
+      "C. Belady's Anomaly",
+      "D. Page Table"
+    ],
+    "answer_index": 3,
+    "explanation": "The correct concept is Page Table, which is closely associated with this behavior."
+  },
+  {
+    "id": "q39",
+    "topic": "Virtual Memory",
+    "difficulty": "hard",
+    "question": "Which of the following best describes 'Translation Lookaside Buffer (TLB)'?",
+    "options": [
+      "A. An obsolete feature replaced by Swapping.",
+      "B. It refers to the mechanism used by Virtual Address Space.",
+      "C. It is a Page Fault optimization technique.",
+      "D. Hardware cache inside the MMU that stores recent virtual-to-physical address mappings."
+    ],
+    "answer_index": 3,
+    "explanation": "The correct concept is Translation Lookaside Buffer (TLB), which is closely associated with this behavior."
+  },
+  {
+    "id": "q40",
+    "topic": "Virtual Memory",
+    "difficulty": "hard",
+    "question": "What is the primary purpose of Page Fault?",
+    "options": [
+      "A. An interrupt that occurs when a program attempts to access a page that is mapped in address space, but not loaded in physical memory.",
+      "B. To prevent issues related to Dirty Bit.",
+      "C. To manage Belady's Anomaly automatically.",
+      "D. To simulate the behavior of LRU (Least Recently Used)."
+    ],
+    "answer_index": 0,
+    "explanation": "The correct concept is Page Fault, which is closely associated with this behavior."
+  },
+  {
+    "id": "q41",
+    "topic": "CPU Scheduling",
+    "difficulty": "easy",
+    "question": "Which of the following best describes 'CPU Burst vs I/O Burst'?",
+    "options": [
+      "A. An obsolete feature replaced by Aging.",
+      "B. It is a First-Come, First-Served (FCFS) optimization technique.",
+      "C. Processes alternate between executing instructions (CPU burst) and waiting for I/O.",
+      "D. It refers to the mechanism used by Time Quantum."
+    ],
+    "answer_index": 2,
+    "explanation": "The correct concept is CPU Burst vs I/O Burst, which is closely associated with this behavior."
+  },
+  {
+    "id": "q42",
+    "topic": "CPU Scheduling",
+    "difficulty": "easy",
+    "question": "What is the primary purpose of Preemptive Scheduling?",
+    "options": [
+      "A. To manage Turnaround Time automatically.",
+      "B. To simulate the behavior of Shortest Job First (SJF).",
+      "C. To prevent issues related to First-Come, First-Served (FCFS).",
+      "D. OS can interrupt a currently running process and move it to the Ready queue."
+    ],
+    "answer_index": 3,
+    "explanation": "The correct concept is Preemptive Scheduling, which is closely associated with this behavior."
+  },
+  {
+    "id": "q43",
+    "topic": "CPU Scheduling",
+    "difficulty": "easy",
+    "question": "Which OS concept is defined as: 'Once a process gets the CPU, it keeps it until it terminates or switches to the waiting state.'?",
+    "options": [
+      "A. Multilevel Feedback Queue",
+      "B. Non-Preemptive Scheduling",
+      "C. First-Come, First-Served (FCFS)",
+      "D. Preemptive Scheduling"
+    ],
+    "answer_index": 1,
+    "explanation": "The correct concept is Non-Preemptive Scheduling, which is closely associated with this behavior."
+  },
+  {
+    "id": "q44",
+    "topic": "CPU Scheduling",
+    "difficulty": "easy",
+    "question": "Which of the following best describes 'First-Come, First-Served (FCFS)'?",
+    "options": [
+      "A. It is a Convoy Effect optimization technique.",
+      "B. The process that requests the CPU first is allocated the CPU first.",
+      "C. It refers to the mechanism used by Priority Scheduling.",
+      "D. An obsolete feature replaced by Starvation."
+    ],
+    "answer_index": 1,
+    "explanation": "The correct concept is First-Come, First-Served (FCFS), which is closely associated with this behavior."
+  },
+  {
+    "id": "q45",
+    "topic": "CPU Scheduling",
+    "difficulty": "easy",
+    "question": "What is the primary purpose of Convoy Effect?",
+    "options": [
+      "A. To prevent issues related to Shortest Job First (SJF).",
+      "B. To simulate the behavior of Shortest Remaining Time First (SRTF).",
+      "C. Short processes get stuck waiting for one long CPU-bound process to finish in FCFS.",
+      "D. To manage Aging automatically."
+    ],
+    "answer_index": 2,
+    "explanation": "The correct concept is Convoy Effect, which is closely associated with this behavior."
+  },
+  {
+    "id": "q46",
+    "topic": "CPU Scheduling",
+    "difficulty": "easy",
+    "question": "Which OS concept is defined as: 'Associates with each process the length of its next CPU burst, picking the shortest.'?",
+    "options": [
+      "A. Shortest Job First (SJF)",
+      "B. Starvation",
+      "C. Round Robin (RR)",
+      "D. Time Quantum"
+    ],
+    "answer_index": 0,
+    "explanation": "The correct concept is Shortest Job First (SJF), which is closely associated with this behavior."
+  },
+  {
+    "id": "q47",
+    "topic": "CPU Scheduling",
+    "difficulty": "easy",
+    "question": "Which of the following best describes 'Shortest Remaining Time First (SRTF)'?",
+    "options": [
+      "A. It refers to the mechanism used by Multilevel Feedback Queue.",
+      "B. An obsolete feature replaced by Turnaround Time.",
+      "C. It is a CPU Burst vs I/O Burst optimization technique.",
+      "D. Preemptive version of SJF."
+    ],
+    "answer_index": 3,
+    "explanation": "The correct concept is Shortest Remaining Time First (SRTF), which is closely associated with this behavior."
+  },
+  {
+    "id": "q48",
+    "topic": "CPU Scheduling",
+    "difficulty": "medium",
+    "question": "What is the primary purpose of Round Robin (RR)?",
+    "options": [
+      "A. To manage First-Come, First-Served (FCFS) automatically.",
+      "B. Each process gets a small unit of CPU time (time quantum), then is preempted and added to the end of the queue.",
+      "C. To simulate the behavior of Convoy Effect.",
+      "D. To prevent issues related to Shortest Job First (SJF)."
+    ],
+    "answer_index": 1,
+    "explanation": "The correct concept is Round Robin (RR), which is closely associated with this behavior."
+  },
+  {
+    "id": "q49",
+    "topic": "CPU Scheduling",
+    "difficulty": "medium",
+    "question": "Which OS concept is defined as: 'The fixed time slice allocated to a process in Round Robin.'?",
+    "options": [
+      "A. Multilevel Queue Scheduling",
+      "B. Preemptive Scheduling",
+      "C. CPU Burst vs I/O Burst",
+      "D. Time Quantum"
+    ],
+    "answer_index": 3,
+    "explanation": "The correct concept is Time Quantum, which is closely associated with this behavior."
+  },
+  {
+    "id": "q50",
+    "topic": "CPU Scheduling",
+    "difficulty": "medium",
+    "question": "Which of the following best describes 'Priority Scheduling'?",
+    "options": [
+      "A. An obsolete feature replaced by Multilevel Feedback Queue.",
+      "B. It refers to the mechanism used by Time Quantum.",
+      "C. A priority is associated with each process, and the CPU is allocated to the highest priority.",
+      "D. It is a Starvation optimization technique."
+    ],
+    "answer_index": 2,
+    "explanation": "The correct concept is Priority Scheduling, which is closely associated with this behavior."
+  },
+  {
+    "id": "q51",
+    "topic": "CPU Scheduling",
+    "difficulty": "medium",
+    "question": "What is the primary purpose of Starvation?",
+    "options": [
+      "A. To simulate the behavior of Convoy Effect.",
+      "B. To manage Multilevel Queue Scheduling automatically.",
+      "C. To prevent issues related to Shortest Job First (SJF).",
+      "D. A low priority process never gets to run because higher priority processes keep arriving."
+    ],
+    "answer_index": 3,
+    "explanation": "The correct concept is Starvation, which is closely associated with this behavior."
+  },
+  {
+    "id": "q52",
+    "topic": "CPU Scheduling",
+    "difficulty": "medium",
+    "question": "Which OS concept is defined as: 'Technique of gradually increasing the priority of processes that wait in the system for a long time (solves starvation).'?",
+    "options": [
+      "A. Aging",
+      "B. CPU Burst vs I/O Burst",
+      "C. Priority Scheduling",
+      "D. Shortest Job First (SJF)"
+    ],
+    "answer_index": 0,
+    "explanation": "The correct concept is Aging, which is closely associated with this behavior."
+  },
+  {
+    "id": "q53",
+    "topic": "CPU Scheduling",
+    "difficulty": "medium",
+    "question": "Which of the following best describes 'Multilevel Queue Scheduling'?",
+    "options": [
+      "A. It refers to the mechanism used by Shortest Job First (SJF).",
+      "B. An obsolete feature replaced by Convoy Effect.",
+      "C. It is a Aging optimization technique.",
+      "D. Partitions the ready queue into several separate queues (e.g., foreground and background) with their own algorithms."
+    ],
+    "answer_index": 3,
+    "explanation": "The correct concept is Multilevel Queue Scheduling, which is closely associated with this behavior."
+  },
+  {
+    "id": "q54",
+    "topic": "CPU Scheduling",
+    "difficulty": "medium",
+    "question": "What is the primary purpose of Multilevel Feedback Queue?",
+    "options": [
+      "A. To simulate the behavior of Time Quantum.",
+      "B. To prevent issues related to First-Come, First-Served (FCFS).",
+      "C. Allows a process to move between queues; separates processes according to the characteristics of their CPU bursts.",
+      "D. To manage Shortest Remaining Time First (SRTF) automatically."
+    ],
+    "answer_index": 2,
+    "explanation": "The correct concept is Multilevel Feedback Queue, which is closely associated with this behavior."
+  },
+  {
+    "id": "q55",
+    "topic": "CPU Scheduling",
+    "difficulty": "hard",
+    "question": "Which OS concept is defined as: 'The interval from the time of submission of a process to the time of completion.'?",
+    "options": [
+      "A. Multilevel Feedback Queue",
+      "B. CPU Burst vs I/O Burst",
+      "C. Shortest Job First (SJF)",
+      "D. Turnaround Time"
+    ],
+    "answer_index": 3,
+    "explanation": "The correct concept is Turnaround Time, which is closely associated with this behavior."
+  },
+  {
+    "id": "q56",
+    "topic": "CPU Scheduling",
+    "difficulty": "hard",
+    "question": "Which of the following best describes 'CPU Burst vs I/O Burst'?",
+    "options": [
+      "A. It refers to the mechanism used by First-Come, First-Served (FCFS).",
+      "B. Processes alternate between executing instructions (CPU burst) and waiting for I/O.",
+      "C. An obsolete feature replaced by Turnaround Time.",
+      "D. It is a Convoy Effect optimization technique."
+    ],
+    "answer_index": 1,
+    "explanation": "The correct concept is CPU Burst vs I/O Burst, which is closely associated with this behavior."
+  },
+  {
+    "id": "q57",
+    "topic": "CPU Scheduling",
+    "difficulty": "hard",
+    "question": "What is the primary purpose of Preemptive Scheduling?",
+    "options": [
+      "A. To manage CPU Burst vs I/O Burst automatically.",
+      "B. To simulate the behavior of Non-Preemptive Scheduling.",
+      "C. To prevent issues related to Aging.",
+      "D. OS can interrupt a currently running process and move it to the Ready queue."
+    ],
+    "answer_index": 3,
+    "explanation": "The correct concept is Preemptive Scheduling, which is closely associated with this behavior."
+  },
+  {
+    "id": "q58",
+    "topic": "CPU Scheduling",
+    "difficulty": "hard",
+    "question": "Which OS concept is defined as: 'Once a process gets the CPU, it keeps it until it terminates or switches to the waiting state.'?",
+    "options": [
+      "A. Non-Preemptive Scheduling",
+      "B. Shortest Remaining Time First (SRTF)",
+      "C. First-Come, First-Served (FCFS)",
+      "D. Starvation"
+    ],
+    "answer_index": 0,
+    "explanation": "The correct concept is Non-Preemptive Scheduling, which is closely associated with this behavior."
+  },
+  {
+    "id": "q59",
+    "topic": "CPU Scheduling",
+    "difficulty": "hard",
+    "question": "Which of the following best describes 'First-Come, First-Served (FCFS)'?",
+    "options": [
+      "A. An obsolete feature replaced by Priority Scheduling.",
+      "B. It is a Aging optimization technique.",
+      "C. It refers to the mechanism used by Preemptive Scheduling.",
+      "D. The process that requests the CPU first is allocated the CPU first."
+    ],
+    "answer_index": 3,
+    "explanation": "The correct concept is First-Come, First-Served (FCFS), which is closely associated with this behavior."
+  },
+  {
+    "id": "q60",
+    "topic": "CPU Scheduling",
+    "difficulty": "hard",
+    "question": "What is the primary purpose of Convoy Effect?",
+    "options": [
+      "A. To simulate the behavior of First-Come, First-Served (FCFS).",
+      "B. To manage Round Robin (RR) automatically.",
+      "C. Short processes get stuck waiting for one long CPU-bound process to finish in FCFS.",
+      "D. To prevent issues related to Starvation."
+    ],
+    "answer_index": 2,
+    "explanation": "The correct concept is Convoy Effect, which is closely associated with this behavior."
+  },
+  {
+    "id": "q61",
+    "topic": "Synchronization",
+    "difficulty": "easy",
+    "question": "Which of the following best describes 'Race Condition'?",
+    "options": [
+      "A. An obsolete feature replaced by Critical Section.",
+      "B. It refers to the mechanism used by Monitor.",
+      "C. When multiple threads access shared data concurrently and the outcome depends on the order of execution.",
+      "D. It is a Binary Semaphore optimization technique."
+    ],
+    "answer_index": 2,
+    "explanation": "The correct concept is Race Condition, which is closely associated with this behavior."
+  },
+  {
+    "id": "q62",
+    "topic": "Synchronization",
+    "difficulty": "easy",
+    "question": "What is the primary purpose of Critical Section?",
+    "options": [
+      "A. A segment of code where shared resources are accessed and must not be concurrently executed by more than one thread.",
+      "B. To manage Livelock automatically.",
+      "C. To prevent issues related to Producer-Consumer Problem.",
+      "D. To simulate the behavior of Dining Philosophers Problem."
+    ],
+    "answer_index": 0,
+    "explanation": "The correct concept is Critical Section, which is closely associated with this behavior."
+  },
+  {
+    "id": "q63",
+    "topic": "Synchronization",
+    "difficulty": "easy",
+    "question": "Which OS concept is defined as: 'If a process is executing in its critical section, no other processes can be executing in theirs.'?",
+    "options": [
+      "A. Conditions for Deadlock",
+      "B. Semaphore",
+      "C. Dining Philosophers Problem",
+      "D. Mutual Exclusion"
+    ],
+    "answer_index": 3,
+    "explanation": "The correct concept is Mutual Exclusion, which is closely associated with this behavior."
+  },
+  {
+    "id": "q64",
+    "topic": "Synchronization",
+    "difficulty": "easy",
+    "question": "Which of the following best describes 'Mutex Lock'?",
+    "options": [
+      "A. It is a Counting Semaphore optimization technique.",
+      "B. An obsolete feature replaced by Critical Section.",
+      "C. It refers to the mechanism used by Binary Semaphore.",
+      "D. A binary lock used to protect critical sections. The thread that acquires it must release it."
+    ],
+    "answer_index": 3,
+    "explanation": "The correct concept is Mutex Lock, which is closely associated with this behavior."
+  },
+  {
+    "id": "q65",
+    "topic": "Synchronization",
+    "difficulty": "easy",
+    "question": "What is the primary purpose of Semaphore?",
+    "options": [
+      "A. To manage Race Condition automatically.",
+      "B. An integer variable used to control access to a common resource by multiple processes.",
+      "C. To prevent issues related to Dining Philosophers Problem.",
+      "D. To simulate the behavior of Banker's Algorithm."
+    ],
+    "answer_index": 1,
+    "explanation": "The correct concept is Semaphore, which is closely associated with this behavior."
+  },
+  {
+    "id": "q66",
+    "topic": "Synchronization",
+    "difficulty": "easy",
+    "question": "Which OS concept is defined as: 'A semaphore that can range over an unrestricted domain (used for managing N identical resources).'?",
+    "options": [
+      "A. Semaphore",
+      "B. Counting Semaphore",
+      "C. Monitor",
+      "D. Race Condition"
+    ],
+    "answer_index": 1,
+    "explanation": "The correct concept is Counting Semaphore, which is closely associated with this behavior."
+  },
+  {
+    "id": "q67",
+    "topic": "Synchronization",
+    "difficulty": "easy",
+    "question": "Which of the following best describes 'Binary Semaphore'?",
+    "options": [
+      "A. It is a Mutual Exclusion optimization technique.",
+      "B. It refers to the mechanism used by Mutex Lock.",
+      "C. A semaphore whose value can only be 0 or 1, essentially acting like a Mutex.",
+      "D. An obsolete feature replaced by Race Condition."
+    ],
+    "answer_index": 2,
+    "explanation": "The correct concept is Binary Semaphore, which is closely associated with this behavior."
+  },
+  {
+    "id": "q68",
+    "topic": "Synchronization",
+    "difficulty": "medium",
+    "question": "What is the primary purpose of Deadlock?",
+    "options": [
+      "A. To simulate the behavior of Counting Semaphore.",
+      "B. Two or more processes are waiting indefinitely for an event that can be caused by only one of the waiting processes.",
+      "C. To manage Conditions for Deadlock automatically.",
+      "D. To prevent issues related to Mutual Exclusion."
+    ],
+    "answer_index": 1,
+    "explanation": "The correct concept is Deadlock, which is closely associated with this behavior."
+  },
+  {
+    "id": "q69",
+    "topic": "Synchronization",
+    "difficulty": "medium",
+    "question": "Which OS concept is defined as: 'Mutual exclusion, Hold and wait, No preemption, Circular wait.'?",
+    "options": [
+      "A. Deadlock",
+      "B. Conditions for Deadlock",
+      "C. Counting Semaphore",
+      "D. Mutual Exclusion"
+    ],
+    "answer_index": 1,
+    "explanation": "The correct concept is Conditions for Deadlock, which is closely associated with this behavior."
+  },
+  {
+    "id": "q70",
+    "topic": "Synchronization",
+    "difficulty": "medium",
+    "question": "Which of the following best describes 'Banker's Algorithm'?",
+    "options": [
+      "A. It refers to the mechanism used by Livelock.",
+      "B. An obsolete feature replaced by Mutex Lock.",
+      "C. It is a Condition Variable optimization technique.",
+      "D. A deadlock avoidance algorithm that simulates resource allocation to ensure the system remains in a safe state."
+    ],
+    "answer_index": 3,
+    "explanation": "The correct concept is Banker's Algorithm, which is closely associated with this behavior."
+  },
+  {
+    "id": "q71",
+    "topic": "Synchronization",
+    "difficulty": "medium",
+    "question": "What is the primary purpose of Livelock?",
+    "options": [
+      "A. To manage Race Condition automatically.",
+      "B. To simulate the behavior of Banker's Algorithm.",
+      "C. To prevent issues related to Critical Section.",
+      "D. Processes constantly change state in response to each other without making progress."
+    ],
+    "answer_index": 3,
+    "explanation": "The correct concept is Livelock, which is closely associated with this behavior."
+  },
+  {
+    "id": "q72",
+    "topic": "Synchronization",
+    "difficulty": "medium",
+    "question": "Which OS concept is defined as: 'A synchronization primitive that allows threads to wait until a particular condition occurs.'?",
+    "options": [
+      "A. Monitor",
+      "B. Counting Semaphore",
+      "C. Critical Section",
+      "D. Condition Variable"
+    ],
+    "answer_index": 3,
+    "explanation": "The correct concept is Condition Variable, which is closely associated with this behavior."
+  },
+  {
+    "id": "q73",
+    "topic": "Synchronization",
+    "difficulty": "medium",
+    "question": "Which of the following best describes 'Monitor'?",
+    "options": [
+      "A. A high-level synchronization construct that encapsulates shared variables and the procedures that operate on them.",
+      "B. It is a Producer-Consumer Problem optimization technique.",
+      "C. An obsolete feature replaced by Banker's Algorithm.",
+      "D. It refers to the mechanism used by Dining Philosophers Problem."
+    ],
+    "answer_index": 0,
+    "explanation": "The correct concept is Monitor, which is closely associated with this behavior."
+  },
+  {
+    "id": "q74",
+    "topic": "Synchronization",
+    "difficulty": "medium",
+    "question": "What is the primary purpose of Producer-Consumer Problem?",
+    "options": [
+      "A. To simulate the behavior of Semaphore.",
+      "B. To prevent issues related to Race Condition.",
+      "C. Classic sync problem where producers add data to a buffer and consumers remove it safely.",
+      "D. To manage Critical Section automatically."
+    ],
+    "answer_index": 2,
+    "explanation": "The correct concept is Producer-Consumer Problem, which is closely associated with this behavior."
+  },
+  {
+    "id": "q75",
+    "topic": "Synchronization",
+    "difficulty": "hard",
+    "question": "Which OS concept is defined as: 'Classic sync problem illustrating the challenges of allocating multiple resources to multiple processes.'?",
+    "options": [
+      "A. Mutual Exclusion",
+      "B. Race Condition",
+      "C. Banker's Algorithm",
+      "D. Dining Philosophers Problem"
+    ],
+    "answer_index": 3,
+    "explanation": "The correct concept is Dining Philosophers Problem, which is closely associated with this behavior."
+  },
+  {
+    "id": "q76",
+    "topic": "Synchronization",
+    "difficulty": "hard",
+    "question": "Which of the following best describes 'Race Condition'?",
+    "options": [
+      "A. An obsolete feature replaced by Livelock.",
+      "B. When multiple threads access shared data concurrently and the outcome depends on the order of execution.",
+      "C. It is a Condition Variable optimization technique.",
+      "D. It refers to the mechanism used by Deadlock."
+    ],
+    "answer_index": 1,
+    "explanation": "The correct concept is Race Condition, which is closely associated with this behavior."
+  },
+  {
+    "id": "q77",
+    "topic": "Synchronization",
+    "difficulty": "hard",
+    "question": "What is the primary purpose of Critical Section?",
+    "options": [
+      "A. To prevent issues related to Binary Semaphore.",
+      "B. A segment of code where shared resources are accessed and must not be concurrently executed by more than one thread.",
+      "C. To simulate the behavior of Race Condition.",
+      "D. To manage Mutual Exclusion automatically."
+    ],
+    "answer_index": 1,
+    "explanation": "The correct concept is Critical Section, which is closely associated with this behavior."
+  },
+  {
+    "id": "q78",
+    "topic": "Synchronization",
+    "difficulty": "hard",
+    "question": "Which OS concept is defined as: 'If a process is executing in its critical section, no other processes can be executing in theirs.'?",
+    "options": [
+      "A. Livelock",
+      "B. Mutual Exclusion",
+      "C. Mutex Lock",
+      "D. Race Condition"
+    ],
+    "answer_index": 1,
+    "explanation": "The correct concept is Mutual Exclusion, which is closely associated with this behavior."
+  },
+  {
+    "id": "q79",
+    "topic": "Synchronization",
+    "difficulty": "hard",
+    "question": "Which of the following best describes 'Mutex Lock'?",
+    "options": [
+      "A. A binary lock used to protect critical sections. The thread that acquires it must release it.",
+      "B. It is a Dining Philosophers Problem optimization technique.",
+      "C. It refers to the mechanism used by Livelock.",
+      "D. An obsolete feature replaced by Mutual Exclusion."
+    ],
+    "answer_index": 0,
+    "explanation": "The correct concept is Mutex Lock, which is closely associated with this behavior."
+  },
+  {
+    "id": "q80",
+    "topic": "Synchronization",
+    "difficulty": "hard",
+    "question": "What is the primary purpose of Semaphore?",
+    "options": [
+      "A. To manage Counting Semaphore automatically.",
+      "B. To simulate the behavior of Deadlock.",
+      "C. To prevent issues related to Race Condition.",
+      "D. An integer variable used to control access to a common resource by multiple processes."
+    ],
+    "answer_index": 3,
+    "explanation": "The correct concept is Semaphore, which is closely associated with this behavior."
+  },
+  {
+    "id": "q81",
+    "topic": "File Systems",
+    "difficulty": "easy",
+    "question": "Which of the following best describes 'File Control Block / Inode'?",
+    "options": [
+      "A. It is a Mounting optimization technique.",
+      "B. Storage structure containing information about a file, including ownership, permissions, and location of file contents.",
+      "C. An obsolete feature replaced by RAID 1 (Mirroring).",
+      "D. It refers to the mechanism used by Virtual File System (VFS)."
+    ],
+    "answer_index": 1,
+    "explanation": "The correct concept is File Control Block / Inode, which is closely associated with this behavior."
+  },
+  {
+    "id": "q82",
+    "topic": "File Systems",
+    "difficulty": "easy",
+    "question": "What is the primary purpose of Directory Structure?",
+    "options": [
+      "A. To manage File Control Block / Inode automatically.",
+      "B. To prevent issues related to Indexed Allocation.",
+      "C. The organization of files in a file system (flat, two-level, tree, acyclic-graph).",
+      "D. To simulate the behavior of Virtual File System (VFS)."
+    ],
+    "answer_index": 2,
+    "explanation": "The correct concept is Directory Structure, which is closely associated with this behavior."
+  },
+  {
+    "id": "q83",
+    "topic": "File Systems",
+    "difficulty": "easy",
+    "question": "Which OS concept is defined as: 'Each file occupies a set of contiguous blocks on the disk.'?",
+    "options": [
+      "A. RAID",
+      "B. Contiguous Allocation",
+      "C. Hard Link",
+      "D. RAID 0 (Striping)"
+    ],
+    "answer_index": 1,
+    "explanation": "The correct concept is Contiguous Allocation, which is closely associated with this behavior."
+  },
+  {
+    "id": "q84",
+    "topic": "File Systems",
+    "difficulty": "easy",
+    "question": "Which of the following best describes 'Linked Allocation'?",
+    "options": [
+      "A. It refers to the mechanism used by Contiguous Allocation.",
+      "B. It is a Journaling File System optimization technique.",
+      "C. An obsolete feature replaced by Symbolic (Soft) Link.",
+      "D. Each file is a linked list of disk blocks, which can be scattered anywhere."
+    ],
+    "answer_index": 3,
+    "explanation": "The correct concept is Linked Allocation, which is closely associated with this behavior."
+  },
+  {
+    "id": "q85",
+    "topic": "File Systems",
+    "difficulty": "easy",
+    "question": "What is the primary purpose of Indexed Allocation?",
+    "options": [
+      "A. To prevent issues related to File Control Block / Inode.",
+      "B. To manage Journaling File System automatically.",
+      "C. To simulate the behavior of Linked Allocation.",
+      "D. Brings all the pointers together into one location: the index block."
+    ],
+    "answer_index": 3,
+    "explanation": "The correct concept is Indexed Allocation, which is closely associated with this behavior."
+  },
+  {
+    "id": "q86",
+    "topic": "File Systems",
+    "difficulty": "easy",
+    "question": "Which OS concept is defined as: 'An abstraction layer that allows the OS to support multiple file system types transparently.'?",
+    "options": [
+      "A. Indexed Allocation",
+      "B. Contiguous Allocation",
+      "C. Virtual File System (VFS)",
+      "D. Directory Structure"
+    ],
+    "answer_index": 2,
+    "explanation": "The correct concept is Virtual File System (VFS), which is closely associated with this behavior."
+  },
+  {
+    "id": "q87",
+    "topic": "File Systems",
+    "difficulty": "easy",
+    "question": "Which of the following best describes 'Journaling File System'?",
+    "options": [
+      "A. An obsolete feature replaced by Linked Allocation.",
+      "B. Keeps a log (journal) of changes not yet committed to the main file system to prevent corruption on crash.",
+      "C. It is a Contiguous Allocation optimization technique.",
+      "D. It refers to the mechanism used by Superblock."
+    ],
+    "answer_index": 1,
+    "explanation": "The correct concept is Journaling File System, which is closely associated with this behavior."
+  },
+  {
+    "id": "q88",
+    "topic": "File Systems",
+    "difficulty": "medium",
+    "question": "What is the primary purpose of Superblock?",
+    "options": [
+      "A. To prevent issues related to RAID 0 (Striping).",
+      "B. To simulate the behavior of RAID.",
+      "C. A block of metadata that describes the characteristics of a file system (size, status, layout).",
+      "D. To manage Journaling File System automatically."
+    ],
+    "answer_index": 2,
+    "explanation": "The correct concept is Superblock, which is closely associated with this behavior."
+  },
+  {
+    "id": "q89",
+    "topic": "File Systems",
+    "difficulty": "medium",
+    "question": "Which OS concept is defined as: 'A directory entry that points directly to the inode of a file.'?",
+    "options": [
+      "A. Symbolic (Soft) Link",
+      "B. RAID 5",
+      "C. Hard Link",
+      "D. Virtual File System (VFS)"
+    ],
+    "answer_index": 2,
+    "explanation": "The correct concept is Hard Link, which is closely associated with this behavior."
+  },
+  {
+    "id": "q90",
+    "topic": "File Systems",
+    "difficulty": "medium",
+    "question": "Which of the following best describes 'Symbolic (Soft) Link'?",
+    "options": [
+      "A. It is a File Control Block / Inode optimization technique.",
+      "B. An obsolete feature replaced by RAID.",
+      "C. A file whose data contains the path to another file.",
+      "D. It refers to the mechanism used by RAID 1 (Mirroring)."
+    ],
+    "answer_index": 2,
+    "explanation": "The correct concept is Symbolic (Soft) Link, which is closely associated with this behavior."
+  },
+  {
+    "id": "q91",
+    "topic": "File Systems",
+    "difficulty": "medium",
+    "question": "What is the primary purpose of Mounting?",
+    "options": [
+      "A. The process of making a file system available to the OS at a specific directory (mount point).",
+      "B. To simulate the behavior of Journaling File System.",
+      "C. To manage RAID 1 (Mirroring) automatically.",
+      "D. To prevent issues related to Symbolic (Soft) Link."
+    ],
+    "answer_index": 0,
+    "explanation": "The correct concept is Mounting, which is closely associated with this behavior."
+  },
+  {
+    "id": "q92",
+    "topic": "File Systems",
+    "difficulty": "medium",
+    "question": "Which OS concept is defined as: 'Redundant Array of Independent Disks; combines multiple drives into a single logical unit for performance or redundancy.'?",
+    "options": [
+      "A. Directory Structure",
+      "B. Hard Link",
+      "C. RAID",
+      "D. File Control Block / Inode"
+    ],
+    "answer_index": 2,
+    "explanation": "The correct concept is RAID, which is closely associated with this behavior."
+  },
+  {
+    "id": "q93",
+    "topic": "File Systems",
+    "difficulty": "medium",
+    "question": "Which of the following best describes 'RAID 0 (Striping)'?",
+    "options": [
+      "A. Splits data evenly across two or more disks with no parity (high performance, no redundancy).",
+      "B. An obsolete feature replaced by Linked Allocation.",
+      "C. It is a Symbolic (Soft) Link optimization technique.",
+      "D. It refers to the mechanism used by Hard Link."
+    ],
+    "answer_index": 0,
+    "explanation": "The correct concept is RAID 0 (Striping), which is closely associated with this behavior."
+  },
+  {
+    "id": "q94",
+    "topic": "File Systems",
+    "difficulty": "medium",
+    "question": "What is the primary purpose of RAID 1 (Mirroring)?",
+    "options": [
+      "A. To simulate the behavior of Journaling File System.",
+      "B. Creates an exact copy of a set of data on two or more disks.",
+      "C. To prevent issues related to Hard Link.",
+      "D. To manage Virtual File System (VFS) automatically."
+    ],
+    "answer_index": 1,
+    "explanation": "The correct concept is RAID 1 (Mirroring), which is closely associated with this behavior."
+  },
+  {
+    "id": "q95",
+    "topic": "File Systems",
+    "difficulty": "hard",
+    "question": "Which OS concept is defined as: 'Block-level striping with distributed parity, requiring at least 3 disks. Tolerates 1 disk failure.'?",
+    "options": [
+      "A. RAID 5",
+      "B. Hard Link",
+      "C. RAID 1 (Mirroring)",
+      "D. Journaling File System"
+    ],
+    "answer_index": 0,
+    "explanation": "The correct concept is RAID 5, which is closely associated with this behavior."
+  },
+  {
+    "id": "q96",
+    "topic": "File Systems",
+    "difficulty": "hard",
+    "question": "Which of the following best describes 'File Control Block / Inode'?",
+    "options": [
+      "A. It refers to the mechanism used by Hard Link.",
+      "B. Storage structure containing information about a file, including ownership, permissions, and location of file contents.",
+      "C. It is a Superblock optimization technique.",
+      "D. An obsolete feature replaced by Virtual File System (VFS)."
+    ],
+    "answer_index": 1,
+    "explanation": "The correct concept is File Control Block / Inode, which is closely associated with this behavior."
+  },
+  {
+    "id": "q97",
+    "topic": "File Systems",
+    "difficulty": "hard",
+    "question": "What is the primary purpose of Directory Structure?",
+    "options": [
+      "A. To prevent issues related to Virtual File System (VFS).",
+      "B. To simulate the behavior of RAID.",
+      "C. The organization of files in a file system (flat, two-level, tree, acyclic-graph).",
+      "D. To manage Hard Link automatically."
+    ],
+    "answer_index": 2,
+    "explanation": "The correct concept is Directory Structure, which is closely associated with this behavior."
+  },
+  {
+    "id": "q98",
+    "topic": "File Systems",
+    "difficulty": "hard",
+    "question": "Which OS concept is defined as: 'Each file occupies a set of contiguous blocks on the disk.'?",
+    "options": [
+      "A. RAID 1 (Mirroring)",
+      "B. RAID 5",
+      "C. Hard Link",
+      "D. Contiguous Allocation"
+    ],
+    "answer_index": 3,
+    "explanation": "The correct concept is Contiguous Allocation, which is closely associated with this behavior."
+  },
+  {
+    "id": "q99",
+    "topic": "File Systems",
+    "difficulty": "hard",
+    "question": "Which of the following best describes 'Linked Allocation'?",
+    "options": [
+      "A. It refers to the mechanism used by Indexed Allocation.",
+      "B. An obsolete feature replaced by Contiguous Allocation.",
+      "C. Each file is a linked list of disk blocks, which can be scattered anywhere.",
+      "D. It is a Journaling File System optimization technique."
+    ],
+    "answer_index": 2,
+    "explanation": "The correct concept is Linked Allocation, which is closely associated with this behavior."
+  },
+  {
+    "id": "q100",
+    "topic": "File Systems",
+    "difficulty": "hard",
+    "question": "What is the primary purpose of Indexed Allocation?",
+    "options": [
+      "A. Brings all the pointers together into one location: the index block.",
+      "B. To simulate the behavior of Superblock.",
+      "C. To prevent issues related to Hard Link.",
+      "D. To manage Symbolic (Soft) Link automatically."
+    ],
+    "answer_index": 0,
+    "explanation": "The correct concept is Indexed Allocation, which is closely associated with this behavior."
+  },
+  {
+    "id": "q101",
+    "topic": "I/O & Interrupts",
+    "difficulty": "easy",
+    "question": "Which of the following best describes 'Device Driver'?",
+    "options": [
+      "A. An obsolete feature replaced by Character Device.",
+      "B. It is a Interrupt optimization technique.",
+      "C. Software that provides a high-level interface to a specific hardware device.",
+      "D. It refers to the mechanism used by Disk Scheduling."
+    ],
+    "answer_index": 2,
+    "explanation": "The correct concept is Device Driver, which is closely associated with this behavior."
+  },
+  {
+    "id": "q102",
+    "topic": "I/O & Interrupts",
+    "difficulty": "easy",
+    "question": "What is the primary purpose of Interrupt?",
+    "options": [
+      "A. To manage Direct Memory Access (DMA) automatically.",
+      "B. To prevent issues related to Spooling.",
+      "C. To simulate the behavior of SCAN Algorithm (Elevator).",
+      "D. A signal emitted by hardware or software indicating an event that needs immediate attention."
+    ],
+    "answer_index": 3,
+    "explanation": "The correct concept is Interrupt, which is closely associated with this behavior."
+  },
+  {
+    "id": "q103",
+    "topic": "I/O & Interrupts",
+    "difficulty": "easy",
+    "question": "Which OS concept is defined as: 'A software routine that hardware invokes in response to an interrupt.'?",
+    "options": [
+      "A. Interrupt Vector Table",
+      "B. Polling (Programmed I/O)",
+      "C. Memory-Mapped I/O",
+      "D. Interrupt Service Routine (ISR)"
+    ],
+    "answer_index": 3,
+    "explanation": "The correct concept is Interrupt Service Routine (ISR), which is closely associated with this behavior."
+  },
+  {
+    "id": "q104",
+    "topic": "I/O & Interrupts",
+    "difficulty": "easy",
+    "question": "Which of the following best describes 'Interrupt Vector Table'?",
+    "options": [
+      "A. It refers to the mechanism used by Disk Scheduling.",
+      "B. It is a Block Device optimization technique.",
+      "C. An obsolete feature replaced by Buffering.",
+      "D. An array of pointers to ISRs, indexed by interrupt number."
+    ],
+    "answer_index": 3,
+    "explanation": "The correct concept is Interrupt Vector Table, which is closely associated with this behavior."
+  },
+  {
+    "id": "q105",
+    "topic": "I/O & Interrupts",
+    "difficulty": "easy",
+    "question": "What is the primary purpose of Direct Memory Access (DMA)?",
+    "options": [
+      "A. To simulate the behavior of Block Device.",
+      "B. Allows hardware subsystems to access main system memory independently of the CPU.",
+      "C. To prevent issues related to Caching.",
+      "D. To manage Polling (Programmed I/O) automatically."
+    ],
+    "answer_index": 1,
+    "explanation": "The correct concept is Direct Memory Access (DMA), which is closely associated with this behavior."
+  },
+  {
+    "id": "q106",
+    "topic": "I/O & Interrupts",
+    "difficulty": "easy",
+    "question": "Which OS concept is defined as: 'Uses the same address space to address both memory and I/O devices.'?",
+    "options": [
+      "A. Memory-Mapped I/O",
+      "B. Interrupt",
+      "C. Polling (Programmed I/O)",
+      "D. C-SCAN Algorithm"
+    ],
+    "answer_index": 0,
+    "explanation": "The correct concept is Memory-Mapped I/O, which is closely associated with this behavior."
+  },
+  {
+    "id": "q107",
+    "topic": "I/O & Interrupts",
+    "difficulty": "easy",
+    "question": "Which of the following best describes 'Polling (Programmed I/O)'?",
+    "options": [
+      "A. An obsolete feature replaced by Device Driver.",
+      "B. It refers to the mechanism used by Caching.",
+      "C. It is a Character Device optimization technique.",
+      "D. The CPU repeatedly checks the status of a device to see if it is ready."
+    ],
+    "answer_index": 3,
+    "explanation": "The correct concept is Polling (Programmed I/O), which is closely associated with this behavior."
+  },
+  {
+    "id": "q108",
+    "topic": "I/O & Interrupts",
+    "difficulty": "medium",
+    "question": "What is the primary purpose of Block Device?",
+    "options": [
+      "A. A device that moves data in structured blocks (e.g., hard drives, SSDs).",
+      "B. To simulate the behavior of Memory-Mapped I/O.",
+      "C. To manage Spooling automatically.",
+      "D. To prevent issues related to Interrupt Vector Table."
+    ],
+    "answer_index": 0,
+    "explanation": "The correct concept is Block Device, which is closely associated with this behavior."
+  },
+  {
+    "id": "q109",
+    "topic": "I/O & Interrupts",
+    "difficulty": "medium",
+    "question": "Which OS concept is defined as: 'A device that transmits data character by character (e.g., keyboards, mice).'?",
+    "options": [
+      "A. Memory-Mapped I/O",
+      "B. Disk Scheduling",
+      "C. Character Device",
+      "D. Spooling"
+    ],
+    "answer_index": 2,
+    "explanation": "The correct concept is Character Device, which is closely associated with this behavior."
+  },
+  {
+    "id": "q110",
+    "topic": "I/O & Interrupts",
+    "difficulty": "medium",
+    "question": "Which of the following best describes 'Spooling'?",
+    "options": [
+      "A. It refers to the mechanism used by Direct Memory Access (DMA).",
+      "B. An obsolete feature replaced by SCAN Algorithm (Elevator).",
+      "C. It is a Block Device optimization technique.",
+      "D. Putting jobs in a buffer, a special area in memory or on a disk where a device can access them when it is ready."
+    ],
+    "answer_index": 3,
+    "explanation": "The correct concept is Spooling, which is closely associated with this behavior."
+  },
+  {
+    "id": "q111",
+    "topic": "I/O & Interrupts",
+    "difficulty": "medium",
+    "question": "What is the primary purpose of Buffering?",
+    "options": [
+      "A. To manage C-SCAN Algorithm automatically.",
+      "B. To prevent issues related to Interrupt Vector Table.",
+      "C. A memory area that stores data being transferred between two devices or a device and an application.",
+      "D. To simulate the behavior of Interrupt."
+    ],
+    "answer_index": 2,
+    "explanation": "The correct concept is Buffering, which is closely associated with this behavior."
+  },
+  {
+    "id": "q112",
+    "topic": "I/O & Interrupts",
+    "difficulty": "medium",
+    "question": "Which OS concept is defined as: 'Storing a copy of data in a faster memory to speed up subsequent accesses.'?",
+    "options": [
+      "A. SCAN Algorithm (Elevator)",
+      "B. Spooling",
+      "C. Caching",
+      "D. Interrupt Service Routine (ISR)"
+    ],
+    "answer_index": 2,
+    "explanation": "The correct concept is Caching, which is closely associated with this behavior."
+  },
+  {
+    "id": "q113",
+    "topic": "I/O & Interrupts",
+    "difficulty": "medium",
+    "question": "Which of the following best describes 'Disk Scheduling'?",
+    "options": [
+      "A. It is a Character Device optimization technique.",
+      "B. Algorithms to determine the order in which disk I/O requests will be processed.",
+      "C. An obsolete feature replaced by Spooling.",
+      "D. It refers to the mechanism used by Interrupt Service Routine (ISR)."
+    ],
+    "answer_index": 1,
+    "explanation": "The correct concept is Disk Scheduling, which is closely associated with this behavior."
+  },
+  {
+    "id": "q114",
+    "topic": "I/O & Interrupts",
+    "difficulty": "medium",
+    "question": "What is the primary purpose of SCAN Algorithm (Elevator)?",
+    "options": [
+      "A. The disk arm starts at one end, moves toward the other, servicing requests, then reverses direction.",
+      "B. To simulate the behavior of Caching.",
+      "C. To manage Block Device automatically.",
+      "D. To prevent issues related to Disk Scheduling."
+    ],
+    "answer_index": 0,
+    "explanation": "The correct concept is SCAN Algorithm (Elevator), which is closely associated with this behavior."
+  },
+  {
+    "id": "q115",
+    "topic": "I/O & Interrupts",
+    "difficulty": "hard",
+    "question": "Which OS concept is defined as: 'Like SCAN, but when it reaches the end, it returns to the beginning without servicing requests on the return trip.'?",
+    "options": [
+      "A. Spooling",
+      "B. C-SCAN Algorithm",
+      "C. Disk Scheduling",
+      "D. Interrupt Vector Table"
+    ],
+    "answer_index": 1,
+    "explanation": "The correct concept is C-SCAN Algorithm, which is closely associated with this behavior."
+  },
+  {
+    "id": "q116",
+    "topic": "I/O & Interrupts",
+    "difficulty": "hard",
+    "question": "Which of the following best describes 'Device Driver'?",
+    "options": [
+      "A. It is a Disk Scheduling optimization technique.",
+      "B. An obsolete feature replaced by C-SCAN Algorithm.",
+      "C. It refers to the mechanism used by Interrupt Vector Table.",
+      "D. Software that provides a high-level interface to a specific hardware device."
+    ],
+    "answer_index": 3,
+    "explanation": "The correct concept is Device Driver, which is closely associated with this behavior."
+  },
+  {
+    "id": "q117",
+    "topic": "I/O & Interrupts",
+    "difficulty": "hard",
+    "question": "What is the primary purpose of Interrupt?",
+    "options": [
+      "A. To manage Interrupt Service Routine (ISR) automatically.",
+      "B. A signal emitted by hardware or software indicating an event that needs immediate attention.",
+      "C. To prevent issues related to Buffering.",
+      "D. To simulate the behavior of Polling (Programmed I/O)."
+    ],
+    "answer_index": 1,
+    "explanation": "The correct concept is Interrupt, which is closely associated with this behavior."
+  },
+  {
+    "id": "q118",
+    "topic": "I/O & Interrupts",
+    "difficulty": "hard",
+    "question": "Which OS concept is defined as: 'A software routine that hardware invokes in response to an interrupt.'?",
+    "options": [
+      "A. Disk Scheduling",
+      "B. Direct Memory Access (DMA)",
+      "C. Interrupt Vector Table",
+      "D. Interrupt Service Routine (ISR)"
+    ],
+    "answer_index": 3,
+    "explanation": "The correct concept is Interrupt Service Routine (ISR), which is closely associated with this behavior."
+  },
+  {
+    "id": "q119",
+    "topic": "I/O & Interrupts",
+    "difficulty": "hard",
+    "question": "Which of the following best describes 'Interrupt Vector Table'?",
+    "options": [
+      "A. It is a Memory-Mapped I/O optimization technique.",
+      "B. It refers to the mechanism used by Direct Memory Access (DMA).",
+      "C. An array of pointers to ISRs, indexed by interrupt number.",
+      "D. An obsolete feature replaced by C-SCAN Algorithm."
+    ],
+    "answer_index": 2,
+    "explanation": "The correct concept is Interrupt Vector Table, which is closely associated with this behavior."
+  },
+  {
+    "id": "q120",
+    "topic": "I/O & Interrupts",
+    "difficulty": "hard",
+    "question": "What is the primary purpose of Direct Memory Access (DMA)?",
+    "options": [
+      "A. To simulate the behavior of Caching.",
+      "B. Allows hardware subsystems to access main system memory independently of the CPU.",
+      "C. To prevent issues related to Spooling.",
+      "D. To manage Interrupt Vector Table automatically."
+    ],
+    "answer_index": 1,
+    "explanation": "The correct concept is Direct Memory Access (DMA), which is closely associated with this behavior."
+  }
+]
