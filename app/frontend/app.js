@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const ganttBarRow = document.getElementById('ganttBarRow');
   const simMetricsBox = document.getElementById('simMetricsBox');
 
-  const shapBarsContainer = document.getElementById('shapBarsContainer');
   const ragResultsList = document.getElementById('ragResultsList');
 
   let activeTopicId = 'proc';
@@ -123,7 +122,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (targetView) targetView.classList.add('active');
 
       if (targetTab === 'simulator') runScheduler();
-      if (targetTab === 'shap') fetchShapData();
     });
   });
 
@@ -279,38 +277,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   runSimBtn.addEventListener('click', runScheduler);
-
-  // 6. SHAP Feature Telemetry
-  async function fetchShapData() {
-    try {
-      const res = await fetch('/api/explain/shap', { method: 'POST' });
-      if (!res.ok) return;
-      const data = await res.json();
-
-      shapBarsContainer.innerHTML = '';
-      data.features.forEach(feat => {
-        const absVal = Math.abs(feat.shap_value);
-        const pct = Math.min(100, Math.round((absVal / 0.5) * 100));
-
-        const row = document.createElement('div');
-        row.className = 'shap-row';
-        row.innerHTML = `
-          <div class="shap-label">
-            <span>${feat.name} [Value: ${feat.feature_value}]</span>
-            <span style="font-weight:700; color: ${feat.shap_value >= 0 ? 'var(--brand-purple)' : 'var(--accent-pink)'}">
-              ${feat.shap_value >= 0 ? '+' : ''}${feat.shap_value}
-            </span>
-          </div>
-          <div class="shap-bar-bg">
-            <div class="shap-bar-fill" style="width: ${pct}%; background: ${feat.shap_value >= 0 ? 'gradient(90deg, var(--brand-purple), var(--accent-blue))' : 'var(--accent-pink)'};"></div>
-          </div>
-        `;
-        shapBarsContainer.appendChild(row);
-      });
-    } catch (err) {
-      console.error('SHAP error:', err);
-    }
-  }
 
   function escapeHtml(str) {
     return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
