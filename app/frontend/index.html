@@ -180,7 +180,6 @@
           <nav class="workspace-nav-tabs">
             <button class="tab-btn active" data-tab="terminal">💬 AI Tutor Terminal</button>
             <button class="tab-btn" data-tab="simulator">⚡ CPU Gantt Simulator</button>
-            <button class="tab-btn" data-tab="shap">📊 SHAP Feature Telemetry</button>
           </nav>
 
           <!-- Tab 1: AI Tutor Chat Window -->
@@ -250,17 +249,6 @@
                 <div class="gantt-bar-row" id="ganttBarRow"></div>
                 <div style="margin-top: 16px; font-size: 14px; color: var(--text-medium);" id="simMetricsBox"></div>
               </div>
-            </div>
-          </div>
-
-          <!-- Tab 3: SHAP Feature Telemetry -->
-          <div class="workspace-view" id="view-shap">
-            <div style="padding: 10px;">
-              <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 8px;">SHAP Model Attribution Metrics</h3>
-              <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 20px;">
-                Feature importance breakdown from Phase 3 XGBoost & Hybrid Decision Fusion anomaly detection model.
-              </p>
-              <div id="shapBarsContainer" class="shap-container"></div>
             </div>
           </div>
         </main>
