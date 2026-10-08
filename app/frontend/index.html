@@ -205,19 +205,47 @@
           <!-- Tab 2: CPU Scheduler Simulator -->
           <div class="workspace-view" id="view-simulator">
             <div class="sim-container">
-              <div class="sim-controls">
-                <label style="font-weight: 700; font-size: 14px;">Algorithm:</label>
-                <select id="algoSelect" class="sim-select">
-                  <option value="FCFS">First-Come First-Served (FCFS)</option>
-                  <option value="SJF">Shortest Job First (SJF)</option>
-                  <option value="RR" selected>Round Robin (RR - Quantum: 2ms)</option>
-                </select>
+              <div class="sim-controls" style="flex-wrap: wrap; gap: 14px; justify-content: space-between;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <label style="font-weight: 700; font-size: 14px;">Algorithm:</label>
+                  <select id="algoSelect" class="sim-select">
+                    <option value="FCFS">First-Come First-Served (FCFS)</option>
+                    <option value="SJF">Shortest Job First (SJF)</option>
+                    <option value="RR" selected>Round Robin (RR)</option>
+                  </select>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <label style="font-weight: 700; font-size: 14px;">Quantum (RR):</label>
+                  <input type="number" id="quantumInput" value="2" min="1" max="10" style="width: 60px; padding: 8px 10px; border: 1px solid var(--border-light); border-radius: 8px; font-weight: 700; text-align: center;">
+                </div>
                 <button id="runSimBtn" class="btn-primary">Simulate Gantt Timeline →</button>
+              </div>
+
+              <!-- Interactive Process Table -->
+              <div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: 16px; padding: 20px; box-shadow: var(--shadow-sm);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+                  <span style="font-weight: 700; font-size: 15px; color: var(--text-dark);">Configure Processes (Arrival & Burst Times):</span>
+                  <button id="addProcBtn" style="background: var(--brand-purple-light); color: var(--brand-purple); border: 1px solid var(--border-purple); padding: 6px 14px; border-radius: 8px; font-weight: 700; font-size: 13px; cursor: pointer;">+ Add Process</button>
+                </div>
+                <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+                  <thead>
+                    <tr style="border-bottom: 2px solid var(--border-light); text-align: left; color: var(--text-muted); font-family: var(--font-mono);">
+                      <th style="padding: 8px;">Process ID</th>
+                      <th style="padding: 8px;">Arrival Time (AT)</th>
+                      <th style="padding: 8px;">Burst Time (BT)</th>
+                      <th style="padding: 8px;">Priority</th>
+                      <th style="padding: 8px; text-align: center;">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="procTableBody">
+                    <!-- Dynamic process rows -->
+                  </tbody>
+                </table>
               </div>
 
               <div class="gantt-box">
                 <div style="font-weight: 700; font-size: 15px; color: var(--text-dark);">
-                  CPU Execution Gantt Chart:
+                  CPU Execution Gantt Timeline:
                 </div>
                 <div class="gantt-bar-row" id="ganttBarRow"></div>
                 <div style="margin-top: 16px; font-size: 14px; color: var(--text-medium);" id="simMetricsBox"></div>

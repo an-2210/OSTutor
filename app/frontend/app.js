@@ -11,7 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const workspaceViews = document.querySelectorAll('.workspace-view');
 
   const algoSelect = document.getElementById('algoSelect');
+  const quantumInput = document.getElementById('quantumInput');
   const runSimBtn = document.getElementById('runSimBtn');
+  const addProcBtn = document.getElementById('addProcBtn');
+  const procTableBody = document.getElementById('procTableBody');
   const ganttBarRow = document.getElementById('ganttBarRow');
   const simMetricsBox = document.getElementById('simMetricsBox');
 
@@ -20,11 +23,79 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let activeTopicId = 'proc';
 
+  // Process list state for CPU Scheduler
+  let processList = [
+    { id: 'P1', arrival: 0, burst: 6, priority: 2 },
+    { id: 'P2', arrival: 1, burst: 3, priority: 1 },
+    { id: 'P3', arrival: 2, burst: 8, priority: 3 },
+    { id: 'P4', arrival: 3, burst: 4, priority: 2 }
+  ];
+
+  // Render Process Input Table
+  function renderProcessTable() {
+    procTableBody.innerHTML = '';
+    processList.forEach((proc, index) => {
+      const tr = document.createElement('tr');
+      tr.style.borderBottom = '1px solid var(--border-light)';
+      tr.innerHTML = `
+        <td style="padding: 8px;">
+          <input type="text" value="${proc.id}" data-index="${index}" data-field="id" class="proc-field" style="width:50px; padding:4px 6px; font-weight:700; border:1px solid var(--border-light); border-radius:6px;">
+        </td>
+        <td style="padding: 8px;">
+          <input type="number" value="${proc.arrival}" min="0" data-index="${index}" data-field="arrival" class="proc-field" style="width:60px; padding:4px 6px; border:1px solid var(--border-light); border-radius:6px;">
+        </td>
+        <td style="padding: 8px;">
+          <input type="number" value="${proc.burst}" min="1" data-index="${index}" data-field="burst" class="proc-field" style="width:60px; padding:4px 6px; border:1px solid var(--border-light); border-radius:6px;">
+        </td>
+        <td style="padding: 8px;">
+          <input type="number" value="${proc.priority}" min="1" data-index="${index}" data-field="priority" class="proc-field" style="width:60px; padding:4px 6px; border:1px solid var(--border-light); border-radius:6px;">
+        </td>
+        <td style="padding: 8px; text-align: center;">
+          <button class="delete-proc-btn" data-index="${index}" style="background:var(--accent-pink-light); color:var(--accent-pink); border:none; padding:4px 10px; border-radius:6px; font-weight:700; cursor:pointer; font-size:12px;">Delete</button>
+        </td>
+      `;
+      procTableBody.appendChild(tr);
+    });
+
+    // Attach Input Event Listeners
+    document.querySelectorAll('.proc-field').forEach(input => {
+      input.addEventListener('change', (e) => {
+        const idx = parseInt(e.target.getAttribute('data-index'));
+        const field = e.target.getAttribute('data-field');
+        const val = e.target.value;
+        if (field === 'id') processList[idx].id = val;
+        else processList[idx][field] = parseInt(val) || 0;
+      });
+    });
+
+    // Attach Delete Event Listeners
+    document.querySelectorAll('.delete-proc-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const idx = parseInt(e.target.getAttribute('data-index'));
+        processList.splice(idx, 1);
+        renderProcessTable();
+      });
+    });
+  }
+
+  renderProcessTable();
+
+  // Add Process Button
+  addProcBtn.addEventListener('click', () => {
+    const newNum = processList.length + 1;
+    processList.push({
+      id: `P${newNum}`,
+      arrival: processList.length,
+      burst: 4,
+      priority: 2
+    });
+    renderProcessTable();
+  });
+
   // 1. Topic Selector Global Callback
   window.selectTopic = function(topicId, topicTitle) {
     activeTopicId = topicId;
 
-    // Update sidebar active buttons
     document.querySelectorAll('.side-topic-btn').forEach(btn => {
       if (btn.getAttribute('data-id') === topicId) {
         btn.classList.add('active');
@@ -61,7 +132,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const text = chatInput.value.trim();
     if (!text) return;
 
-    // Append Student Query Bubble
     const userItem = document.createElement('div');
     userItem.className = 'message-item user';
     userItem.innerHTML = `
@@ -71,7 +141,6 @@ document.addEventListener('DOMContentLoaded', () => {
     chatInput.value = '';
     chatHistory.scrollTop = chatHistory.scrollHeight;
 
-    // Fetch Tutor Response from FastAPI Backend
     try {
       const res = await fetch('/api/tutor/chat', {
         method: 'POST',
@@ -122,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Enter') sendChatMessage();
   });
 
-  // 4. RAG Textbook Inspector
+  // 4. RAG Textbook Inspector with Clickable Links
   async function fetchRagInspector(query = 'Process Management Virtual Memory') {
     try {
       const res = await fetch('/api/rag/retrieve', {
@@ -144,13 +213,19 @@ document.addEventListener('DOMContentLoaded', () => {
       const card = document.createElement('div');
       card.className = 'rag-card';
       const scorePct = Math.round((doc.similarity_score || doc.score || 0.88) * 100);
+      const docUrl = doc.url || 'https://www.os-book.com/OS10/';
+
       card.innerHTML = `
         <div style="display:flex; justify-content:space-between; align-items:center;">
-          <span class="rag-topic">📘 ${doc.topic || 'OS Reference'}</span>
+          <span class="rag-topic">📖 ${doc.topic || 'OS Reference'}</span>
           <span style="font-size:11px; font-weight:700; background:var(--brand-purple-light); color:var(--brand-purple); padding:2px 6px; border-radius:6px;">${scorePct}% Match</span>
         </div>
-        <div style="font-size:12px; font-weight:600; color:var(--text-dark);">${doc.source}</div>
-        <div class="rag-text">${doc.content}</div>
+        <div style="font-size:13px; margin-top:2px;">
+          <a href="${docUrl}" target="_blank" rel="noopener noreferrer" style="color:var(--brand-purple); font-weight:700; text-decoration:underline; transition:color 0.2s ease;">
+            📘 ${escapeHtml(doc.source)} ↗
+          </a>
+        </div>
+        <div class="rag-text" style="margin-top:6px;">${escapeHtml(doc.content)}</div>
       `;
       ragResultsList.appendChild(card);
     });
@@ -158,14 +233,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   fetchRagInspector();
 
-  // 5. CPU Scheduler Gantt Simulator
+  // 5. CPU Scheduler Gantt Simulator with Custom Process List Input
   async function runScheduler() {
     const algo = algoSelect.value;
+    const quantum = parseInt(quantumInput.value) || 2;
+
     try {
       const res = await fetch('/api/simulator/schedule', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ algorithm: algo, processes: [], quantum: 2 })
+        body: JSON.stringify({ algorithm: algo, processes: processList, quantum: quantum })
       });
 
       if (!res.ok) return;
@@ -173,27 +250,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
       ganttBarRow.innerHTML = '';
       const totalTime = data.total_time || 1;
-      const colors = {
-        'P1': '#7c3aed',
-        'P2': '#2563eb',
-        'P3': '#f43f5e',
-        'P4': '#f59e0b'
-      };
+      const palette = ['#7c3aed', '#2563eb', '#f43f5e', '#f59e0b', '#10b981', '#06b6d4'];
 
-      data.gantt.forEach(block => {
+      data.gantt.forEach((block, i) => {
         const pct = (block.duration / totalTime) * 100;
         const div = document.createElement('div');
         div.className = 'gantt-block';
         div.style.width = `${pct}%`;
-        div.style.backgroundColor = colors[block.pid] || '#6d28d9';
+        const colorIdx = (parseInt(block.pid.replace(/\D/g, '')) - 1) % palette.length;
+        div.style.backgroundColor = palette[colorIdx >= 0 ? colorIdx : i % palette.length];
         div.textContent = `${block.pid} (${block.duration}ms)`;
         ganttBarRow.appendChild(div);
       });
 
       simMetricsBox.innerHTML = `
         <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
-          <span>Algorithm: <strong>${data.algorithm}</strong></span>
-          <span>Total Execution: <strong>${data.total_time} ms</strong></span>
+          <span>Algorithm: <strong>${data.algorithm} ${data.algorithm === 'RR' ? '(Q=' + quantum + 'ms)' : ''}</strong></span>
+          <span>Total Execution Time: <strong>${data.total_time} ms</strong></span>
         </div>
         <div style="display:flex; justify-content:space-between;">
           <span>Avg Waiting Time: <strong style="color:var(--brand-purple);">${data.avg_waiting_time} ms</strong></span>
@@ -229,7 +302,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </span>
           </div>
           <div class="shap-bar-bg">
-            <div class="shap-bar-fill" style="width: ${pct}%; background: ${feat.shap_value >= 0 ? 'linear-gradient(90deg, var(--brand-purple), var(--accent-blue))' : 'var(--accent-pink)'};"></div>
+            <div class="shap-bar-fill" style="width: ${pct}%; background: ${feat.shap_value >= 0 ? 'gradient(90deg, var(--brand-purple), var(--accent-blue))' : 'var(--accent-pink)'};"></div>
           </div>
         `;
         shapBarsContainer.appendChild(row);
