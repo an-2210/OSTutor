@@ -20,6 +20,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const ragResultsList = document.getElementById('ragResultsList');
 
+  const quizTopicSelect = document.getElementById('quizTopicSelect');
+  const generateQuizBtn = document.getElementById('generateQuizBtn');
+  const quizContainer = document.getElementById('quizContainer');
+
+  const fcTopicSelect = document.getElementById('fcTopicSelect');
+  const flashcardCard = document.getElementById('flashcardCard');
+  const fcBadge = document.getElementById('fcBadge');
+  const fcTerm = document.getElementById('fcTerm');
+  const fcQuestion = document.getElementById('fcQuestion');
+  const fcAnswer = document.getElementById('fcAnswer');
+  const fcAnalogy = document.getElementById('fcAnalogy');
+  const fcCounter = document.getElementById('fcCounter');
+  const prevFcBtn = document.getElementById('prevFcBtn');
+  const nextFcBtn = document.getElementById('nextFcBtn');
+
   let activeTopicId = 'proc';
 
   // Process list state for CPU Scheduler
@@ -97,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // 1. Topic Selector Global Callback
-  window.selectTopic = function(topicId, topicTitle) {
+  window.selectTopic = function (topicId, topicTitle) {
     activeTopicId = topicId;
 
     document.querySelectorAll('.side-topic-btn').forEach(btn => {
@@ -127,6 +142,8 @@ document.addEventListener('DOMContentLoaded', () => {
       if (targetView) targetView.classList.add('active');
 
       if (targetTab === 'simulator') runScheduler();
+      if (targetTab === 'quiz') fetchQuiz();
+      if (targetTab === 'flashcards') fetchFlashcards();
     });
   });
 
@@ -243,6 +260,140 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   fetchRagInspector();
+
+  // Quiz Generator Logic
+  let currentQuizQuestions = [];
+
+  async function fetchQuiz() {
+    const topic = quizTopicSelect ? quizTopicSelect.value : 'All Topics';
+    try {
+      const res = await fetch('/api/quiz/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ topic, count: 15 })
+      });
+      const data = await res.json();
+      currentQuizQuestions = data.questions || [];
+      renderQuizCards();
+    } catch (err) {
+      console.error('Quiz fetch error:', err);
+    }
+  }
+
+  function renderQuizCards() {
+    if (!quizContainer) return;
+    quizContainer.innerHTML = '';
+
+    if (!currentQuizQuestions || currentQuizQuestions.length === 0) {
+      quizContainer.innerHTML = '<div style="padding:20px; text-align:center; color:var(--text-medium);">No questions found for this topic.</div>';
+      return;
+    }
+
+    currentQuizQuestions.forEach((q, qIdx) => {
+      const card = document.createElement('div');
+      card.className = 'quiz-q-card';
+      card.innerHTML = `
+        <div class="quiz-q-header">
+          <span class="quiz-topic-tag">📌 ${escapeHtml(q.topic)}</span>
+          <span class="quiz-diff-tag">${escapeHtml(q.difficulty || 'easy')}</span>
+        </div>
+        <div class="quiz-question-text">Q${qIdx + 1}: ${escapeHtml(q.question)}</div>
+        <div class="quiz-options-list" id="opts-list-${qIdx}">
+          ${q.options.map((option, optIdx) => `
+            <button class="quiz-opt-btn" data-qidx="${qIdx}" data-optidx="${optIdx}" onclick="checkQuizAnswer(${qIdx}, ${optIdx}, this)">${String.fromCharCode(65 + optIdx)}. ${escapeHtml(option)}</button>
+          `).join('')}
+        </div>
+        <div class="quiz-exp-box" id="exp-box-${qIdx}" style="display:none;"></div>
+      `;
+      quizContainer.appendChild(card);
+    });
+  }
+
+  window.checkQuizAnswer = function (qIdx, optIdx, btnEl) {
+    const q = currentQuizQuestions[qIdx];
+    if (!q) return;
+    const optsList = document.getElementById(`opts-list-${qIdx}`);
+    const expBox = document.getElementById(`exp-box-${qIdx}`);
+    if (!optsList || !expBox) return;
+
+    const allButtons = optsList.querySelectorAll('.quiz-opt-btn');
+    allButtons.forEach((button) => {
+      button.classList.remove('selected', 'correct', 'wrong');
+      const isCorrect = Number(button.dataset.optidx) === q.answer_index;
+      if (isCorrect) button.classList.add('correct');
+    });
+
+    const correct = optIdx === q.answer_index;
+    btnEl.classList.add(correct ? 'selected' : 'wrong');
+    btnEl.classList.add(correct ? 'correct' : 'wrong');
+    expBox.style.display = 'block';
+    expBox.innerHTML = `
+      <strong>${correct ? '✅ Correct!' : 'Not quite — keep going.'}</strong><br>
+      ${escapeHtml(q.explanation)}
+    `;
+  };
+
+  if (generateQuizBtn) {
+    generateQuizBtn.addEventListener('click', fetchQuiz);
+  }
+
+  // Flashcards Logic
+  let currentFlashcards = [];
+  let currentFcIndex = 0;
+
+  async function fetchFlashcards() {
+    const topic = document.getElementById('fcTopicSelect') ? document.getElementById('fcTopicSelect').value : 'All';
+    try {
+      const res = await fetch(`/api/flashcards?topic=${encodeURIComponent(topic)}`);
+      const data = await res.json();
+      currentFlashcards = data.flashcards || [];
+      currentFcIndex = 0;
+      renderCurrentFlashcard();
+    } catch (err) {
+      console.error('Flashcard fetch error:', err);
+    }
+  }
+
+  function renderCurrentFlashcard() {
+    if (!flashcardCard || !currentFlashcards || currentFlashcards.length === 0) return;
+    const card = currentFlashcards[currentFcIndex];
+    flashcardCard.classList.remove('is-flipped');
+    if (fcBadge) fcBadge.textContent = card.topic;
+    if (fcTerm) fcTerm.textContent = card.term;
+    if (fcQuestion) fcQuestion.textContent = card.front;
+    if (fcAnswer) fcAnswer.textContent = card.back;
+    if (fcAnalogy) fcAnalogy.textContent = card.analogy || '💡 Memory tip: keep the idea simple and connect it to a real-life analogy.';
+    if (fcCounter) fcCounter.textContent = `Card ${currentFcIndex + 1} of ${currentFlashcards.length}`;
+  }
+
+  if (flashcardCard) {
+    flashcardCard.addEventListener('click', () => {
+      flashcardCard.classList.toggle('is-flipped');
+    });
+  }
+
+  if (prevFcBtn) {
+    prevFcBtn.addEventListener('click', () => {
+      if (!currentFlashcards.length) return;
+      currentFcIndex = (currentFcIndex - 1 + currentFlashcards.length) % currentFlashcards.length;
+      renderCurrentFlashcard();
+    });
+  }
+
+  if (nextFcBtn) {
+    nextFcBtn.addEventListener('click', () => {
+      if (!currentFlashcards.length) return;
+      currentFcIndex = (currentFcIndex + 1) % currentFlashcards.length;
+      renderCurrentFlashcard();
+    });
+  }
+
+  if (fcTopicSelect) {
+    fcTopicSelect.addEventListener('change', fetchFlashcards);
+  }
+
+  fetchQuiz();
+  fetchFlashcards();
 
   // 5. CPU Scheduler Gantt Simulator with Custom Process List Input
   async function runScheduler() {

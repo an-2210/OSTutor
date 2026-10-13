@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,11 @@
   <link rel="stylesheet" href="/static/styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
 </head>
+
 <body>
 
   <!-- Navigation Bar -->
@@ -42,7 +46,8 @@
           <span>but make it understandable.</span>
         </h1>
         <p class="hero-description">
-          Your OS study space, minus the textbook headache. Learn it. Visualize it. Actually remember it with step-by-step kernel traces and interactive scheduling visualizers.
+          Your OS study space, minus the textbook headache. Learn it. Visualize it. Actually remember it with
+          step-by-step kernel traces and interactive scheduling visualizers.
         </p>
         <div class="hero-actions">
           <a href="#workspace" class="btn-primary">Start Learning 🚀</a>
@@ -61,7 +66,8 @@
           <div style="font-family: var(--font-mono); font-size: 13px; font-weight: 700; color: var(--brand-purple);">
             // LIVE KERNEL EXECUTION TRACE
           </div>
-          <div style="background: #0f172a; color: #e2e8f0; padding: 16px; border-radius: 12px; font-family: var(--font-mono); font-size: 12px; line-height: 1.8;">
+          <div
+            style="background: #0f172a; color: #e2e8f0; padding: 16px; border-radius: 12px; font-family: var(--font-mono); font-size: 12px; line-height: 1.8;">
             <span style="color:#10b981;">&gt; SYS_CALL [0x02]:</span> sys_fork() invoked<br>
             <span style="color:#3b82f6;">&gt; ALLOCATE:</span> task_struct at 0xFFFF880<br>
             <span style="color:#f43f5e;">&gt; COW_SET:</span> Pages marked READ-ONLY<br>
@@ -85,7 +91,8 @@
           <div>
             <div class="topic-icon-wrap">⚡</div>
             <h3 class="topic-title">Processes & Threads</h3>
-            <p class="topic-desc">Process Control Blocks (PCB), context switches, fork/exec system calls, and multithreading primitives.</p>
+            <p class="topic-desc">Process Control Blocks (PCB), context switches, fork/exec system calls, and
+              multithreading primitives.</p>
           </div>
           <span class="topic-link">Learn →</span>
         </div>
@@ -95,7 +102,8 @@
           <div>
             <div class="topic-icon-wrap">🚀</div>
             <h3 class="topic-title">CPU Scheduling</h3>
-            <p class="topic-desc">FCFS, Shortest Job First (SJF), Round Robin quantum slicing, and Linux Completely Fair Scheduler (CFS).</p>
+            <p class="topic-desc">FCFS, Shortest Job First (SJF), Round Robin quantum slicing, and Linux Completely Fair
+              Scheduler (CFS).</p>
           </div>
           <span class="topic-link">Learn →</span>
         </div>
@@ -105,7 +113,8 @@
           <div>
             <div class="topic-icon-wrap">🔒</div>
             <h3 class="topic-title">Synchronization & Locks</h3>
-            <p class="topic-desc">Race conditions, Peterson's algorithm, Mutex locks, Counting Semaphores, and Banker's Deadlock avoidance.</p>
+            <p class="topic-desc">Race conditions, Peterson's algorithm, Mutex locks, Counting Semaphores, and Banker's
+              Deadlock avoidance.</p>
           </div>
           <span class="topic-link">Learn →</span>
         </div>
@@ -115,7 +124,8 @@
           <div>
             <div class="topic-icon-wrap">🧠</div>
             <h3 class="topic-title">Virtual Memory & Paging</h3>
-            <p class="topic-desc">Page tables, TLB cache lookups, Page Fault handling (#PF), and LRU page replacement policies.</p>
+            <p class="topic-desc">Page tables, TLB cache lookups, Page Fault handling (#PF), and LRU page replacement
+              policies.</p>
           </div>
           <span class="topic-link">Learn →</span>
         </div>
@@ -125,7 +135,8 @@
           <div>
             <div class="topic-icon-wrap">📁</div>
             <h3 class="topic-title">File Systems & Storage</h3>
-            <p class="topic-desc">Inode structures, Virtual File System (VFS), direct/indirect block pointers, Ext4 journaling, and RAID layout.</p>
+            <p class="topic-desc">Inode structures, Virtual File System (VFS), direct/indirect block pointers, Ext4
+              journaling, and RAID layout.</p>
           </div>
           <span class="topic-link">Learn →</span>
         </div>
@@ -135,7 +146,8 @@
           <div>
             <div class="topic-icon-wrap">🔌</div>
             <h3 class="topic-title">I/O & Interrupts</h3>
-            <p class="topic-desc">Interrupt Service Routines (ISR), Direct Memory Access (DMA), and disk scheduling (SCAN / C-SCAN).</p>
+            <p class="topic-desc">Interrupt Service Routines (ISR), Direct Memory Access (DMA), and disk scheduling
+              (SCAN / C-SCAN).</p>
           </div>
           <span class="topic-link">Learn →</span>
         </div>
@@ -147,39 +159,18 @@
       <div class="section-header">
         <span class="section-pill">Interactive Study Space</span>
         <h2 class="section-title">Your AI-Powered OS Workbench</h2>
-        <p class="section-subtitle">Ask questions, inspect kernel traces, run CPU schedulers, and verify textbook citations.</p>
+        <p class="section-subtitle">Ask questions, inspect kernel traces, run CPU schedulers, and verify textbook
+          citations.</p>
       </div>
 
       <div class="workspace-wrapper">
-
-        <!-- Left Sidebar Topic Selection -->
-        <aside class="workspace-sidebar">
-          <div class="workspace-sidebar-title">Select Module</div>
-          <button class="side-topic-btn active" data-id="proc" onclick="selectTopic('proc', 'Process Management')">
-            <span>⚡ Processes & Threads</span>
-          </button>
-          <button class="side-topic-btn" data-id="mem" onclick="selectTopic('mem', 'Virtual Memory')">
-            <span>🧠 Virtual Memory</span>
-          </button>
-          <button class="side-topic-btn" data-id="sync" onclick="selectTopic('sync', 'Synchronization')">
-            <span>🔒 Concurrency & Mutex</span>
-          </button>
-          <button class="side-topic-btn" data-id="cpu" onclick="selectTopic('cpu', 'CPU Scheduling')">
-            <span>🚀 CPU Scheduling</span>
-          </button>
-          <button class="side-topic-btn" data-id="fs" onclick="selectTopic('fs', 'File Systems')">
-            <span>📁 File Systems</span>
-          </button>
-          <button class="side-topic-btn" data-id="io" onclick="selectTopic('io', 'I/O Interrupts')">
-            <span>🔌 I/O & Interrupts</span>
-          </button>
-        </aside>
-
         <!-- Center Interactive Area -->
         <main class="workspace-center">
           <nav class="workspace-nav-tabs">
             <button class="tab-btn active" data-tab="terminal">💬 AI Tutor Terminal</button>
             <button class="tab-btn" data-tab="simulator">⚡ CPU Gantt Simulator</button>
+            <button class="tab-btn" data-tab="quiz">🎯 Quiz Generator</button>
+            <button class="tab-btn" data-tab="flashcards">🃏 Flashcards</button>
           </nav>
 
           <!-- Tab 1: AI Tutor Chat Window -->
@@ -189,13 +180,15 @@
                 <div class="message-item tutor">
                   <div class="message-bubble">
                     👋 <strong>Hey there! Welcome to OSTutor.</strong><br>
-                    I am your AI study companion for Operating Systems. Ask me anything about <em>fork(), TLB misses, semaphores, page replacement, or CPU scheduling!</em>
+                    I am your AI study companion for Operating Systems. Ask me anything about <em>fork(), TLB misses,
+                      semaphores, page replacement, or CPU scheduling!</em>
                   </div>
                 </div>
               </div>
 
               <div class="chat-input-bar">
-                <input type="text" id="chatInput" class="chat-input" placeholder="Ask a question (e.g. 'How does copy-on-write work in fork()?')..." autocomplete="off">
+                <input type="text" id="chatInput" class="chat-input"
+                  placeholder="Ask a question (e.g. 'How does copy-on-write work in fork()?')..." autocomplete="off">
                 <button id="sendBtn" class="btn-primary">Ask AI →</button>
               </div>
             </div>
@@ -215,20 +208,26 @@
                 </div>
                 <div style="display: flex; align-items: center; gap: 8px;">
                   <label style="font-weight: 700; font-size: 14px;">Quantum (RR):</label>
-                  <input type="number" id="quantumInput" value="2" min="1" max="10" style="width: 60px; padding: 8px 10px; border: 1px solid var(--border-light); border-radius: 8px; font-weight: 700; text-align: center;">
+                  <input type="number" id="quantumInput" value="2" min="1" max="10"
+                    style="width: 60px; padding: 8px 10px; border: 1px solid var(--border-light); border-radius: 8px; font-weight: 700; text-align: center;">
                 </div>
                 <button id="runSimBtn" class="btn-primary">Simulate Gantt Timeline →</button>
               </div>
 
               <!-- Interactive Process Table -->
-              <div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: 16px; padding: 20px; box-shadow: var(--shadow-sm);">
+              <div
+                style="background: #ffffff; border: 1px solid var(--border-light); border-radius: 16px; padding: 20px; box-shadow: var(--shadow-sm);">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
-                  <span style="font-weight: 700; font-size: 15px; color: var(--text-dark);">Configure Processes (Arrival & Burst Times):</span>
-                  <button id="addProcBtn" style="background: var(--brand-purple-light); color: var(--brand-purple); border: 1px solid var(--border-purple); padding: 6px 14px; border-radius: 8px; font-weight: 700; font-size: 13px; cursor: pointer;">+ Add Process</button>
+                  <span style="font-weight: 700; font-size: 15px; color: var(--text-dark);">Configure Processes (Arrival
+                    & Burst Times):</span>
+                  <button id="addProcBtn"
+                    style="background: var(--brand-purple-light); color: var(--brand-purple); border: 1px solid var(--border-purple); padding: 6px 14px; border-radius: 8px; font-weight: 700; font-size: 13px; cursor: pointer;">+
+                    Add Process</button>
                 </div>
                 <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
                   <thead>
-                    <tr style="border-bottom: 2px solid var(--border-light); text-align: left; color: var(--text-muted); font-family: var(--font-mono);">
+                    <tr
+                      style="border-bottom: 2px solid var(--border-light); text-align: left; color: var(--text-muted); font-family: var(--font-mono);">
                       <th style="padding: 8px;">Process ID</th>
                       <th style="padding: 8px;">Arrival Time (AT)</th>
                       <th style="padding: 8px;">Burst Time (BT)</th>
@@ -251,6 +250,83 @@
               </div>
             </div>
           </div>
+
+          <!-- Tab 3: Quiz Generator -->
+          <div class="workspace-view" id="view-quiz">
+            <div style="padding: 10px; display: flex; flex-direction: column; gap: 20px;">
+              <div
+                style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; background:var(--surface-purple); padding:18px 24px; border-radius:16px; border:1px solid var(--border-purple);">
+                <div>
+                  <h3 style="font-size: 18px; font-weight: 800; color: var(--brand-purple);">🎯 OS Practice Quiz
+                    Generator</h3>
+                  <p style="font-size: 13px; color: var(--text-medium);">Check what you know and learn from instant
+                    explanations after each answer.</p>
+                </div>
+                <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+                  <select id="quizTopicSelect" class="sim-select">
+                    <option value="All Topics">All Topics</option>
+                    <option value="Processes & Threads">Processes & Threads</option>
+                    <option value="Virtual Memory">Virtual Memory</option>
+                    <option value="CPU Scheduling">CPU Scheduling</option>
+                    <option value="Synchronization">Synchronization</option>
+                    <option value="File Systems">File Systems</option>
+                    <option value="I/O & Interrupts">I/O & Interrupts</option>
+                  </select>
+                  <button id="generateQuizBtn" class="btn-primary">Generate Quiz 🎯</button>
+                </div>
+              </div>
+
+              <div id="quizContainer" class="quiz-card-container"></div>
+            </div>
+          </div>
+
+          <!-- Tab 4: Flashcards -->
+          <div class="workspace-view" id="view-flashcards">
+            <div style="padding: 10px; display: flex; flex-direction: column; gap: 20px; align-items: center;">
+              <div
+                style="width:100%; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; background:var(--surface-purple); padding:18px 24px; border-radius:16px; border:1px solid var(--border-purple);">
+                <div>
+                  <h3 style="font-size: 18px; font-weight: 800; color: var(--brand-purple);">🃏 OS Flashcards</h3>
+                  <p style="font-size: 13px; color: var(--text-medium);">Flip the cards to build quick recall with
+                    simple, beginner-friendly explanations.</p>
+                </div>
+                <select id="fcTopicSelect" class="sim-select">
+                  <option value="All">All Topics</option>
+                  <option value="Processes & Threads">Processes & Threads</option>
+                  <option value="CPU Scheduling">CPU Scheduling</option>
+                  <option value="Virtual Memory">Virtual Memory</option>
+                  <option value="Synchronization">Synchronization</option>
+                  <option value="File Systems">File Systems</option>
+                  <option value="I/O & Interrupts">I/O & Interrupts</option>
+                </select>
+              </div>
+
+              <div class="flashcard-scene" id="flashcardScene">
+                <div class="flashcard-card" id="flashcardCard">
+                  <div class="flashcard-face flashcard-front" id="fcFront">
+                    <span class="fc-badge" id="fcBadge">Processes & Threads</span>
+                    <h4 class="fc-term" id="fcTerm">Process Control Block (PCB)</h4>
+                    <p class="fc-question" id="fcQuestion">What is a Process Control Block (PCB)?</p>
+                    <span class="fc-hint">🔄 Click to flip</span>
+                  </div>
+                  <div class="flashcard-face flashcard-back" id="fcBack">
+                    <div class="fc-answer" id="fcAnswer">The OS keeps process metadata such as ID, memory info, and
+                      execution state here.</div>
+                    <div class="fc-analogy" id="fcAnalogy">💡 Analogy: Think of it as the student ID card for a running
+                      program.</div>
+                    <span class="fc-hint">🔄 Click to flip back</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flashcard-controls">
+                <button id="prevFcBtn" class="btn-secondary">⬅️ Previous</button>
+                <span id="fcCounter" style="font-weight:700; font-size:14px; color:var(--text-medium);">Card 1 of
+                  15</span>
+                <button id="nextFcBtn" class="btn-primary">Next ➡️</button>
+              </div>
+            </div>
+          </div>
         </main>
 
         <!-- Right Panel: Textbook Notes & RAG Inspector -->
@@ -266,9 +342,11 @@
 
   <!-- Footer -->
   <footer class="site-footer">
-    <p>© 2026 <strong>OSTutor.ai</strong> — Instruction-Tuned & Retrieval-Augmented Operating Systems Study Platform.</p>
+    <p>© 2026 <strong>OSTutor.ai</strong> — Instruction-Tuned & Retrieval-Augmented Operating Systems Study Platform.
+    </p>
   </footer>
 
   <script src="/static/app.js"></script>
 </body>
+
 </html>

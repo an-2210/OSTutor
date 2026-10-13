@@ -159,6 +159,347 @@ RAG_KNOWLEDGE_BASE = [
     }
 ]
 
+class QuizRequest(BaseModel):
+    topic: Optional[str] = "All Topics"
+    difficulty: Optional[str] = "all"
+    count: Optional[int] = 15
+
+OS_QUIZ_DATABASE = [
+    {
+        "id": "q1",
+        "topic": "Processes & Threads",
+        "difficulty": "easy",
+        "question": "What is the main job of a Process Control Block (PCB)?",
+        "options": [
+            "A. It stores the process's ID, state, registers, and memory details",
+            "B. It deletes the process when it finishes",
+            "C. It decides which CPU core is physically installed",
+            "D. It controls the monitor brightness"
+        ],
+        "answer_index": 0,
+        "explanation": "The PCB is the OS's records folder for a process. It keeps track of the process ID, current state, register values, and memory pointers so the kernel can resume it correctly."
+    },
+    {
+        "id": "q2",
+        "topic": "Processes & Threads",
+        "difficulty": "easy",
+        "question": "What does fork() do?",
+        "options": [
+            "A. It creates a new thread inside the same process",
+            "B. It creates a child process by duplicating the parent process",
+            "C. It permanently stops the current process",
+            "D. It changes the CPU burst time"
+        ],
+        "answer_index": 1,
+        "explanation": "fork() creates a nearly identical child process. The child gets its own process ID and memory space, while the parent continues running."
+    },
+    {
+        "id": "q3",
+        "topic": "Processes & Threads",
+        "difficulty": "medium",
+        "question": "Why is Copy-on-Write useful after fork()?",
+        "options": [
+            "A. It makes every page private immediately",
+            "B. It lets parent and child share pages until one writes, then copies the page only when needed",
+            "C. It removes all page tables",
+            "D. It slows memory access on purpose"
+        ],
+        "answer_index": 1,
+        "explanation": "Copy-on-Write saves time and memory. Parent and child share the same read-only pages at first. Only when one writes does the kernel create a separate copy."
+    },
+    {
+        "id": "q4",
+        "topic": "CPU Scheduling",
+        "difficulty": "easy",
+        "question": "Which scheduling policy runs jobs in arrival order without preemption?",
+        "options": [
+            "A. RR",
+            "B. FCFS",
+            "C. SJF",
+            "D. LRU"
+        ],
+        "answer_index": 1,
+        "explanation": "FCFS, or First-Come First-Served, simply executes processes in the order they arrive. It is simple, but it can create long waiting times for short jobs."
+    },
+    {
+        "id": "q5",
+        "topic": "CPU Scheduling",
+        "difficulty": "medium",
+        "question": "What is a time quantum in Round Robin scheduling?",
+        "options": [
+            "A. The amount of RAM per process",
+            "B. The maximum time a process can run before being preempted",
+            "C. The number of waiting threads",
+            "D. The size of a page table"
+        ],
+        "answer_index": 1,
+        "explanation": "A time quantum is the slice of CPU time each process gets before the scheduler switches to the next process. It is how Round Robin prevents one process from hogging the CPU."
+    },
+    {
+        "id": "q6",
+        "topic": "Virtual Memory",
+        "difficulty": "easy",
+        "question": "What is the TLB?",
+        "options": [
+            "A. A small hardware cache storing recent virtual-to-physical address mappings",
+            "B. A disk scheduling algorithm",
+            "C. A function that turns threads into processes",
+            "D. A file system journal"
+        ],
+        "answer_index": 0,
+        "explanation": "The Translation Lookaside Buffer is a very fast cache in the MMU. It stores recent address translations so the CPU can translate addresses much faster."
+    },
+    {
+        "id": "q7",
+        "topic": "Virtual Memory",
+        "difficulty": "medium",
+        "question": "What happens on a TLB miss?",
+        "options": [
+            "A. The CPU immediately crashes",
+            "B. The MMU walks the page table to find the mapping and may trigger a page fault",
+            "C. The OS deletes the process",
+            "D. The thread becomes a mutex"
+        ],
+        "answer_index": 1,
+        "explanation": "When the requested mapping is not in the TLB, the OS or hardware has to look it up in the page table. If the page is not in memory, a page fault occurs and the OS fetches it."
+    },
+    {
+        "id": "q8",
+        "topic": "Synchronization",
+        "difficulty": "easy",
+        "question": "What is a mutex mainly used for?",
+        "options": [
+            "A. To store page tables",
+            "B. To protect a critical section so only one thread enters at a time",
+            "C. To schedule CPU tasks",
+            "D. To read from a USB port"
+        ],
+        "answer_index": 1,
+        "explanation": "A mutex is a lock. It ensures that only one thread can enter a critical section at a time, preventing race conditions and inconsistent shared data."
+    },
+    {
+        "id": "q9",
+        "topic": "Synchronization",
+        "difficulty": "medium",
+        "question": "Which condition is part of deadlock?",
+        "options": [
+            "A. No waiting period",
+            "B. Circular wait",
+            "C. Fast CPU speed",
+            "D. Unlimited RAM"
+        ],
+        "answer_index": 1,
+        "explanation": "Deadlock happens when processes are stuck waiting on each other in a cycle. Circular wait is one of the classic necessary conditions for deadlock."
+    },
+    {
+        "id": "q10",
+        "topic": "File Systems",
+        "difficulty": "easy",
+        "question": "What is an inode?",
+        "options": [
+            "A. A type of CPU register",
+            "B. A metadata structure storing file info such as size, permissions, and block pointers",
+            "C. A page replacement policy",
+            "D. A network protocol"
+        ],
+        "answer_index": 1,
+        "explanation": "An inode stores the file's metadata and pointer information, while the filename is kept in the directory entry. It is a major file system concept in Unix-like systems."
+    },
+    {
+        "id": "q11",
+        "topic": "File Systems",
+        "difficulty": "medium",
+        "question": "Why are directories and inodes important in a file system?",
+        "options": [
+            "A. They allow the kernel to locate data blocks and map names to actual files",
+            "B. They increase CPU temperature",
+            "C. They replace the page table",
+            "D. They remove the need for disk devices"
+        ],
+        "answer_index": 0,
+        "explanation": "Directories map names to file entries, and inodes tell the kernel where the file's data blocks are stored. Together, they make file lookup work."
+    },
+    {
+        "id": "q12",
+        "topic": "I/O & Interrupts",
+        "difficulty": "easy",
+        "question": "What is the purpose of DMA?",
+        "options": [
+            "A. To take over the entire page table",
+            "B. To let devices move data directly to memory without constant CPU involvement",
+            "C. To speed up file creation only",
+            "D. To lock the scheduler"
+        ],
+        "answer_index": 1,
+        "explanation": "DMA allows hardware devices like disks and NICs to transfer data directly into RAM. This reduces CPU overhead and speeds up I/O."
+    },
+    {
+        "id": "q13",
+        "topic": "I/O & Interrupts",
+        "difficulty": "medium",
+        "question": "What is an interrupt used for?",
+        "options": [
+            "A. To tell the CPU that an external event needs attention",
+            "B. To increase memory overflow",
+            "C. To place a process in the ready queue immediately",
+            "D. To turn off the kernel"
+        ],
+        "answer_index": 0,
+        "explanation": "An interrupt signals the CPU that some device or event needs attention, such as disk I/O completion or a timer tick. The kernel handles it quickly and resumes execution."
+    },
+    {
+        "id": "q14",
+        "topic": "Processes & Threads",
+        "difficulty": "medium",
+        "question": "What is the difference between a process and a thread?",
+        "options": [
+            "A. A thread has its own full memory space, while a process shares memory",
+            "B. A process owns its own address space and resources, while threads share the same process resources",
+            "C. They are the same thing",
+            "D. A thread is always scheduled before a process"
+        ],
+        "answer_index": 1,
+        "explanation": "A process is a heavier unit with its own virtual memory and resources. Threads are lighter-weight execution units inside one process and share the same address space."
+    },
+    {
+        "id": "q15",
+        "topic": "Virtual Memory",
+        "difficulty": "hard",
+        "question": "Why do page faults matter in system performance?",
+        "options": [
+            "A. They cause the OS to bring pages from disk into memory, which can be slow and affect responsiveness",
+            "B. They always reduce the number of threads",
+            "C. They prevent any program from running",
+            "D. They make the CPU run without memory"
+        ],
+        "answer_index": 0,
+        "explanation": "Page faults happen when a page is not currently in memory. Fetching it from disk is expensive, so excessive page faults can slow the system dramatically and trigger thrashing."
+    }
+]
+
+OS_FLASHCARDS_DATABASE = [
+    {
+        "id": "fc1",
+        "topic": "Processes & Threads",
+        "term": "PCB",
+        "front": "What is a Process Control Block?",
+        "back": "It is the kernel's record for a process. It stores the process ID, state, registers, parent pointer, memory info, and scheduling information.",
+        "analogy": "Think of it like a student ID card and transcript record combined: it tells the OS who the process is and what it is doing."
+    },
+    {
+        "id": "fc2",
+        "topic": "Processes & Threads",
+        "term": "fork()",
+        "front": "What does fork() do?",
+        "back": "It creates a child process by copying the parent process state. The child gets a new PID and usually starts executing right after the fork call.",
+        "analogy": "It's like making a photocopy of a running task so the copy can continue independently."
+    },
+    {
+        "id": "fc3",
+        "topic": "Processes & Threads",
+        "term": "Context Switch",
+        "front": "What is a context switch?",
+        "back": "It is when the OS saves the currently running process's state and loads another process's state so both can take turns on the CPU.",
+        "analogy": "It's like saving your place in a book and handing it to someone else so they can read for a while."
+    },
+    {
+        "id": "fc4",
+        "topic": "CPU Scheduling",
+        "term": "FCFS",
+        "front": "What is FCFS?",
+        "back": "First-Come First-Served runs processes in the order they arrive. It is simple but can lead to poor average waiting time.",
+        "analogy": "Imagine a line at a cashier where everyone waits in arrival order, even if some people have very small tasks."
+    },
+    {
+        "id": "fc5",
+        "topic": "CPU Scheduling",
+        "term": "Round Robin",
+        "front": "What is Round Robin?",
+        "back": "Each process gets a small time slice, and then the scheduler moves to the next process. It improves fairness but may increase context switching overhead.",
+        "analogy": "Like taking turns speaking in a group discussion, each person gets only a few minutes before passing the floor."
+    },
+    {
+        "id": "fc6",
+        "topic": "CPU Scheduling",
+        "term": "Convoy Effect",
+        "front": "What is the convoy effect?",
+        "back": "A long CPU-bound job in FCFS can block many short jobs behind it, creating a backlog and high waiting time.",
+        "analogy": "It is like one huge truck blocking a narrow road and making everyone else wait behind it."
+    },
+    {
+        "id": "fc7",
+        "topic": "Virtual Memory",
+        "term": "TLB",
+        "front": "What is the TLB?",
+        "back": "The Translation Lookaside Buffer is a tiny hardware cache that stores recent virtual-to-physical address translations.",
+        "analogy": "It's like a phone's speed-dial list: instead of looking up the full address every time, it remembers the most common ones."
+    },
+    {
+        "id": "fc8",
+        "topic": "Virtual Memory",
+        "term": "Page Fault",
+        "front": "What is a page fault?",
+        "back": "A page fault occurs when a process accesses a memory page that is not currently in RAM. The OS brings the page from disk into memory.",
+        "analogy": "It is like opening a recipe book that is not on your desk, so you fetch it from the library shelf before starting."
+    },
+    {
+        "id": "fc9",
+        "topic": "Synchronization",
+        "term": "Mutex",
+        "front": "What is a mutex?",
+        "back": "A mutex is a lock that allows only one thread at a time to enter a critical section. It prevents corruption of shared data.",
+        "analogy": "It's like a single bathroom key in a house: only one person can use it at a time."
+    },
+    {
+        "id": "fc10",
+        "topic": "Synchronization",
+        "term": "Semaphore",
+        "front": "What is a semaphore?",
+        "back": "A semaphore is a counter used to control access to a limited number of resources, often using wait and signal operations.",
+        "analogy": "Think of it as a number of tickets for a limited ride: each ticket grants one slot to a rider."
+    },
+    {
+        "id": "fc11",
+        "topic": "Synchronization",
+        "term": "Deadlock",
+        "front": "What is deadlock?",
+        "back": "Deadlock happens when two or more processes are stuck waiting on each other forever because each is holding a resource the other needs.",
+        "analogy": "It is like two people both holding the same two chairs and refusing to move until the other gives up theirs."
+    },
+    {
+        "id": "fc12",
+        "topic": "File Systems",
+        "term": "Inode",
+        "front": "What is an inode?",
+        "back": "An inode contains metadata about a file, such as permissions, ownership, timestamp, size, and pointers to the data blocks.",
+        "analogy": "It is like the label on a box in a warehouse that tells you what is inside and where it is stored."
+    },
+    {
+        "id": "fc13",
+        "topic": "File Systems",
+        "term": "Directory",
+        "front": "Why do directories matter?",
+        "back": "A directory maps file names to inode numbers, making it possible for the OS to find files quickly.",
+        "analogy": "It is like the index of a library: it tells you where the book is located."
+    },
+    {
+        "id": "fc14",
+        "topic": "I/O & Interrupts",
+        "term": "DMA",
+        "front": "What is DMA?",
+        "back": "Direct Memory Access lets devices transfer data straight into RAM without the CPU handling every byte.",
+        "analogy": "It is like having a helper move boxes directly into your room instead of making you carry each one yourself."
+    },
+    {
+        "id": "fc15",
+        "topic": "I/O & Interrupts",
+        "term": "Interrupt",
+        "front": "What is an interrupt?",
+        "back": "An interrupt is a signal from hardware or software telling the CPU that something needs attention immediately, such as a timer tick or I/O completion.",
+        "analogy": "It is like a doorbell: something important happened, and the CPU stops what it is doing to respond."
+    }
+]
+
 # API Routes
 
 @app.get("/")
@@ -214,121 +555,160 @@ async def get_concepts():
     """Return OS concept module matrix and mastery rates."""
     return {"concepts": OS_CONCEPTS}
 
+@app.get("/api/flashcards")
+async def get_flashcards(topic: Optional[str] = None):
+    """Return interactive OS flashcards filtered by topic."""
+    cards = OS_FLASHCARDS_DATABASE
+    if topic and topic.lower() != "all":
+        cards = [card for card in cards if topic.lower() in card["topic"].lower()]
+    return {"flashcards": cards}
+
+@app.post("/api/quiz/generate")
+async def generate_quiz(req: QuizRequest):
+    """Generate OS multiple-choice quiz items based on topic and difficulty."""
+    filtered = OS_QUIZ_DATABASE
+    if req.topic and req.topic.lower() not in ("all topics", "all"):
+        filtered = [q for q in filtered if req.topic.lower() in q["topic"].lower()]
+    if req.difficulty and req.difficulty.lower() != "all":
+        filtered = [q for q in filtered if q["difficulty"].lower() == req.difficulty.lower()]
+    if not filtered:
+        filtered = OS_QUIZ_DATABASE
+    return {"questions": filtered[: max(1, req.count or 15)]}
+
 @app.post("/api/tutor/chat")
 async def tutor_chat(req: ChatRequest):
-    """Instruction-tuned OS Tutor Response Generator with step-by-step kernel trace."""
+    """Student-friendly OS tutor response generator with beginner-focused explanations and kernel traces."""
     msg_lower = req.message.lower().strip()
-    
     citations = []
     kernel_trace = []
-    
-    greetings = ["hi", "hello", "hey", "greetings", "good morning", "good afternoon", "good evening", "yo", "sup", "who are you", "what can you do", "help", "thanks", "thank you"]
-    if any(w in msg_lower for w in greetings) or msg_lower in ["hi", "hello", "hey", "help", "yo"]:
+
+    greetings = [
+        "hi", "hello", "hey", "greetings", "good morning", "good afternoon",
+        "good evening", "yo", "sup", "who are you", "what can you do", "help",
+        "thanks", "thank you"
+    ]
+
+    if any(word in msg_lower for word in greetings) or msg_lower in ["hi", "hello", "hey", "help", "yo"]:
         response_text = (
-            "### 👋 Hello there! Welcome to OSTutor.\n\n"
-            "I'm your AI study companion for Operating Systems. I can help you understand complex concepts, trace kernel execution steps, analyze CPU scheduling algorithms, and review textbook reference materials!\n\n"
-            "#### 💡 Try asking me about:\n"
-            "- **Process Management**: *\"How does `fork()` and Copy-on-Write work?\"*\n"
-            "- **Virtual Memory**: *\"Explain page fault handling and TLB misses\"*\n"
-            "- **Concurrency & Locks**: *\"What is the difference between a Mutex and a Semaphore?\"*\n"
-            "- **CPU Scheduling**: *\"Explain Round Robin quantum scheduling\"*\n"
-            "- **File Systems**: *\"How do Ext4 inodes and block pointers work?\"*\n\n"
-            "Or use the interactive tabs above to simulate CPU Gantt charts and inspect SHAP model metrics!"
+            "### 👋 Hey there! Welcome to OSTutor.\n\n"
+            "I’m your friendly Operating Systems study partner. I’ll explain ideas in plain English, walk through kernel behavior step by step, and make tricky topics feel less intimidating.\n\n"
+            "#### What I can help with:\n"
+            "- **Processes & Threads**: *How does `fork()` work?*\n"
+            "- **Virtual Memory**: *Why does the TLB matter?*\n"
+            "- **Synchronization**: *What is a mutex and why do we need one?*\n"
+            "- **CPU Scheduling**: *What is Round Robin and why does the quantum matter?*\n"
+            "- **File Systems**: *How do inodes help the OS find files?*\n\n"
+            "You can also use the quiz and flashcard tools below to practice and remember the ideas faster."
         )
         kernel_trace = [
-            "USER_GREETING: Received greeting / assistance query",
-            "SYSTEM_STATUS: OSTutor AI Tutor active & ready",
-            "SUGGESTIONS: Generated popular OS study topic prompts"
+            "USER_GREETING: Student asked for a beginner-friendly OS explanation",
+            "SYSTEM_STATUS: OSTutor tutor online and ready to teach",
+            "GUIDANCE: Suggested practice topics for quick growth"
         ]
         citations = [RAG_KNOWLEDGE_BASE[0], RAG_KNOWLEDGE_BASE[1]]
-        
+
     elif "fork" in msg_lower or "process" in msg_lower or "pcb" in msg_lower:
         response_text = (
-            "### Process Creation & `fork()` System Call\n\n"
-            "In UNIX-like Operating Systems, **`fork()`** creates a child process by duplicating the calling parent process.\n\n"
-            "#### Key Kernel Mechanics:\n"
-            "1. **PCB Duplication**: The kernel allocates a new `task_struct` (Process Control Block) for the child.\n"
-            "2. **Copy-on-Write (COW)**: Rather than immediately copying physical memory pages, parent and child share read-only pages. A copy occurs **only when either process writes to a page**.\n"
-            "3. **Return Values**: `fork()` returns `0` in the child process and the child's `PID` in the parent process."
+            "### Process Creation: How `fork()` works in simple English\n\n"
+            "Think of a process as an active program running on the computer. When a program wants to create a copy of itself, it calls **`fork()`**. The OS kernel then creates a **child process** that is very similar to the parent.\n\n"
+            "#### Step by step:\n"
+            "1. The program calls `fork()`.\n"
+            "2. The kernel creates a new **Process Control Block (PCB)** for the child. The PCB is like the process’s identity card—it stores its state, registers, and memory details.\n"
+            "3. The memory pages are marked **Copy-on-Write**. That means the parent and child can share memory at first instead of copying everything immediately.\n"
+            "4. The child gets a new **PID**. The parent keeps its own PID, and the child usually starts executing right after the `fork()` call.\n"
+            "5. The return value is different in each process: the child gets `0`, and the parent gets the child PID.\n\n"
+            "#### Why this matters:\n"
+            "This is how shells, servers, and many programs create worker tasks. It is a powerful concept because one process can split into two independently running jobs while sharing resources efficiently."
         )
         kernel_trace = [
-            "SYS_CALL [0x02]: sys_fork() invoked by PID 4012",
-            "ALLOCATE: task_struct allocated at 0xFFFF8800A12",
-            "COW_SET: Marking VM pages [0x400000-0x4FF000] READ-ONLY (Copy-On-Write)",
-            "PID_ASSIGN: Child PID 4013 assigned to task_struct",
-            "RETURN: Parent received PID 4013, Child received PID 0"
+            "SYS_CALL [0x02]: sys_fork() invoked by the running process",
+            "ALLOCATE: new task_struct created for the child process",
+            "COW_SET: parent and child pages marked read-only until a write occurs",
+            "PID_ASSIGN: new child PID assigned by the kernel",
+            "RETURN: parent receives child PID; child receives 0"
         ]
         citations = [RAG_KNOWLEDGE_BASE[0]]
-        
+
     elif "virtual memory" in msg_lower or "page" in msg_lower or "tlb" in msg_lower:
         response_text = (
-            "### Virtual Memory & Page Translation\n\n"
-            "Virtual memory abstracts physical RAM into contiguous virtual address spaces per process.\n\n"
-            "#### Address Translation Sequence:\n"
-            "1. **MMU Lookup**: CPU splits Virtual Address into **Virtual Page Number (VPN)** and **Offset**.\n"
-            "2. **TLB Check**: The MMU checks the **Translation Lookaside Buffer (TLB)** fast cache.\n"
-            "   - **TLB Hit**: Instant physical address translation.\n"
-            "   - **TLB Miss**: Page table walk occurs. If valid, updates TLB. If invalid, triggers a **Page Fault interrupt** (`#PF`)."
+            "### Virtual Memory: Why the OS gives each process its own memory world\n\n"
+            "Virtual memory is a clever idea: it lets each process act like it has a large, private space in memory, even if the actual physical RAM is shared and limited.\n\n"
+            "#### What happens when memory is accessed:\n"
+            "1. The CPU takes a virtual address and splits it into a **virtual page number** and an **offset**.\n"
+            "2. The CPU checks the **TLB**, which is a tiny cache of recent translations.\n"
+            "3. If the TLB has the mapping, it is a **TLB hit** and the translation is very fast.\n"
+            "4. If the TLB does not have it, the MMU performs a **page table walk** to find the mapping.\n"
+            "5. If the page is not currently in RAM, the OS triggers a **page fault**, loads the needed page from disk, and then resumes execution.\n\n"
+            "#### The big idea:\n"
+            "This is what lets computers run many programs at once without each program accidentally overwriting the other’s memory."
         )
         kernel_trace = [
-            "MMU: Translate Virtual Address 0x00007FFF89A2",
-            "TLB: Lookup VPN 0x7FFF89 -> MISS",
-            "PAGE_WALK: Traverse CR3 -> PGD -> PUD -> PMD -> PTE",
-            "PTE_VALID: Frame 0x1A4F mapped with R/W flags",
-            "TLB_UPDATE: Cached VPN 0x7FFF89 -> PFN 0x1A4F in TLB slot 3"
+            "MMU: virtual address split into page number and offset",
+            "TLB: lookup in hardware cache -> MISS",
+            "PAGE_WALK: kernel/MMU reads page table to locate the frame",
+            "PAGE_FAULT: requested page not resident in RAM",
+            "TLB_UPDATE: new mapping cached for future access"
         ]
         citations = [RAG_KNOWLEDGE_BASE[1]]
-        
+
     elif "semaphore" in msg_lower or "mutex" in msg_lower or "sync" in msg_lower or "deadlock" in msg_lower:
         response_text = (
-            "### Synchronization: Mutex vs Counting Semaphore\n\n"
-            "Concurrency control mechanisms prevent data races in shared kernel or thread memory spaces:\n\n"
-            "- **Mutex (Mutual Exclusion)**: Ownership-based lock (`0` or `1`). Only the thread that acquired the mutex can release it.\n"
-            "- **Semaphore**: Counter-based primitive.\n"
-            "  - `sem_wait()` / `P()`: Decrements counter. If `< 0`, thread blocks.\n"
-            "  - `sem_post()` / `V()`: Increments counter and unblocks waiting thread."
+            "### Synchronization: Why locks exist in multithreaded programs\n\n"
+            "When multiple threads run at the same time, they may try to access the same shared data at the same moment. That can cause a **race condition**, where the final result becomes unpredictable.\n\n"
+            "#### Mutex vs Semaphore:\n"
+            "- **Mutex**: A lock that gives exclusive access to one thread at a time. It is like a single key to a room.\n"
+            "- **Semaphore**: A counter-based primitive that can allow more than one thread in under controlled limits. It is like a fixed number of tickets for a limited resource.\n\n"
+            "#### Why this matters:\n"
+            "The OS uses locks to protect critical sections of code. Without them, threads could overwrite each other’s work, corrupt shared variables, or leave the system in an inconsistent state.\n\n"
+            "**Deadlock** happens when two or more processes are stuck waiting on each other forever. That is one of the classic problems the OS tries to prevent or detect."
         )
         kernel_trace = [
-            "THREAD [T2]: Executing sem_wait(&mutex_lock)",
-            "ATOMIC_DEC: Semaphore value decremented from 1 -> 0",
-            "LOCK_ACQUIRED: Thread T2 entered Critical Section",
-            "THREAD [T3]: Executing sem_wait(&mutex_lock)",
-            "BLOCKED: Semaphore value = -1, Thread T3 placed on wait_queue"
+            "THREAD_T2: tries to enter critical section",
+            "MUTEX_LOCK: lock acquired and shared data protected",
+            "THREAD_T3: blocked because lock is already held",
+            "DEADLOCK_CHECK: circular wait scenario detected in wait queue"
         ]
         citations = [RAG_KNOWLEDGE_BASE[2]]
 
-    elif "schedule" in msg_lower or "round robin" in msg_lower or "gantt" in msg_lower or "cfs" in msg_lower:
+    elif "schedule" in msg_lower or "round robin" in msg_lower or "gantt" in msg_lower or "cfs" in msg_lower or "cpu" in msg_lower:
         response_text = (
-            "### CPU Scheduling Algorithms & Policy\n\n"
-            "The OS CPU scheduler decides which runnable process occupies CPU core time:\n\n"
-            "- **FCFS (First-Come First-Served)**: Non-preemptive, susceptible to the *Convoy Effect*.\n"
-            "- **SJF (Shortest Job First)**: Minimizes average waiting time; requires job burst estimates.\n"
-            "- **Round Robin (RR)**: Time-sliced preemptive scheduling using a fixed Time Quantum (Q).\n"
-            "- **CFS (Completely Fair Scheduler)**: Linux default using Red-Black trees to balance `vruntime`."
+            "### CPU Scheduling: How the OS decides who runs next\n\n"
+            "The CPU scheduler is like a traffic controller for your computer. It decides which process gets to use the CPU next when many programs are ready to run.\n\n"
+            "#### Common policies:\n"
+            "- **FCFS**: first-come, first-served. Simple, but it can make short tasks wait a long time behind a big one.\n"
+            "- **SJF**: shortest job first. This may reduce waiting time, but it requires knowing the job length in advance.\n"
+            "- **Round Robin**: each process gets a small time slice, then the scheduler moves to the next one. This keeps things fair.\n"
+            "- **CFS**: Linux tries to give each task a fair share of CPU time using a red-black tree and virtual runtime metrics.\n\n"
+            "#### Why the quantum matters:\n"
+            "A smaller time quantum increases fairness but increases context-switching overhead. A larger quantum feels more efficient but may make the system less responsive."
         )
         kernel_trace = [
-            "SCHED_TICK: Timer interrupt fired at 1000ms",
-            "PREEMPT: Process P1 quantum exhausted (Q=2ms)",
-            "CONTEXT_SWITCH: Saving P1 registers to PCB -> Loading P2 registers",
-            "CFS_RB_TREE: Selected Process P2 (vruntime = 4.2ms)"
+            "SCHED_TICK: timer interrupt triggers periodic scheduler checks",
+            "PREEMPT: current process reaches quantum limit",
+            "CONTEXT_SWITCH: save old process state and load new one",
+            "SELECT_NEXT: scheduler chooses the next runnable process"
         ]
         citations = [RAG_KNOWLEDGE_BASE[3]]
 
     else:
         response_text = (
-            f"### OSTutor // Kernel Response: {req.topic}\n\n"
-            f"Query processed: *\"{req.message}\"*\n\n"
-            "In Operating Systems architecture, key concepts revolve around **isolation**, **concurrency**, and **resource management**.\n\n"
-            "#### Core OS Directives:\n"
-            "- **Kernel Space vs User Space**: Privilege separation via Dual-Mode execution (Ring 0 vs Ring 3).\n"
-            "- **System Calls**: The interface between user applications and kernel services.\n"
-            "- **Resource Virtualization**: Abstracting CPU (processes), RAM (virtual memory), and storage (file systems)."
+            f"### OS Concept Exploration: {req.topic}\n\n"
+            f"You asked: *\"{req.message}\"*\n\n"
+            "Here is the beginner-friendly idea: Operating Systems manage hardware and software so programs can run efficiently, safely, and fairly.\n\n"
+            "The kernel is the boss of the system. It handles process creation, memory management, file access, and scheduling. In other words, it coordinates all the moving pieces so your computer behaves predictably.\n\n"
+            "#### A good mental model:\n"
+            "- **CPU** decides what runs next\n"
+            "- **Memory** decides where data lives\n"
+            "- **Filesystems** decide how information is stored\n"
+            "- **Processes** represent active work\n"
+            "- **Kernel** coordinates the whole system\n\n"
+            "If you want, I can explain this with a real-world analogy like a restaurant, traffic system, or school schedule."
         )
         kernel_trace = [
-            f"INPUT_QUERY: Processing user prompt regarding '{req.topic}'",
-            "VECTOR_SEARCH: Queried FAISS vector store (top_k=5)",
-            "LLM_GENERATE: Applied instruction-tuned OS prompt template",
-            "OUTPUT_STREAM: Response compiled with verified kernel citations"
+            "INPUT_QUERY: user asks a general OS question",
+            "VECTOR_SEARCH: retrieving relevant OS textbook references",
+            "LLM_GENERATE: structured response created in student-friendly language",
+            "OUTPUT_STREAM: explanation prepared with linked concepts"
         ]
         citations = RAG_KNOWLEDGE_BASE[:2]
 
