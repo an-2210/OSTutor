@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OSTutor Library</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .library-wrap { max-width: 880px; margin: 0 auto; padding: 32px 16px; }
+    .library-wrap h1 { margin-bottom: 8px; }
+    .library-intro { color: var(--text-muted, #64748b); margin-bottom: 28px; }
+    .book-card {
+      background: var(--surface-card, #fff);
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 20px 22px;
+      margin-bottom: 16px;
+    }
+    .book-card h2 { font-size: 1.15rem; margin: 0 0 4px; }
+    .book-meta { color: #64748b; font-size: 0.9rem; margin-bottom: 10px; }
+    .book-used { font-size: 0.9rem; margin-bottom: 12px; }
+    .book-link {
+      display: inline-block;
+      background: var(--brand-purple, #7c3aed);
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .book-link:hover { background: var(--brand-purple-dark, #6d28d9); }
+    .back-link { display: inline-block; margin-top: 24px; color: var(--brand-purple, #7c3aed); }
+  </style>
+</head>
+<body>
+  <main class="library-wrap">
+    <h1>Library</h1>
+    <p class="library-intro">Textbooks and references behind the OSTutor answers. Each link opens the book's official or free online edition.</p>
+
+    <section class="book-card">
+      <h2>Operating System Concepts (Silberschatz, Galvin &amp; Gagne)</h2>
+      <div class="book-meta">10th edition</div>
+      <div class="book-used">Used for: Process Control Blocks (Ch. 3), File Systems and inodes (Ch. 11)</div>
+      <a class="book-link" href="https://www.os-book.com/OS10/" target="_blank" rel="noopener noreferrer">Open book ↗</a>
+    </section>
+
+    <section class="book-card">
+      <h2>Modern Operating Systems (Tanenbaum &amp; Bos)</h2>
+      <div class="book-meta">Pearson · <strong>Paid</strong></div>
+      <div class="book-used">Used for: Virtual memory, TLB and page tables (Ch. 4)</div>
+      <a class="book-link" href="https://www.pearson.com/en-us/subject-catalog/p/modern-operating-systems/P200000003295" target="_blank" rel="noopener noreferrer">Open book ↗</a>
+    </section>
+
+    <section class="book-card">
+      <h2>Operating Systems: Three Easy Pieces (Arpaci-Dusseau)</h2>
+      <div class="book-meta">Free online book</div>
+      <div class="book-used">Used for: Semaphores and synchronization (Ch. 28)</div>
+      <a class="book-link" href="https://pages.cs.wisc.edu/~remzi/OSTEP/" target="_blank" rel="noopener noreferrer">Open book ↗</a>
+    </section>
+
+    <section class="book-card">
+      <h2>Linux Kernel Documentation</h2>
+      <div class="book-meta">kernel.org</div>
+      <div class="book-used">Used for: CFS scheduler and system calls</div>
+      <a class="book-link" href="https://www.kernel.org/doc/html/latest/" target="_blank" rel="noopener noreferrer">Open documentation ↗</a>
+    </section>
+
+    <section class="book-card">
+      <h2>The Little Book of Semaphores (Allen B. Downey)</h2>
+      <div class="book-meta">Green Tea Press, free</div>
+      <div class="book-used">Used for: Semaphores and synchronization patterns</div>
+      <a class="book-link" href="https://greenteapress.com/semaphores/" target="_blank" rel="noopener noreferrer">Open book ↗</a>
+    </section>
+
+    <section class="book-card">
+      <h2>Linux Device Drivers, 3rd edition (Corbet, Rubini &amp; Kroah-Hartman)</h2>
+      <div class="book-meta">Creative Commons BY-SA 2.0, free PDF chapters</div>
+      <div class="book-used">Used for: Kernel modules and device drivers</div>
+      <a class="book-link" href="https://lwn.net/Kernel/LDD3/" target="_blank" rel="noopener noreferrer">Open book ↗</a>
+    </section>
+
+    <section class="book-card">
+      <h2>The Linux Kernel (David Rusling)</h2>
+      <div class="book-meta">The Linux Documentation Project, free online</div>
+      <div class="book-used">Used for: Linux kernel internals</div>
+      <a class="book-link" href="https://www.tldp.org/LDP/tlk/tlk.html" target="_blank" rel="noopener noreferrer">Open book ↗</a>
+    </section>
+
+    <section class="book-card">
+      <h2>Operating Systems Foundations with Linux on the Raspberry Pi (Vanderbauwhede &amp; Singer)</h2>
+      <div class="book-meta">Arm Education Media, free PDF</div>
+      <div class="book-used">Used for: OS fundamentals with a hands-on Linux focus</div>
+      <a class="book-link" href="https://www.dcs.gla.ac.uk/operating-systems-foundations" target="_blank" rel="noopener noreferrer">Open book ↗</a>
+    </section>
+
+    <section class="book-card">
+      <h2>xv6: a simple, Unix-like teaching operating system (MIT)</h2>
+      <div class="book-meta">MIT PDOS, free PDF</div>
+      <div class="book-used">Used for: Processes, system calls, and virtual memory in a small kernel</div>
+      <a class="book-link" href="https://pdos.csail.mit.edu/6.S081/2020/xv6/book-riscv-rev1.pdf" target="_blank" rel="noopener noreferrer">Open book ↗</a>
+    </section>
+
+    <a class="back-link" href="/">← Back to OSTutor</a>
+  </main>
+</body>
+</html>

@@ -8,8 +8,11 @@ import sys
 import time
 import math
 import random
+import json
+import urllib.error
+import urllib.request
 from pathlib import Path
-from typing import Dict, Any, List, Optional
+from typing import Dict, Any, List, Optional, Tuple
 from fastapi import FastAPI, HTTPException
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse, JSONResponse
@@ -510,6 +513,11 @@ async def serve_index():
         return FileResponse(str(index_file))
     return JSONResponse({"status": "OSTutor // Kernel Server Running", "version": "1.0.0"})
 
+@app.get("/library")
+async def serve_library():
+    """Serve the library page listing the textbook links used by OSTutor."""
+    return FileResponse(str(FRONTEND_DIR / "library.html"))
+
 @app.get("/api/kernel/telemetry")
 async def get_telemetry():
     """Retrieve simulated live system and tutor model telemetry."""
@@ -575,6 +583,82 @@ async def generate_quiz(req: QuizRequest):
         filtered = OS_QUIZ_DATABASE
     return {"questions": filtered[: max(1, req.count or 15)]}
 
+OLLAMA_URL = os.getenv("OLLAMA_URL", "http://127.0.0.1:11434")
+OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "qwen2.5:14b")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.8-flash")
+CANNOT_ANSWER = "CANNOT_ANSWER"
+TUTOR_SYSTEM_PROMPT = (
+    "You are OSTutor, a patient Operating Systems tutor for students. "
+    "Format every answer in markdown: a one-sentence definition under a heading, "
+    "then '### Key points' with 3-5 bullets (one sentence each), then '### Example' with a concrete worked example, "
+    "and end with a one-line '### Summary'. "
+    "Be precise with terminology. For example, LRU evicts the least recently used page, not the page that has been in memory the longest. "
+    "Keep processes and frames distinct. "
+    "Use the reference excerpts only when they are relevant. If they do not cover the question, "
+    "say so in one sentence and answer from general OS knowledge."
+)
+
+
+def _ask_ollama(message: str, topic: str, model: str = OLLAMA_MODEL) -> Optional[str]:
+    """Answer a student question with a local Ollama model; return None if Ollama is unreachable or the model is missing."""
+    excerpts = "\n\n".join(f"[{doc['source']}]\n{doc['content']}" for doc in RAG_KNOWLEDGE_BASE)
+    payload = {
+        "model": model,
+        "stream": False,
+        "messages": [
+            {"role": "system", "content": TUTOR_SYSTEM_PROMPT},
+            {"role": "user", "content": f"Topic: {topic}\nStudent question: {message}\n\nReference excerpts:\n{excerpts}"},
+        ],
+    }
+    request = urllib.request.Request(
+        f"{OLLAMA_URL}/api/chat",
+        data=json.dumps(payload).encode("utf-8"),
+        headers={"Content-Type": "application/json"},
+    )
+    try:
+        with urllib.request.urlopen(request, timeout=300) as response:
+            return json.load(response)["message"]["content"].strip()
+    except (urllib.error.URLError, TimeoutError, KeyError, ValueError) as e:
+        logger.warning("Ollama tutor call failed: %s", e)
+        return None
+
+
+def _ask_gemini(message: str, topic: str) -> Optional[str]:
+    """Answer a student question with the Gemini API; return None if the call fails or the model cannot answer."""
+    excerpts = "\n\n".join(f"[{doc['source']}]\n{doc['content']}" for doc in RAG_KNOWLEDGE_BASE)
+    payload = {
+        "systemInstruction": {"parts": [{"text": TUTOR_SYSTEM_PROMPT}]},
+        "contents": [
+            {"role": "user", "parts": [{"text": f"Topic: {topic}\nStudent question: {message}\n\nReference excerpts:\n{excerpts}"}]},
+        ],
+    }
+    request = urllib.request.Request(
+        f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent",
+        data=json.dumps(payload).encode("utf-8"),
+        headers={"Content-Type": "application/json", "x-goog-api-key": GEMINI_API_KEY},
+    )
+    try:
+        with urllib.request.urlopen(request, timeout=120) as response:
+            answer = json.load(response)["candidates"][0]["content"]["parts"][0]["text"].strip()
+    except (urllib.error.URLError, TimeoutError, KeyError, IndexError, ValueError) as e:
+        logger.warning("Gemini tutor call failed: %s", e)
+        return None
+    return None if CANNOT_ANSWER in answer else answer
+
+
+def _ask_tutor(message: str, topic: str) -> Optional[Tuple[str, str]]:
+    """Qwen first; Gemini when Qwen is unavailable or unsure."""
+    answer = _ask_ollama(message, topic)
+    if answer is not None and CANNOT_ANSWER not in answer:
+        return answer, f"{OLLAMA_MODEL} (local)"
+    if GEMINI_API_KEY:
+        gemini_answer = _ask_gemini(message, topic)
+        if gemini_answer is not None:
+            return gemini_answer, f"{GEMINI_MODEL} (Gemini fallback)"
+    return None
+
+
 @app.post("/api/tutor/chat")
 async def tutor_chat(req: ChatRequest):
     """Student-friendly OS tutor response generator with beginner-focused explanations and kernel traces."""
@@ -588,7 +672,15 @@ async def tutor_chat(req: ChatRequest):
         "thanks", "thank you"
     ]
 
-    if any(word in msg_lower for word in greetings) or msg_lower in ["hi", "hello", "hey", "help", "yo"]:
+    tutor_answer = _ask_tutor(req.message, req.topic)
+    if tutor_answer is not None:
+        response_text, answered_by = tutor_answer
+        kernel_trace = [
+            f"RETRIEVAL: {len(RAG_KNOWLEDGE_BASE)} reference excerpts supplied to the model",
+            f"LLM_GENERATE: answered by {answered_by}",
+        ]
+        citations = RAG_KNOWLEDGE_BASE
+    elif any(word in msg_lower for word in greetings) or msg_lower in ["hi", "hello", "hey", "help", "yo"]:
         response_text = (
             "### 👋 Hey there! Welcome to OSTutor.\n\n"
             "I’m your friendly Operating Systems study partner. I’ll explain ideas in plain English, walk through kernel behavior step by step, and make tricky topics feel less intimidating.\n\n"
@@ -692,17 +784,9 @@ async def tutor_chat(req: ChatRequest):
 
     else:
         response_text = (
-            f"### OS Concept Exploration: {req.topic}\n\n"
-            f"You asked: *\"{req.message}\"*\n\n"
-            "Here is the beginner-friendly idea: Operating Systems manage hardware and software so programs can run efficiently, safely, and fairly.\n\n"
-            "The kernel is the boss of the system. It handles process creation, memory management, file access, and scheduling. In other words, it coordinates all the moving pieces so your computer behaves predictably.\n\n"
-            "#### A good mental model:\n"
-            "- **CPU** decides what runs next\n"
-            "- **Memory** decides where data lives\n"
-            "- **Filesystems** decide how information is stored\n"
-            "- **Processes** represent active work\n"
-            "- **Kernel** coordinates the whole system\n\n"
-            "If you want, I can explain this with a real-world analogy like a restaurant, traffic system, or school schedule."
+            f"### I don't have a reliable answer for \"{req.message}\" yet\n\n"
+            "The tutor could not produce a verified answer for this question. "
+            "Try rephrasing it, or check the section of your textbook or course notes that covers the topic."
         )
         kernel_trace = [
             "INPUT_QUERY: user asks a general OS question",
