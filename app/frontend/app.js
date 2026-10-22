@@ -233,18 +233,33 @@ document.addEventListener('DOMContentLoaded', () => {
       const card = document.createElement('div');
       card.className = 'rag-card';
       const scorePct = Math.round((doc.similarity_score || doc.score || 0.88) * 100);
-      const docUrl = doc.url || 'https://www.os-book.com/OS10/';
+
+      let docUrl = doc.url;
+      if (!docUrl) {
+        const srcLower = (doc.source || '').toLowerCase();
+        if (srcLower.includes('silberschatz') || srcLower.includes('operating system concepts')) {
+          docUrl = 'https://www.os-book.com/OS10/';
+        } else if (srcLower.includes('tanenbaum') || srcLower.includes('modern operating systems')) {
+          docUrl = 'https://www.pearson.com/en-us/subject-catalog/p/modern-operating-systems/P200000003295';
+        } else if (srcLower.includes('ostep') || srcLower.includes('three easy pieces')) {
+          docUrl = 'https://pages.cs.wisc.edu/~remzi/OSTEP/';
+        } else {
+          docUrl = 'https://www.kernel.org/doc/html/latest/';
+        }
+      }
 
       card.innerHTML = `
         <div style="display:flex; justify-content:space-between; align-items:center;">
           <span class="rag-topic">📖 ${escapeHtml(doc.topic || 'OS Reference')}</span>
           <span style="font-size:11px; font-weight:700; background:var(--brand-purple-light); color:var(--brand-purple); padding:2px 8px; border-radius:6px;">${scorePct}% Match</span>
         </div>
-        <div style="font-size:13px; font-weight:700; color:var(--text-dark); margin-top:2px;">
-          📘 ${escapeHtml(doc.source)}
+        <div style="font-size:14px; font-weight:800; color:var(--brand-purple); margin: 6px 0;">
+          <a href="${docUrl}" target="_blank" rel="noopener noreferrer" style="color:var(--brand-purple); text-decoration:underline; cursor:pointer;" onclick="event.stopPropagation();">
+            📘 ${escapeHtml(doc.source)} ↗
+          </a>
         </div>
-        <div class="rag-text">${escapeHtml(doc.content)}</div>
-        <div style="display:flex; justify-content:flex-end; margin-top:4px;">
+        <div class="rag-text" style="font-size:13px; color:var(--text-medium); line-height:1.5;">${escapeHtml(doc.content)}</div>
+        <div style="display:flex; justify-content:flex-end; margin-top:10px;">
           <a href="${docUrl}" target="_blank" rel="noopener noreferrer" class="btn-open-ref" onclick="event.stopPropagation();">
             Open Book ↗
           </a>
