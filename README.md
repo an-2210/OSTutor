@@ -18,6 +18,43 @@ Each question is answered by the first model that responds:
 
 If neither answers, the tutor says it has no reliable answer and points to the textbook. It does not guess.
 
+## Architecture
+
+```mermaid
+flowchart LR
+    subgraph Browser
+        UI[index.html / app.js<br/>Tutor, Quiz, Flashcards, Scheduler]
+        LIB[library.html]
+    end
+
+    subgraph Server["FastAPI server (app/main.py)"]
+        API[/api/tutor/chat, quiz, flashcards, scheduler/]
+        KB[(Reference paragraphs<br/>RAG_KNOWLEDGE_BASE)]
+    end
+
+    subgraph Models
+        QWEN[Qwen 2.5 14B<br/>Ollama, local]
+        GEM[Gemini<br/>Google API, fallback]
+    end
+
+    subgraph RAG["Retrieval pipeline (ostutor/rag/, offline)"]
+        RAW[(data/rag/raw<br/>course files)]
+        IDX[(FAISS index<br/>data/rag/index)]
+    end
+
+    UI -->|question| API
+    LIB -.->|links| BOOKS[Textbook websites]
+    API --> KB
+    KB -->|excerpts| QWEN
+    QWEN -->|answer| API
+    QWEN -.->|on failure| GEM
+    GEM -.->|answer| API
+    RAW -->|ingest, chunk, embed| IDX
+    IDX -.->|planned: top-k chunks| API
+```
+
+Solid arrows are connected today. Dashed arrows are fallbacks or planned links. The retrieval index is built offline, but the tutor does not query it yet.
+
 ## Retrieval pipeline (RAG)
 
 The retrieval pipeline lives in [ostutor/rag/](ostutor/rag/). It turns course materials into a searchable index so answers can cite their sources.
