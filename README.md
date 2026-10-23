@@ -18,6 +18,27 @@ Each question is answered by the first model that responds:
 
 If neither answers, the tutor says it has no reliable answer and points to the textbook. It does not guess.
 
+## Retrieval pipeline (RAG)
+
+The retrieval pipeline lives in [ostutor/rag/](ostutor/rag/). It turns course materials into a searchable index so answers can cite their sources.
+
+1. **Ingest** (`ingest.py`): find course files in `ostutor/data/rag/raw/` (PDF, PPTX, TXT, or DOCX) and extract text page by page or slide by slide.
+2. **Clean** (`clean.py`): rejoin hyphenated words, strip headers and footers, normalize whitespace.
+3. **Chunk** (`chunk.py`): split into about 700-token chunks with 100 tokens of overlap. Each chunk keeps its metadata (unit, topic, page, source, license) and is saved to `chunks.jsonl`.
+4. **Embed** (`embed.py`): encode each chunk with `all-MiniLM-L6-v2` (384 dimensions), L2-normalized so the inner product equals cosine similarity.
+5. **Index** (`retrieve.py`): build a FAISS `IndexFlatIP` index and save it to `ostutor/data/rag/index/`.
+6. **Retrieve**: embed the student's question, find the top-k most similar chunks, and return them with their source and page for citation.
+
+`build_index.py` runs steps 1 to 5. `test_retrieval.py` runs step 6 from the command line:
+
+```bash
+cd ostutor
+python3 rag/build_index.py
+python3 rag/test_retrieval.py "What is the difference between preemptive and non-preemptive scheduling?"
+```
+
+**Status:** the pipeline is built, but it has no course materials to index yet, and the tutor doesn't use it. See [Current limitations](#current-limitations).
+
 ## Setup
 
 ### 1. Python dependencies
