@@ -1,5 +1,5 @@
 """
-AI-Based Cyber Threat Detection and Intelligence Generation Package.
+OSTutor shared package: configuration, logging, and the fine-tuning module.
 """
 
 __version__ = "1.0.0"

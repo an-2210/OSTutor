@@ -1,178 +1,93 @@
-# AI-Based Cyber Threat Detection and Intelligence Generation
+# OSTutor: AI Tutor for Operating Systems
 
-> **Research-Paper-Level Cybersecurity AI Architecture**  
-> Supervised Classification + Anomaly Detection + Decision-Level Fusion + SHAP XAI + MITRE ATT&CK Mapping + RAG Threat Intelligence Report Generation.
+OSTutor is a study companion for Operating Systems students. It answers questions with short, structured explanations, offers quizzes and flashcards, simulates CPU scheduling with Gantt charts, and links to the textbooks behind its answers.
 
----
+## Features
 
-## 📌 System Architecture
+- **Tutor chat**: ask any OS question and get a markdown answer with key points and an example.
+- **Quiz generator and flashcards**: practice by topic.
+- **CPU scheduler simulator**: Gantt charts for FCFS, SJF, and Round Robin.
+- **Library**: links to the textbooks and references the tutor draws on, at `/library`.
 
-```text
-RAW SECURITY DATA
-        |
-        v
-DATA INGESTION & ADAPTERS
-        |
-        v
-DATA VALIDATION & QUALITY AUDIT
-        |
-        v
-LEAKAGE-SAFE PREPROCESSING
-        |
-        v
-FEATURE ENGINEERING
-        |
-        +----------------------+
-        |                      |
-        v                      v
-SUPERVISED CLASSIFIER    ANOMALY DETECTOR
-(XGBoost / Random Forest) (Autoencoder / Isolation Forest)
-        |                      |
-        +----------+-----------+
-                   |
-                   v
-             DECISION FUSION
-     (Score = α * P_sup + (1-α) * A_score)
-                   |
-                   v
-          FINAL THREAT DECISION & SEVERITY
-                   |
-                   v
-             SHAP / XAI ENGINE
-                   |
-                   v
-         MITRE ATT&CK MAPPING
-                   |
-                   v
-        THREAT INTELLIGENCE KNOWLEDGE BASE
-                   |
-                   v
-              RAG RETRIEVAL (FAISS)
-                   |
-                   v
-                 LLM (Report Generator)
-                   |
-                   v
-       STRUCTURED CTI INCIDENT REPORT
-                   |
-                   v
-             SOC DASHBOARD
-```
+## How the tutor answers
 
----
+Each question is answered by the first model that responds:
 
-## 📊 Datasets & Placement Instructions
+1. **Qwen 2.5 14B** running locally through [Ollama](https://ollama.com). Free, offline, no API key.
+2. **Gemini** (`gemini-3.8-flash`), when Qwen fails or the key is set. Needs `GEMINI_API_KEY`.
 
-This system uses official network intrusion detection benchmark datasets:
-1. **Primary Dataset**: [CIC-IDS2017](https://www.unb.ca/cic/datasets/ids-2017.html) (UNB Canadian Institute for Cybersecurity)
-2. **Secondary Dataset**: [UNSW-NB15](https://research.unsw.edu.au/projects/unsw-nb15-dataset) (Cyber Range Lab of UNSW Canberra)
+If neither answers, the tutor says it has no reliable answer and points to the textbook. It does not guess.
 
-> **Important**: Raw datasets are NOT downloaded automatically from unverified mirrors. Place the official CSV files in the respective directories:
+## Setup
 
-```text
-data/raw/CICIDS2017/
-├── Monday-WorkingHours.pcap_ISCX.csv
-├── Tuesday-WorkingHours.pcap_ISCX.csv
-├── Wednesday-workingHours.pcap_ISCX.csv
-├── Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.csv
-├── Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.csv
-├── Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv
-├── Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv
-└── Friday-WorkingHours-Morning.pcap_ISCX.csv
+### 1. Python dependencies
 
-data/raw/UNSW-NB15/
-├── UNSW_NB15_training-set.csv
-└── UNSW_NB15_testing-set.csv
-```
-
----
-
-## 📁 Repository Structure
-
-```text
-cyberthreat/
-├── data/
-│   ├── raw/
-│   │   ├── CICIDS2017/
-│   │   └── UNSW-NB15/
-│   ├── interim/
-│   ├── processed/
-│   └── external/
-├── notebooks/
-│   ├── 01_data_exploration.ipynb
-│   ├── 02_data_quality.ipynb
-│   ├── 03_preprocessing.ipynb
-│   ├── 04_baseline_models.ipynb
-│   ├── 05_advanced_models.ipynb
-│   ├── 06_anomaly_detection.ipynb
-│   ├── 07_hybrid_fusion.ipynb
-│   ├── 08_explainability.ipynb
-│   ├── 09_mitre_mapping.ipynb
-│   ├── 10_rag_cti.ipynb
-│   └── 11_final_evaluation.ipynb
-├── src/
-│   ├── data/ (loaders.py, validators.py, dataset_adapters.py)
-│   ├── preprocessing/ (cleaning.py, encoding.py, scaling.py, feature_engineering.py)
-│   ├── models/ (baselines.py, xgboost_model.py, deep_models.py, model_factory.py)
-│   ├── anomaly_detection/ (autoencoder.py, isolation_forest.py, anomaly_scoring.py)
-│   ├── fusion/ (decision_fusion.py)
-│   ├── explainability/ (shap_explainer.py)
-│   ├── threat_intelligence/ (mitre_mapper.py, knowledge_base.py, retriever.py, rag_pipeline.py, report_generator.py)
-│   ├── evaluation/ (metrics.py, experiments.py, ablation.py, cross_dataset.py)
-│   └── utils/ (logging.py, config.py, reproducibility.py)
-├── models/
-│   ├── checkpoints/
-│   └── artifacts/
-├── configs/
-│   └── config.yaml
-├── results/
-│   ├── figures/
-│   ├── tables/
-│   ├── metrics/
-│   └── reports/
-├── app/
-│   ├── backend/
-│   └── frontend/
-├── tests/
-├── requirements.txt
-├── README.md
-├── .gitignore
-└── LICENSE
-```
-
----
-
-## ⚡ Quick Start & Setup
-
-### 1. Environment Setup
 ```bash
 python3 -m venv venv
 source venv/bin/activate
-pip install -r requirements.txt
+pip install fastapi uvicorn pydantic pyyaml
 ```
 
-### 2. Run Automated Verification Tests
+### 2. Local model (Ollama)
+
 ```bash
-PYTHONPATH=. pytest tests/ -v
+brew install ollama
+ollama pull qwen2.5:14b
 ```
 
-### 3. Run Exploratory Data Analysis (EDA)
-Launch Jupyter Notebook to inspect EDA pipelines and figures:
+Qwen 2.5 14B needs about 9 GB of disk space and 16 GB of RAM for comfortable use. For a smaller machine, set `OLLAMA_MODEL` to a smaller model such as `llama3.2:3b`.
+
+### 3. Optional: Gemini fallback
+
+Get a free key from Google AI Studio and export it in the terminal you run the server from:
+
 ```bash
-jupyter notebook notebooks/01_data_exploration.ipynb
+export GEMINI_API_KEY=your_key_here
 ```
 
----
+Do not commit the key or paste it into files.
 
-## 🧪 Scientific Rigor & Reproducibility
+### 4. Run the app
 
-- **Centralized Configuration**: All hyperparameter and pipeline settings are controlled via `configs/config.yaml`.
-- **Global Seed Control**: Global random seeds fixed via `set_seed(42)` across Python, NumPy, and PyTorch.
-- **Leakage Prevention**: Standardizers, scalers, and encoders are fit **strictly** on training splits.
-- **No Hallucinated Results**: All metrics, figures, and CTI mappings are generated dynamically from executed code.
+```bash
+uvicorn app.main:app --port 8000
+```
 
----
+Then open http://127.0.0.1:8000.
 
-## 🛡️ Security Statement
+## Configuration
 
-This software is strictly intended for **defensive cybersecurity research, intrusion detection, and automated threat intelligence analysis**. It does not contain offensive exploitation capabilities.
+| Variable | Default | Purpose |
+|---|---|---|
+| `OLLAMA_URL` | `http://127.0.0.1:11434` | Where the Ollama server runs |
+| `OLLAMA_MODEL` | `qwen2.5:14b` | Local model for answers |
+| `GEMINI_API_KEY` | unset | Enables the Gemini fallback |
+| `GEMINI_MODEL` | `gemini-3.8-flash` | Gemini model name |
+| `TUTOR_TEMPERATURE` | `0.2` | Lower values give steadier answers |
+
+## Current limitations
+
+- **Textbook retrieval is not connected yet.** The tutor passes five hand-written reference paragraphs to the model. The retrieval pipeline in `ostutor/rag/` is built but has no course materials to index yet.
+- **Answers can still be wrong.** Check important facts against the textbooks in the library.
+
+## Repository layout
+
+```text
+app/
+├── main.py            FastAPI server: API routes and tutor logic
+└── frontend/          index.html, app.js, styles.css, library.html
+src/
+├── utils/             Config loading and logging
+└── models/            LLM fine-tuning module
+ostutor/
+├── rag/               Retrieval pipeline (ingest, chunk, embed, FAISS index)
+├── docs/              Design notes for the pipeline and the instruction dataset
+└── data/              Taxonomy, instruction dataset, RAG metadata
+configs/config.yaml    App settings (loaded at startup)
+```
+
+`src/utils/` provides config loading and logging for the app, and `src/models/fine_tune_llm.py` backs the fine-tuning endpoint. `configs/config.yaml` is loaded at startup and still contains settings from an earlier cyber-threat project.
+
+## License
+
+See [LICENSE](LICENSE).
